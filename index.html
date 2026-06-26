@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Completo</title>
+    <title>Itinerario Cina 2026</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
         .city-card { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
@@ -12,13 +12,6 @@
         .ticket-btn { display: block; background: #38a169; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 10px; font-size: 16px; }
         .flight-btn { display: block; background: #e53e3e; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 25px; font-size: 16px; }
     </style>
-    <script>
-        // Funzione ottimizzata per forzare l'apertura dell'App Amap
-        function openMap(poiId, lat, lon, name) {
-            var appUrl = "amapuri://poi/detail?poiid=" + poiId + "&lat=" + lat + "&lon=" + lon + "&name=" + encodeURIComponent(name);
-            window.location.href = appUrl;
-        }
-    </script>
 </head>
 <body>
     <a href="https://drive.google.com/drive/folders/1yyMAudQCVAiROs_vOvmkA4btDsTxQChn" target="_blank" class="ticket-btn">🎫 TUTTI I BIGLIETTI (DRIVE)</a>
@@ -27,28 +20,22 @@
     <!-- PECHINO -->
     <div class="city-card">
         <div class="day-title">8-12 Ago: Pechino</div>
-        <a href="#" onclick="openMap('B0FFG8E9XN', 39.9171, 116.4116, 'Stey Wangfujing'); return false;" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
-        <a href="#" onclick="openMap('B0FFM8C222', 39.9418, 116.4174, 'Siji Minfu Roast Duck'); return false;" class="amap-btn">📍 Ristorante: Siji Minfu</a>
+        <a href="https://uri.amap.com/marker?position=116.4116,39.9171&name=SteyWangfujing" target="_blank" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
+        <a href="https://uri.amap.com/marker?position=116.4174,39.9418&name=SijiMinfu" target="_blank" class="amap-btn">📍 Ristorante: Siji Minfu</a>
     </div>
 
     <!-- XI'AN -->
     <div class="city-card">
         <div class="day-title">13-14 Ago: Xi'an</div>
-        <a href="#" onclick="openMap('B0FFH1J4R5', 34.2536, 108.9463, 'Mehood Lestie'); return false;" class="amap-btn">📍 Hotel: Mehood Boutique</a>
-        <a href="#" onclick="openMap('B000A13A4G', 34.3842, 109.2783, 'Terracotta Army'); return false;" class="amap-btn">📍 Esercito di Terracotta</a>
+        <a href="https://uri.amap.com/marker?position=108.9463,34.2536&name=MehoodLestie" target="_blank" class="amap-btn">📍 Hotel: Mehood Boutique</a>
+        <a href="https://uri.amap.com/marker?position=109.2783,34.3842&name=TerracottaArmy" target="_blank" class="amap-btn">📍 Esercito di Terracotta</a>
     </div>
 
     <!-- ZHANGJIAJIE -->
     <div class="city-card">
         <div class="day-title">15-19 Ago: Zhangjiajie</div>
-        <a href="#" onclick="openMap('B0FFJ6B819', 29.1235, 110.4797, 'Jinjiang Metropolo'); return false;" class="amap-btn">📍 Hotel: Jinjiang Metropolo</a>
-        <a href="#" onclick="openMap('B0H057P0O5', 29.3570, 110.4490, 'YOLO Resort'); return false;" class="amap-btn">📍 Hotel: YOLO Resort</a>
-    </div>
-
-    <!-- SHANGHAI -->
-    <div class="city-card">
-        <div class="day-title">20-23 Ago: Shanghai</div>
-        <a href="#" onclick="openMap('B00140P84R', 31.2244, 121.4544, 'Moller Villa'); return false;" class="amap-btn">📍 Hotel: Moller Villa</a>
+        <a href="https://uri.amap.com/marker?position=110.4797,29.1235&name=JinjiangMetropolo" target="_blank" class="amap-btn">📍 Hotel: Jinjiang Metropolo</a>
+        <a href="https://uri.amap.com/marker?position=110.4490,29.3570&name=YOLOResort" target="_blank" class="amap-btn">📍 Hotel: YOLO Resort</a>
     </div>
 </body>
 </html>
