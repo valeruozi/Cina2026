@@ -13,10 +13,10 @@
         .flight-btn { display: block; background: #e53e3e; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 25px; font-size: 16px; }
     </style>
     <script>
-        // Utilizzo del formato ufficiale Amap detail per apertura diretta scheda POI
+        // Funzione ottimizzata per forzare l'apertura dell'App Amap
         function openMap(poiId, lat, lon, name) {
-            var url = "https://uri.amap.com/detail?poiid=" + poiId + "&lat=" + lat + "&lon=" + lon + "&name=" + encodeURIComponent(name);
-            window.location.href = url;
+            var appUrl = "amapuri://poi/detail?poiid=" + poiId + "&lat=" + lat + "&lon=" + lon + "&name=" + encodeURIComponent(name);
+            window.location.href = appUrl;
         }
     </script>
 </head>
