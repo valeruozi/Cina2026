@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programma di Viaggio in Cina</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        /* Testata Rossa */
+        .main-header {
+            background: linear-gradient(180deg, #b31d15 0%, #8a120b 100%);
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .main-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .main-header p {
+            margin: 15px 0 0 0;
+            font-size: 15px;
+            color: #fcd7d5;
+            font-weight: 300;
+        }
+
+        /* Container Generale */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 15px;
+        }
+
+        /* Box Nota Tecnica */
+        .tech-note {
+            background-color: #edf6ff;
+            border-left: 4px solid #1a73e8;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #2c4260;
+        }
+        .tech-note strong {
+            color: #1a73e8;
+        }
+
+        /* Scheda macro-area / Città */
+        .city-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+
+        /* Intestazione della Città */
+        .city-header {
+            background-color: #34495e;
+            color: #ffffff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .city-header h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .city-badge {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Corpo della scheda */
+        .city-body {
+            padding: 20px;
+        }
+
+        /* Struttura Giorno */
+        .day-block {
+            margin-bottom: 25px;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 20px;
+        }
+        .day-block:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        .day-title {
+            color: #c0392b;
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .hotel-tag {
+            font-size: 13px;
+            background-color: #f8fafc;
+            color: #4a5568;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+        }
+        .todo-tag {
+            font-size: 12px;
+            background-color: #fff5f5;
+            color: #c53030;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Lista attività e orari */
+        .activity-item {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .time-badge {
+            font-weight: bold;
+            color: #2d3748;
+            background-color: #edf2f7;
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        /* Pulsanti Mappe Amap */
+        .map-box {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .amap-btn {
+            background-color: #e8f4fd;
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 4px;
+            border: 1px solid #d2e3fc;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .amap-btn:hover {
+            background-color: #d2e3fc;
+        }
+
+        /* Badge Varianti (Meteo Bello / Brutto) */
+        .badge-status {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-top: 5px;
+        }
+        .bg-green { background-color: #c6f6d5; color: #22543d; }
+        .bg-red { background-color: #fed7d7; color: #742a2a; }
+    </style>
+</head>
+<body>
+
+    <!-- Intestazione principale -->
+    <div class="main-header">
+        <h1>Programma di Viaggio in Cina</h1>
+        <p>Itinerario Completo con Collegamenti Diretti ad Amap (高德地图)</p>
+    </div>
+
+    <div class="container">
+        
+        <!-- Nota Tecnica come da modello richiesto -->
+        <div class="tech-note">
+            ℹ️ <strong>Nota Tecnica per i Link Amap:</strong> I pulsanti blu utilizzano lo schema di navigazione geo nativo di Gaode Maps. Se cliccati da smartphone con l'app installata, apriranno direttamente la posizione esatta con coordinate incontrate per aggirare il blocco di geolocalizzazione cinese. Da computer mostrano la mappa web ufficiale.
+        </div>
+
+        <!-- CARD 1: PECHINO -->
+        <div class="city-card">
+            <div class="city-header">
+                <h2>Pechino (北京)</h2>
+                <div class="city-badge">Giorni 1 - 5</div>
+            </div>
+            <div class="city-body">
+                
+                <!-- 8 AGO -->
+                <div class="day-block">
+                    <div class="day-title">8 Ago (Sat) — Torino ➔ Roma ➔ Volo</div>
+                    <div class="hotel-tag">💤 Notte: In volo</div>
+                    <div class="activity-item"><span class="time-badge">09:40</span> 🚄 Treno Italo per Roma Termini.</div>
+                    <div class="activity-item"><span class="time-badge">14:30</span> 🚆 Leonardo Express per Fiumicino (FCO).</div>
+                    <div class="activity-item"><span class="time-badge">📱 Task</span> Compilare la Digital Arrival Card su WeChat/Alipay ("NIA 12367") e salvare lo screenshot del QR.</div>
+                    <div class="activity-item"><span class="time-badge">20:30</span> ✈️ Decollo volo Air China CA940 per Pechino.</div>
+                </div>
+
+                <!-- 9 AGO -->
+                <div class="day-block">
+                    <div class="day-title">9 Ago (Dom) — Arrivo a Pechino</div>
+                    <div class="hotel-tag">🏨 Hotel: Stey Beijing Wangfujing (107,75 €)</div>
+                    <div class="activity-item"><span class="time-badge">12:40</span> 🛬 Atterraggio a PEK Terminal 3. Registrazione impronte ai kiosk automatici blu/gialli prima della dogana.</div>
+                    <div class="activity-item"><span class="time-badge">14:00</span> 🚕 Prendere DiDi seguendo i cartelli "Ride-hailing" al Parcheggio P2, Livello B2 (Pillar Number).</div>
+                    <div class="activity-item"><span class="time-badge">17:15</span> 📱 <strong>Tattica Coda:</strong> Aprire il mini-programma WeChat "四季民福" per prendere il numero filiale Beixinqiao (Piano B: Jingzun Duck).</div>
+                    <div class="activity-item"><span class="time-badge">19:45</span> 🦆 Cena Anatra Laccata e passeggiata serale sulla Wangfujing Pedestrian Street.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=116.6083,40.0531&name=Aeroporto+PEK+T3" target="_blank" class="amap-btn">📍 Aeroporto PEK T3</a>
+                        <a href="https://uri.amap.com/marker?position=116.4116,39.9171&name=Stey+Wangfujing+Hotel" target="_blank" class="amap-btn">📍 Stey Wangfujing</a>
+                        <a href="https://uri.amap.com/marker?position=116.4174,39.9418&name=Siji+Minfu+Beixinqiao" target="_blank" class="amap-btn">📍 Siji Minfu Duck</a>
+                    </div>
+                </div>
+
+                <!-- 10 AGO -->
+                <div class="day-block">
+                    <div class="day-title">10 Ago (Lun) — Grande Muraglia &amp; Relax</div>
+                    <div class="hotel-tag">🏨 Hotel: Stey Beijing Wangfujing (107,75 €)</div>
+                    <div class="todo-tag">⚙️ Richiedere prenotazione SPA all'hotel via Dianping</div>
+                    <div class="activity-item"><span class="time-badge">07:30</span> 🚗 Partenza con Driver privato verso Mutianyu. Salita in funivia chiusa (Torre 14).</div>
+                    <div class="activity-item"><span class="time-badge">10:00</span> 🧱 Trekking sezione Alta della muraglia (fino a Torre 23/26) e discesa in toboga.</div>
+                    <div class="activity-item"><span class="time-badge">16:00</span> 💆 Massaggio di 90 min + doccia rigenerante presso Oriental Taipan SPA (Jinbao Street).</div>
+                    <div class="activity-item"><span class="time-badge">20:30</span> 🏮 Passeggiata a scelta tra Gui Jie (Ghost Street), Qianmen o Sanlitun Cyberpunk.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=116.5621,40.4379&name=Grande+Muraglia+Mutianyu" target="_blank" class="amap-btn">📍 Muraglia Mutianyu</a>
+                        <a href="https://uri.amap.com/marker?position=116.4217,39.9161&name=Oriental+Taipan+SPA" target="_blank" class="amap-btn">📍 Oriental Taipan SPA</a>
+                        <a href="https://uri.amap.com/marker?position=116.4239,39.9408&name=Gui+Jie+Ghost+Street" target="_blank" class="amap-btn">📍 Gui Jie</a>
+                    </div>
+                </div>
+
+                <!-- 11 AGO -->
+                <div class="day-block">
+                    <div class="day-title">11 Ago (Mar) — Città Proibita &amp; Hutong Food Tour</div>
+                    <div class="hotel-tag">🏨 Hotel: Stey Beijing Wangfujing (107,75 €)</div>
+                    <div class="todo-tag">🎒 No Bag: Evitare borse alla Città Proibita per saltare la coda controlli</div>
+                    <div class="activity-item"><span class="time-badge">08:30</span> 🚩 Tour guidato della Città Proibita (Meeting point: Hotel Kapok).</div>
+                    <div class="activity-item"><span class="time-badge">13:00</span> ⛰️ Salita al Jingshan Park per la vista panoramica completa.</div>
+                    <div class="activity-item"><span class="time-badge">15:10</span> 🙏 Visita al Tempio dei Lama (Yonghegong) e passeggiata in Guozijian St e Wudaoying Hutong.</div>
+                    <div class="activity-item"><span class="time-badge">18:00</span> 🥟 Food Tour Guidato negli Hutong (Ritrovo: Dengshikou Exit B) con focus street food.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=116.4024,39.9157&name=Hotel+Kapok" target="_blank" class="amap-btn">📍 Hotel Kapok</a>
+                        <a href="https://uri.amap.com/marker?position=116.4004,39.9255&name=Jingshan+Park" target="_blank" class="amap-btn">📍 Jingshan Park</a>
+                        <a href="https://uri.amap.com/marker?position=116.4172,39.9472&name=Tempio+dei+Lama" target="_blank" class="amap-btn">📍 Tempio dei Lama</a>
+                    </div>
+                </div>
+
+                <!-- 12 AGO -->
+                <div class="day-block">
+                    <div class="day-title">12 Ago (Mer) — Tempio del Cielo &amp; Palazzo d'Estate</div>
+                    <div class="hotel-tag">🏨 Hotel: Stey Beijing Wangfujing (107,75 €)</div>
+                    <div class="activity-item"><span class="time-badge">09:00</span> 🌳 Esplorazione del Tempio del Cielo (Ingresso Porta Est).</div>
+                    <div class="activity-item"><span class="time-badge">15:00</span> 🏯 Palazzo d'Estate (Porta Est) - Visita alla Torre dell'Incenso e discesa alla Nave di Marmo.</div>
+                    <div class="activity-item"><span class="time-badge">17:45</span> 🌅 Tramonto dorato sul Ponte dei 17 Archi (Isola del Lago Sud).</div>
+                    <div class="activity-item"><span class="time-badge">20:30</span> 🍲 Cena tradizionale Hot Pot da Ya'er Liji con vista sui laghi di Houhai.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=116.4222,39.8833&name=Tempio+del+Cielo" target="_blank" class="amap-btn">📍 Tempio del Cielo</a>
+                        <a href="https://uri.amap.com/marker?position=116.2755,39.9978&name=Palazzo+d+Estate" target="_blank" class="amap-btn">📍 Palazzo d'Estate</a>
+                        <a href="https://uri.amap.com/marker?position=116.3813,39.9416&name=Houhai+Shichahai" target="_blank" class="amap-btn">📍 Houhai</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CARD 2: XI'AN -->
+        <div class="city-card">
+            <div class="city-header">
+                <h2>Xi'an (西安)</h2>
+                <div class="city-badge">Giorni 6 - 7</div>
+            </div>
+            <div class="city-body">
+                
+                <!-- 13 AGO -->
+                <div class="day-block">
+                    <div class="day-title">13 Ago (Gio) — Treno Alta Velocità &amp; Mura Storiche</div>
+                    <div class="hotel-tag">🏨 Hotel: Mehood Lestie Bell &amp; Drum Tower (63,25 €)</div>
+                    <div class="activity-item"><span class="time-badge">09:55</span> 🚄 G-Train ad alta velocità da Beijing West a Xi'an North.</div>
+                    <div class="activity-item"><span class="time-badge">15:20</span> 🚇 Metro Linea 2 fino a Yongningmen. Check-in e consegna lavanderia in hotel.</div>
+                    <div class="activity-item"><span class="time-badge">18:15</span> 🌅 Noleggio bici sulla cinta muraria monumentale da Porta Ovest (Andingmen).</div>
+                    <div class="activity-item"><span class="time-badge">19:45</span> 🏮 Cena street food nel Quartiere Musulmano (Ingresso Sajinqiao per evitare la folla).</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=108.9395,34.3768&name=Stazione+Xi+an+Nord" target="_blank" class="amap-btn">📍 Stazione Xi'an Nord</a>
+                        <a href="https://uri.amap.com/marker?position=108.9463,34.2536&name=Mehood+Lestie+Hotel" target="_blank" class="amap-btn">📍 Hotel Mehood</a>
+                        <a href="https://uri.amap.com/marker?position=108.9317,34.2690&name=Sajinqiao+Metro" target="_blank" class="amap-btn">📍 Metro Sajinqiao</a>
+                    </div>
+                </div>
+
+                <!-- 14 AGO -->
+                <div class="day-block">
+                    <div class="day-title">14 Ago (Ven) — Esercito di Terracotta &amp; Grand Tang Mall</div>
+                    <div class="hotel-tag">🏨 Hotel: Mehood Lestie Bell &amp; Drum Tower (63,25 €)</div>
+                    <div class="activity-item"><span class="time-badge">09:00</span> 🗿 Visita guidata privata con Cici all'Esercito di Terracotta (Fosse 3, 2, 1).</div>
+                    <div class="activity-item"><span class="time-badge">15:00</span> 🐫 Spettacolo immersivo "The Legend of Camel Bells" al teatro Huaxia.</div>
+                    <div class="activity-item"><span class="time-badge">19:30</span> 🌌 Esplorazione del Grand Tang Mall e salita al 4° piano di Joy City for foto alla Pagoda.</div>
+                    <div class="activity-item"><span class="time-badge">21:00</span> ⛲ Spettacolo delle Fontane Musicali nella Piazza Nord della Grande Pagoda dell'Oca.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=109.2783,34.3842&name=Esercito+di+Terracotta" target="_blank" class="amap-btn">📍 Esercito Terracotta</a>
+                        <a href="https://uri.amap.com/marker?position=109.0494,34.3644&name=Teatro+Camel+Bells" target="_blank" class="amap-btn">📍 Teatro Camel Bells</a>
+                        <a href="https://uri.amap.com/marker?position=108.9592,34.2173&name=Joy+City+Mall" target="_blank" class="amap-btn">📍 Joy City Mall</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CARD 3: ZHANGJIAJIE & FENGHUANG -->
+        <div class="city-card">
+            <div class="city-header">
+                <h2>Zhangjiajie &amp; Fenghuang</h2>
+                <div class="city-badge">Giorni 8 - 12</div>
+            </div>
+            <div class="city-body">
+                
+                <!-- 15 AGO -->
+                <div class="day-block">
+                    <div class="day-title">15 Ago (Sab) — Panda Qinling ➔ Volo per Zhangjiajie</div>
+                    <div class="hotel-tag">🏨 Hotel: Jinjiang Metropolo ZJJ Cableway (55,00 €)</div>
+                    <div class="activity-item"><span class="time-badge">09:00</span> 🐼 Visita ai Panda Qinling a Zhouzhi (Arrivo tassativo entro le 09:00 prima che vadano a dormire).</div>
+                    <div class="activity-item"><span class="time-badge">11:30</span> 🏛️ Visita all'interessante e moderno Archaeology Museum (di strada dai panda).</div>
+                    <div class="activity-item"><span class="time-badge">15:00</span> 🍲 Pranzo e asporto da Chang'an Da Pai Dang (Mall SEG).</div>
+                    <div class="activity-item"><span class="time-badge">20:20</span> 🛫 Volo diretto Xi'an (XIY) ➔ Zhangjiajie (DYG).</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=108.3183,34.0700&name=Panda+Qinling+Zhouzhi" target="_blank" class="amap-btn">📍 Panda Qinling</a>
+                        <a href="https://uri.amap.com/marker?position=108.9109,34.1158&name=Archaeology+Museum" target="_blank" class="amap-btn">📍 Museo Archeologia</a>
+                        <a href="https://uri.amap.com/marker?position=110.4797,29.1235&name=Jinjiang+Metropolo+ZJJ" target="_blank" class="amap-btn">📍 Jinjiang Metropolo</a>
+                    </div>
+                </div>
+
+                <!-- 16 AGO -->
+                <div class="day-block">
+                    <div class="day-title">16 Ago (Dom) — Tianmen Mountain ➔ Fenghuang</div>
+                    <div class="hotel-tag">🏨 Hotel: Phoenix Dayin Qianfu Homestay (80,00 €)</div>
+                    <div class="activity-item"><span class="time-badge">08:15</span> 🧳 Spedizione valigie grandi dall'hotel allo YOLO Resort. Si viaggia leggerissimi.</div>
+                    <div class="activity-item"><span class="time-badge">08:50</span> 🚠 Tianmen Mountain (Slot B): Express Cableway in salita, 999 scalini, scale mobili e Guigu Path.</div>
+                    <div class="activity-item"><span class="time-badge">17:00</span> 🚄 Treno ad alta velocità da Zhangjiajie West a Fenghuang Gucheng.</div>
+                    <div class="activity-item"><span class="time-badge">19:15</span> 🏮 Serata magica a Fenghuang sul fiume: Ponte Hongqiao e stepping stones illuminati.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=110.4779,29.1215&name=Tianmen+Mountain+Cableway" target="_blank" class="amap-btn">📍 Funivia Tianmen</a>
+                        <a href="https://uri.amap.com/marker?position=109.5898,27.9944&name=Stazione+Fenghuang" target="_blank" class="amap-btn">📍 Stazione Fenghuang</a>
+                        <a href="https://uri.amap.com/marker?position=109.6015,27.9546&name=Hotel+Dayin+Qianfu" target="_blank" class="amap-btn">📍 Hotel Fenghuang</a>
+                    </div>
+                </div>
+
+                <!-- 17 AGO -->
+                <div class="day-block">
+                    <div class="day-title">17 Ago (Lun) — Fenghuang ➔ Ingresso Parco YOLO</div>
+                    <div class="hotel-tag">🏨 Hotel: Zhangjiajie YOLO Resort (Parco Interno) (51,00 €)</div>
+                    <div class="activity-item"><span class="time-badge">12:43</span> 🚄 Treno di rientro a Zhangjiajie West. Consegna immediata dei bagagli al desk spedizioni della stazione.</div>
+                    <div class="activity-item"><span class="time-badge">15:20</span> 🚠 Ingresso Est Wulingyuan ➔ Navetta ➔ Risalita rapida con Bailong VIP Elevator (salto coda gruppi).</div>
+                    <div class="activity-item"><span class="time-badge">17:30</span> 🌲 Check-in e trekking pomeridiano ad Avatar Mountain (Hallelujah Mt deserta senza folla).</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=110.5510,29.3516&name=Wulingyuan+East+Gate" target="_blank" class="amap-btn">📍 Ingresso Est Parco</a>
+                        <a href="https://uri.amap.com/marker?position=110.4611,29.3533&name=Ascensore+Bailong" target="_blank" class="amap-btn">📍 Ascensore Bailong</a>
+                    </div>
+                </div>
+
+                <!-- 18 AGO -->
+                <div class="day-block">
+                    <div class="day-title">18 Ago (Mar) — Avatar Mountain: Gestione Meteo</div>
+                    <div class="hotel-tag">🏨 Hotel: Zhangjiajie YOLO Resort (51,00 €)</div>
+                    <div class="activity-item"><span class="badge-status bg-green">🟢 METEO BELLO</span> <strong>Permanenza in quota:</strong> Bus per Yuanjiajie (Mihun Tai) dalle 08:30. Pranzo protetto a Tianqiashen (scimmie aggressive). Pomeriggio trekking selvaggio alla Muraglia Naturale di Yangjiajie.</div>
+                    <div class="activity-item"><span class="badge-status bg-red">🔴 METEO BRUTTO</span> <strong>Discesa in valle:</strong> Discesa immediata con Bailong. Trekking pianeggiante sul Golden Whip Stream (visibilità garantita). Pomeriggio al coperto alla Yellow Dragon Cave (Grotta).</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=110.4357,29.3524&name=Yuanjiajie+Area" target="_blank" class="amap-btn">📍 Area Yuanjiajie</a>
+                        <a href="https://uri.amap.com/marker?position=110.5975,29.3556&name=Yellow+Dragon+Cave" target="_blank" class="amap-btn">📍 Yellow Dragon Cave</a>
+                    </div>
+                </div>
+
+                <!-- 19 AGO -->
+                <div class="day-block">
+                    <div class="day-title">19 Ago (Mer) — Tianzi Mountain &amp; Jolly Tramonto</div>
+                    <div class="hotel-tag">🏨 Hotel: Zhangjiajie YOLO Resort (77,00 €)</div>
+                    <div class="activity-item"><span class="badge-status bg-green">🟢 METEO BELLO</span> Esplorazione delle vette di Tianzi Mountain (Shentang Gulf). Ore 16:30 Van privato concordato con l'hotel per Laowuchang (Risaie nel Cielo) per un tramonto rurale pazzesco.</div>
+                    <div class="activity-item"><span class="badge-status bg-red">🔴 METEO BRUTTO</span> Discesa a valle, massaggio ai piedi e relax a Wulingyuan Town.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=110.4573,29.3951&name=Tianzi+Mountain" target="_blank" class="amap-btn">📍 Tianzi Mountain</a>
+                        <a href="https://uri.amap.com/marker?position=110.4533,29.3621&name=Laowuchang+Risaie" target="_blank" class="amap-btn">📍 Laowuchang</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CARD 4: SHANGHAI -->
+        <div class="city-card">
+            <div class="city-header">
+                <h2>Shanghai (上海)</h2>
+                <div class="city-badge">Giorni 13 - 17</div>
+            </div>
+            <div class="city-body">
+                
+                <!-- 20 AGO -->
+                <div class="day-block">
+                    <div class="day-title">20 Ago (Gio) — Volo Zhangjiajie ➔ Shanghai</div>
+                    <div class="hotel-tag">🏨 Hotel: Hengshan Moller Villa Shanghai (137,00 €)</div>
+                    <div class="activity-item"><span class="time-badge">12:15</span> 🧳 Arrivo aeroporto DYG e ritiro valigie spedite dallo YOLO. Volo Air China delle 14:40 per Shanghai Pudong (PVG).</div>
+                    <div class="activity-item"><span class="time-badge">17:30</span> 🚄 Treno Maglev ultra-veloce fino a Longyang Road (Sconto mostrando il biglietto aereo).</div>
+                    <div class="activity-item"><span class="time-badge">19:40</span> 🍸 Drink panoramico spettacolare frontale sul Bund al The Captain's Bar. Cena da Shanghai Grandmother prima del <span class="badge-status bg-red">Coprifuoco Luci ore 22:00</span>.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=110.4513,29.1022&name=Aeroporto+ZJJ+DYG" target="_blank" class="amap-btn">📍 Aeroporto DYG</a>
+                        <a href="https://uri.amap.com/marker?position=121.4544,31.2244&name=Moller+Villa+Hotel" target="_blank" class="amap-btn">📍 Moller Villa Shanghai</a>
+                        <a href="https://uri.amap.com/marker?position=121.4883,31.2372&name=The+Captain+Bar" target="_blank" class="amap-btn">📍 The Captain's Bar</a>
+                    </div>
+                </div>
+
+                <!-- 21 AGO -->
+                <div class="day-block">
+                    <div class="day-title">21 Ago (Ven) — Arte, Concessione Francese &amp; Xintiandi</div>
+                    <div class="hotel-tag">🏨 Hotel: Hengshan Moller Villa Shanghai (137,00 €)</div>
+                    <div class="todo-tag">🏛️ Prenotare Museo Shanghai Est su WeChat con 7 giorni di anticipo</div>
+                    <div class="activity-item"><span class="time-badge">09:45</span> 🏛️ Visita al Museo Shanghai Est a Pudong (Collezione di Bronzi antichi).</div>
+                    <div class="activity-item"><span class="time-badge">17:15</span> 📸 Loop Concessione Francese a piedi: Wukang Mansion (Edificio a nave), Anfu Rd e Wulumuqi Rd.</div>
+                    <div class="activity-item"><span class="time-badge">19:15</span> 🏮 Passeggiata tra i vicoli storici Shikumen restaurati di Xintiandi.</div>
+                    <div class="activity-item"><span class="time-badge">21:15</span> ✨ DiDi rapido e categorico verso Yuyuan Bazaar per fotografare la città vecchia illuminata d'oro prima dello spegnimento delle 22:00.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=121.5435,31.2215&name=Museo+Shanghai+Est" target="_blank" class="amap-btn">📍 Museo Shanghai Est</a>
+                        <a href="https://uri.amap.com/marker?position=121.4397,31.2045&name=Wukang+Mansion" target="_blank" class="amap-btn">📍 Wukang Mansion</a>
+                        <a href="https://uri.amap.com/marker?position=121.4922,31.2268&name=Yuyuan+Bazaar" target="_blank" class="amap-btn">📍 Yuyuan Bazaar</a>
+                    </div>
+                </div>
+
+                <!-- 22 AGO -->
+                <div class="day-block">
+                    <div class="day-title">22 Ago (Sab) — Templi, Mercato dei Matrimoni &amp; Anyi Road</div>
+                    <div class="hotel-tag">🏨 Hotel: Hengshan Moller Villa Shanghai (137,00 €)</div>
+                    <div class="activity-item"><span class="time-badge">10:15</span> 🙏 Visita interna al Tempio del Buddha di Giada (20+10 RMB per le statue). Sosta foto esterna a Jing'an.</div>
+                    <div class="activity-item"><span class="time-badge">12:00</span> 🎎 People's Park: Angolo Nord-Ovest per il curioso Mercato dei Matrimoni (curriculum sugli ombrelli). Pranzo con i famosi ravioli alla piastra da Yang's Dumplings.</div>
+                    <div class="activity-item"><span class="time-badge">14:45</span> 🛍️ Relax condizionato all'IAPM Mall (Shopping borse da Songmont) e risalita del blocco Ju-Fu-Chang.</div>
+                    <div class="activity-item"><span class="time-badge">20:30</span> 🏮 <strong>Anyi Road Night Market:</strong> Cena street food itinerante nel mercato del weekend con vista mozzafiato sul Tempio di Jing'an dorato.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=121.4447,31.2423&name=Tempio+Buddha+Giada" target="_blank" class="amap-btn">📍 Buddha di Giada</a>
+                        <a href="https://uri.amap.com/marker?position=121.4526,31.2156&name=IAPM+Mall" target="_blank" class="amap-btn">📍 IAPM Mall</a>
+                        <a href="https://uri.amap.com/marker?position=121.4491,31.2246&name=Anyi+Road+Market" target="_blank" class="amap-btn">📍 Anyi Road Market</a>
+                    </div>
+                </div>
+
+                <!-- 23 AGO -->
+                <div class="day-block">
+                    <div class="day-title">23 Ago (Dom) — Giardino Yu ➔ Shanghai Tower ➔ Pechino</div>
+                    <div class="hotel-tag">🏨 Hotel: Fairfield by Marriott Beijing (92,00 €)</div>
+                    <div class="activity-item"><span class="time-badge">09:30</span> 🏯 Esplorazione del classico Giardino Yu e souvenir economici al mercato all'ingrosso Fuyoumen.</div>
+                    <div class="activity-item"><span class="time-badge">13:30</span> ⛴️ Attraversamento del fiume Huangpu con il panoramico traghetto pubblico da 2 RMB verso Pudong.</div>
+                    <div class="activity-item"><span class="time-badge">15:30</span> 🏙️ Salita sul ponte panoramico al 118° piano della maestosa Shanghai Tower.</div>
+                    <div class="activity-item"><span class="time-badge">17:30</span> 🧳 <span class="badge-status bg-red">TASSATIVO</span> Partenza da hotel con bagagli. Metro Linea 10 diretta per Aeroporto Hongqiao (SHA) T2. Volo serale per Pechino.</div>
+                    <div class="map-box">
+                        <a href="https://uri.amap.com/marker?position=121.4921,31.2272&name=Giardino+Yu" target="_blank" class="amap-btn">📍 Giardino Yu</a>
+                        <a href="https://uri.amap.com/marker?position=121.5056,31.2335&name=Shanghai+Tower" target="_blank" class="amap-btn">📍 Shanghai Tower</a>
+                        <a href="https://uri.amap.com/marker?position=121.3259,31.1966&name=Aeroporto+Hongqiao+SHA" target="_blank" class="amap-btn">📍 Aeroporto SHA T2</a>
+                    </div>
+                </div>
+
+                <!-- 24 AGO -->
+                <div class="day-block">
+                    <div class="day-title">24 Ago (Lun) — Pechino ➔ Roma ➔ Priverno</div>
+                    <div class="hotel-tag">🏠 Rientro a casa</div>
+                    <div class="activity-item"><span class="time-badge">13:15</span> ✈️ Decollo del volo internazionale di rientro Air China CA939 per Roma FCO.</div>
+                    <div class="activity-item"><span class="time-badge">18:30</span> 🛬 Atterraggio a Fiumicino, controllo passaporti e ritiro bagagli.</div>
+                    <div class="activity-item"><span class="time-badge">20:00</span> 🚄 Leonardo Express + Treno Regionale Trenitalia acquistato direttamente sul telefono per Priverno.</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
