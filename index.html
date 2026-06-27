@@ -2,39 +2,175 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Viaggio Cina 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viaggio in Cina 2026</title>
     <style>
-        /* Inserisci qui il tuo CSS globale (colori, bottoni, card) */
-        .hub-nav { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; }
-        .city-section { margin-top: 30px; border-top: 2px solid #ddd; padding-top: 10px; }
+        :root {
+            --primary: #c0392b;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent-blue: #3498db;
+            --warning: #e67e22;
+            --danger: #e53e3e;
+            --italo: #8e1828;
+            --food: #f39c12;
+        }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text-main); padding: 15px; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+        h1 { text-align: center; color: var(--primary); border-bottom: 3px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
+        .nav-giorni { display: flex; overflow-x: auto; gap: 10px; padding-bottom: 15px; margin-bottom: 20px; scrollbar-width: thin; }
+        .nav-btn { background: var(--card-bg); border: 1px solid #ddd; padding: 10px 15px; border-radius: 20px; white-space: nowrap; text-decoration: none; color: var(--text-main); font-weight: bold; font-size: 14px; }
+        .nav-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .day-card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); scroll-margin-top: 20px; }
+        .day-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--bg); padding-bottom: 10px; margin-bottom: 15px; }
+        .day-title { color: var(--primary); font-weight: 900; font-size: 20px; margin: 0; }
+        .day-subtitle { font-size: 14px; color: var(--text-muted); font-weight: normal; }
+        .info-block { background: var(--bg); border-radius: 8px; padding: 12px; margin-bottom: 15px; }
+        .info-title { font-size: 12px; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
+        .data-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+        .data-item { font-size: 14px; }
+        .data-label { font-size: 11px; color: var(--text-muted); display: block; }
+        .data-value { font-weight: bold; color: var(--text-main); }
+        .alert-todo { background: #ffebeb; border-left: 4px solid var(--danger); padding: 12px; border-radius: 4px; font-weight: bold; color: #c53030; margin-top: 15px; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+        .alert-success { background: #d4edda; border-left: 4px solid #28a745; padding: 12px; border-radius: 4px; color: #155724; font-size: 14px; margin-bottom: 15px; }
+        .food-tips { background: #fff8e1; border-left: 4px solid var(--food); }
+        .food-tips .info-title { color: #b9770e; }
+        .timeline { list-style: none; padding: 0; margin: 0; }
+        .timeline li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 14px; }
+        .timeline li::before { content: "•"; position: absolute; left: 0; top: -2px; color: var(--primary); font-size: 20px; }
+        .time-badge { font-weight: bold; color: var(--primary); margin-right: 5px; }
+        .amap-btn { display: block; background: #e8f4fd; color: var(--accent-blue); padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
+        .file-btn { display: block; background: #2c3e50; color: white; padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #1a252f; }
+        .track-btn { display: block; background: #fdf2f3; color: var(--italo); padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #e0b4b9; }
+        .feature-img { width: 100%; border-radius: 8px; margin-bottom: 10px; object-fit: cover; border: 1px solid #ddd; }
+        .copy-badge { background: #e0e0e0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 15px; letter-spacing: 1px; user-select: all; }
     </style>
+    <script>
+        function openSurl(url) { window.location.href = url; }
+        function openAmapFallback(lat, lon, name) {
+            var encodedName = encodeURIComponent(name);
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            var url = isIOS ? "iosamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0" : "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+            window.location.href = url;
+        }
+    </script>
 </head>
 <body>
-    <h1>🇨🇳 Viaggio Cina 2026</h1>
-    
-    <!-- MENU DINAMICO -->
-    <div class="hub-nav" id="menu-giorni">
-        <button onclick="carica('giorno_08')">08 Ago</button>
-        <button onclick="carica('giorno_09')">09 Ago</button>
+
+    <h1>🇨🇳 Viaggio in Cina 2026</h1>
+
+    <div class="nav-giorni">
+        <a href="#day-8-ago" class="nav-btn">8 Ago - Roma</a>
+        <a href="#day-9-ago" class="nav-btn active">9 Ago - Pechino</a>
     </div>
 
-    <!-- ZONA DINAMICA -->
-    <div id="contenitore"></div>
-
-    <!-- DATABASE CITTÀ (Link Rapidi) -->
-    <div class="city-section" id="pechino">
-        <h2>📍 Pechino: Risorse Utili</h2>
-        <a href="https://surl.amap.com/..." class="amap-btn">Elenco Ristoranti e Mappe</a>
+    <!-- GIORNO 1: 8 AGOSTO -->
+    <div id="day-8-ago" class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Sabato, 8 Agosto</h2>
+            <span class="day-subtitle">Torino ➔ Roma ➔ In Volo</span>
+        </div>
+        <div class="info-block">
+            <div class="info-title">🚆 TRENO ITALO</div>
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Codice PNR</span><span class="data-value">ALLSVR</span></div>
+                <div class="data-item"><span class="data-label">Treno / Tariffa</span><span class="data-value">9923 / Smart Flex</span></div>
+                <div class="data-item"><span class="data-label">Data</span><span class="data-value">08 Ago 2026</span></div>
+                <div class="data-item"><span class="data-label">Orario</span><span class="data-value">08:40 - 13:24</span></div>
+                <div class="data-item"><span class="data-label">Tratta</span><span class="data-value">Torino P. Susa ➔ Roma Termini</span></div>
+            </div>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Valentina Ruozi</span><span class="data-value">Carrozza 6, Posto 11</span></div>
+                <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
+            </div>
+            <a href="https://italoinviaggio.italotreno.it/it/treno/9923" target="_blank" class="track-btn">🕒 STATO TRENO IN TEMPO REALE</a>
+        </div>
+        <div class="info-block">
+            <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
+            <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">📄 APRI BIGLIETTO ELETTRONICO</a>
+        </div>
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">08:40</span> Partenza Italo Treno 9923 da Torino Porta Susa.</li>
+                <li><span class="time-badge">13:24</span> Arrivo a Roma Termini.</li>
+                <li><span class="time-badge">14:30</span> Treno Leonardo Express per Fiumicino Aeroporto (FCO).</li>
+                <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card: Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code.</li>
+                <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
+            </ul>
+        </div>
+        <div class="alert-todo">🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).</div>
     </div>
 
-    <script>
-        function carica(file) {
-            fetch('data/' + file + '.html')
-                .then(r => r.text())
-                .then(html => { document.getElementById('contenitore').innerHTML = html; });
-        }
-        // Scroll automatico al giorno di oggi (esempio logica)
-        window.onload = () => { /* Logica per attivare il tasto del giorno corrente */ };
-    </script>
+    <!-- GIORNO 2: 9 AGOSTO -->
+    <div id="day-9-ago" class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Domenica, 9 Agosto</h2>
+            <span class="day-subtitle">Arrivo a Pechino & Anatra Laccata</span>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">🏨 HOTEL E LOGISTICA</div>
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/506196385.jpg?k=4d82bc61d800bf68284474153ca0801133b7611478f4042a75d6b2ba0ea9c465&o=" alt="Stey Hotel Facade" class="feature-img">
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Stey Beijing Wangfujing Hotel</span></div>
+                <div class="data-item"><span class="data-label">Costo Totale</span><span class="data-value">107,75 €</span></div>
+            </div>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">🗺️ LINK AMAP</div>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Hotel: Stey Wangfujing</a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Cena A: Siji Minfu (Dengshikou)</a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Cena B: Beijing Roast Duck (Nanchizi)</a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Wangfujing Pedestrian Street</a>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">12:40</span> Atterraggio a Pechino (PEK) Terminal 3.</li>
+                <li><span class="time-badge">Kiosk</span> Fermarsi ai kiosk automatici (blu/gialli) prima dell'immigrazione. Scansionare passaporto e impronte. Ritirare scontrino.</li>
+                <li><span class="time-badge">14:00</span> Dogana: Corsia "Foreigners". Preparare info su hotel e volo di ritorno.</li>
+                <li><span class="time-badge">DiDi</span> Andare al Parcheggio P2, Livello B2. Cercare "Pillar Number" sull'app DiDi. Inviare messaggio al driver: "I am at Pillar [Numero]".</li>
+                <li><span class="time-badge">15:00</span> Check-in Stey Wangfujing.</li>
+                <li><span class="time-badge">15:15 - 18:45</span> Riposo obbligatorio in Hotel (Oscurare tutto, ricaricare le batterie).</li>
+                <li><span class="time-badge">17:15</span> TATTICA CODA: Aprire mini-programma WeChat e cercare: <span class="copy-badge">四季民福</span> (copia testo). Cliccare "取号" (Prendi numero).</li>
+                <li><span class="time-badge">19:15</span> Monitorare lo scorrimento. Quando mancano 15-20 tavoli, uscire in direzione ristorante.</li>
+                <li><span class="time-badge">19:45 - 21:00</span> Cena: Anatra Laccata.</li>
+                <li><span class="time-badge">21:15</span> Dopo Cena: Passeggiata sulla Wangfujing Pedestrian Street o rientro in hotel. Spesa al 7-Eleven aperto 24h per la colazione di domani.</li>
+            </ul>
+        </div>
+
+        <div class="info-block food-tips">
+            <div class="info-title">💡 SUGGERIMENTI E OPZIONI</div>
+            
+            <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🦆 Ordine Anatra Laccata</p>
+            <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
+                <li><b>L'Anatra:</b> <i>Bàn zhī</i> 半只 (Mezza) oppure <i>Yī zhī</i> 一只 (Intera).</li>
+                <li><b>Il Kit Essenziale:</b> Condiment set (crespelline/pancakes, salsa scura dolce, cetriolo e porro per avvolgere).</li>
+                <li><b>La Regola d'Oro:</b> La primissima pelle croccante del petto NON si arrotola. Si intinge nello zucchero bianco e si fa sciogliere in bocca.</li>
+                <li><b>Contorni:</b> Cuori di cavolo in agrodolce o spinaci all'aglio (per pulire la bocca dal grasso).</li>
+            </ul>
+
+            <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🚨 Piani Alternativi (Cena & Dopo Cena)</p>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                <li><b>Piano B Cena:</b> Se la coda virtuale su WeChat per Siji Minfu supera i 50 numeri, abbandonare l'idea e puntare al Beijing Roast Duck (Nanchizi).</li>
+                <li><b>Piano A Serale (Energia Residua):</b> Passeggiata sulla Wangfujing Pedestrian Street. Luci, neon, maxischermi e vita cittadina.</li>
+                <li><b>Piano B Serale (Sconfitti dal fuso):</b> Rientro immediato in Hotel a dormire (Fatica 0).</li>
+                <li><b>Tip Logistico:</b> Spesa per la colazione di domani e trekking alla Muraglia presso il 7-Eleven sotto l'hotel.</li>
+            </ul>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📁 ARCHIVIO DOCUMENTI</div>
+            <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" target="_blank" class="file-btn" style="background: #95a5a6; border-color: #7f8c8d;">
+                📄 APRI CONFERMA PRENOTAZIONE HOTEL
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>
