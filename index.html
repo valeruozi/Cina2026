@@ -2,33 +2,48 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Confronto T5 vs T15 - Tempio del Cielo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test 21 - Comparativa Location</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 20px; }
-        .btn-t5 { display: block; background: #fff; border: 2px solid #27ae60; color: #27ae60; padding: 20px; margin: 10px 0; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; }
-        .btn-t15 { display: block; background: #fff; border: 2px solid #e67e22; color: #e67e22; padding: 20px; margin: 10px 0; border-radius: 12px; text-decoration: none; font-weight: bold; text-align: center; }
+        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; }
+        .box { margin-bottom: 25px; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h3 { margin-top: 0; color: #2c3e50; }
+        button { display: block; width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; color: white; }
+        .btn-a { background: #e67e22; } /* Link Ufficiale */
+        .btn-b { background: #27ae60; } /* Ricerca Nome */
+        .btn-c { background: #3498db; } /* Coordinate */
     </style>
     <script>
-        // Soluzione 5 (Coordinate)
-        function openT5(lat, lon, name) {
-            var url = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodeURIComponent(name) + "&lat=" + lat + "&lon=" + lon + "&dev=0";
-            window.location.href = url;
-        }
-        // Soluzione 15 (Link Ufficiale)
-        function openT15(url) {
-            window.location.href = url;
-        }
+        function openLink(url) { window.location.href = url; }
+        function openSearch(name) { window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + encodeURIComponent(name); }
+        function openCoord(lat, lon, name) { window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodeURIComponent(name) + "&lat=" + lat + "&lon=" + lon + "&dev=0"; }
     </script>
 </head>
 <body>
-    <h3>Confronto Precisione: Tempio del Cielo</h3>
-    
-    <a href="#" onclick="openT15('https://surl.amap.com/a5eB8kS1bWl'); return false;" class="btn-t15">
-        📍 Tempio del Cielo (Soluzione 15 - Ufficiale)
-    </a>
 
-    <a href="#" onclick="openT5(39.881913, 116.410829, 'Tempio del Cielo'); return false;" class="btn-t5">
-        📍 Tempio del Cielo (Soluzione 5 - Coordinate)
-    </a>
+    <!-- Test 21: Stey Wangfujing -->
+    <div class="box">
+        <h3>1. Stey Wangfujing</h3>
+        <button class="btn-a" onclick="openLink('https://surl.amap.com/jsHEdsW1f2LY')">A: Link Ufficiale</button>
+        <button class="btn-b" onclick="openSearch('Stey王府井酒店')">B: Ricerca Nome Cinese</button>
+        <button class="btn-c" onclick="openCoord(39.91764, 116.41708, 'Stey王府井酒店')">C: Coordinate Raffinate</button>
+    </div>
+
+    <!-- Test 21: Tempio del Cielo -->
+    <div class="box">
+        <h3>2. Tempio del Cielo</h3>
+        <button class="btn-a" onclick="openLink('https://surl.amap.com/a5eB8kS1bWl')">A: Link Ufficiale</button>
+        <button class="btn-b" onclick="openSearch('天坛公园')">B: Ricerca Nome Cinese</button>
+        <button class="btn-c" onclick="openCoord(39.8833, 116.4222, '天坛公园')">C: Coordinate Raffinate</button>
+    </div>
+
+    <!-- Test 21: Stazione Pechino Ovest -->
+    <div class="box">
+        <h3>3. Beijing West Station</h3>
+        <button class="btn-a" onclick="openLink('https://surl.amap.com/a7hW4sS2cKm')">A: Link Ufficiale</button>
+        <button class="btn-b" onclick="openSearch('北京西站')">B: Ricerca Nome Cinese</button>
+        <button class="btn-c" onclick="openCoord(39.8946, 116.3213, '北京西站')">C: Coordinate Raffinate</button>
+    </div>
+
 </body>
 </html>
