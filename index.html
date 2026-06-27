@@ -142,6 +142,16 @@
     window.addEventListener('DOMContentLoaded', () => { initApp(); });
 </script>
 
+<script>
+    // Forza il caricamento dell'ultima versione salvata in locale
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('Service Worker non ancora configurato'));
+        });
+    }
+</script>
+
+
 </head>
 <body>
 
