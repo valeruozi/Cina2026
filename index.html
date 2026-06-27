@@ -3,45 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Test 03</title>
+    <title>Itinerario Cina 2026 - Test 04</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
-        .test-badge { background: #000; color: #fff; padding: 10px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; border: 2px solid #2ecc71; }
+        .test-badge { background: #000; color: #fff; padding: 10px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; border: 2px solid #3498db; }
         .city-card { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .day-title { color: #c0392b; font-weight: bold; margin-bottom: 5px; font-size: 16px; border-bottom: 2px solid #f5f7fa; padding-bottom: 8px; }
+        .day-desc { font-size: 13px; color: #555; margin-bottom: 12px; line-height: 1.4; }
         .amap-btn { display: block; background: #e8f4fd; color: #1a73e8; padding: 12px; margin: 6px 0; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
         .ticket-btn { display: block; background: #38a169; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 10px; font-size: 16px; }
+        .flight-btn { display: block; background: #e53e3e; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 25px; font-size: 16px; }
     </style>
     <script>
-        // TEST 03: Protocollo Nativo + ID Univoco (POI ID)
-        // Questo unisce l'apertura sicura dell'app con la precisione del database
-        function runTest03(poiId) {
-            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-            var appUrl = "";
-            
-            // Usiamo il comando 'poiDetail' per aprire direttamente la scheda del posto
-            if (isIOS) {
-                appUrl = "iosamap://poiDetail?sourceApplication=ItinerarioTest&poiid=" + poiId;
-            } else {
-                appUrl = "androidamap://poiDetail?sourceApplication=ItinerarioTest&poiid=" + poiId;
-            }
-            
-            window.location.href = appUrl;
+        // TEST 04: Universal Link di dettaglio con parametro di risveglio nativo
+        function runTest04(poiId) {
+            var url = "https://uri.amap.com/detail?poiid=" + poiId + "&callnative=1";
+            window.location.href = url;
         }
     </script>
 </head>
 <body>
-    <div class="test-badge">PROVA NUMERO: 03<br><small>Apertura Nativa tramite POI ID</small></div>
+    <div class="test-badge">PROVA NUMERO: 04<br><small>Universal Link Web (uri.amap.com/detail?poiid=...&callnative=1)</small></div>
     
     <a href="https://drive.google.com/drive/folders/1yyMAudQCVAiROs_vOvmkA4btDsTxQChn" target="_blank" class="ticket-btn">🎫 TUTTI I BIGLIETTI (DRIVE)</a>
+    <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="flight-btn">✈️ VOLO AIR CHINA</a>
 
-    <!-- PECHINO -->
     <div class="city-card">
-        <div class="day-title">8-12 Ago: Pechino</div>
-        <!-- Ho inserito i POI ID corretti per testare -->
-        <a href="#" onclick="runTest03('B0FFG8E9XN'); return false;" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
-        <a href="#" onclick="runTest03('B0FFM8C222'); return false;" class="amap-btn">📍 Ristorante: Siji Minfu</a>
-        <a href="#" onclick="runTest03('B000A83U4I'); return false;" class="amap-btn">📍 Tempio del Cielo</a>
+        <div class="day-title">8-12 Ago: Pechino (北京)</div>
+        <div class="day-desc">Logistica aeroporto, hotel, cene tipiche e attrazioni imperiali.</div>
+        <a href="#" onclick="runTest04('B000A28DAD'); return false;" class="amap-btn">📍 Pechino Capitale - Terminal 3 (PEK)</a>
+        <a href="#" onclick="runTest04('B0FFG8E9XN'); return false;" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
+        <a href="#" onclick="runTest04('B0FFM8C222'); return false;" class="amap-btn">📍 Ristorante: Siji Minfu (Beixinqiao)</a>
+        <a href="#" onclick="runTest04('B000A8169A'); return false;" class="amap-btn">📍 Ristorante Piano B: Jingzun Roast Duck</a>
+        <a href="#" onclick="runTest04('B000A80T2K'); return false;" class="amap-btn">📍 Grande Muraglia di Mutianyu</a>
+        <a href="#" onclick="runTest04('B000A81862'); return false;" class="amap-btn">📍 Centro SPA: Oriental Taipan (Jinbao St)</a>
+        <a href="#" onclick="runTest04('B02DB05342'); return false;" class="amap-btn">📍 Cibo Notturno: Gui Jie (Ghost Street)</a>
+        <a href="#" onclick="runTest04('B000A83C36'); return false;" class="amap-btn">📍 Tempio dei Lama (Yonghegong)</a>
+        <a href="#" onclick="runTest04('B000A83U4I'); return false;" class="amap-btn">📍 Tempio del Cielo</a>
+        <a href="#" onclick="runTest04('B000A83M61'); return false;" class="amap-btn">📍 Palazzo d'Estate</a>
+        <a href="#" onclick="runTest04('B000A4997E'); return false;" class="amap-btn">📍 Zona Laghi: Houhai (Shichahai)</a>
+    </div>
+
+    <div class="city-card">
+        <div class="day-title">13-14 Ago: Xi'an (西安)</div>
+        <div class="day-desc">Stazioni, mura storiche, guerrieri e spettacoli serali.</div>
+        <a href="#" onclick="runTest04('B000A8W772'); return false;" class="amap-btn">📍 Stazione Arrivo AV: Xi'an Nord</a>
+        <a href="#" onclick="runTest04('B0FFH1J4R5'); return false;" class="amap-btn">📍 Hotel: Mehood Lestie (South Gate)</a>
+        <a href="#" onclick="runTest04('B000A846B9'); return false;" class="amap-btn">📍 Mura Storiche: Porta Ovest (Andingmen)</a>
+        <a href="#" onclick="runTest04('B001B0IA3D'); return false;" class="amap-btn">📍 Mercato: Sajinqiao (Quartiere Musulmano)</a>
+        <a href="#" onclick="runTest04('B000A13A4G'); return false;" class="amap-btn">📍 Sito Archeologico: Esercito di Terracotta</a>
+        <a href="#" onclick="runTest04('B0FFG06N11'); return false;" class="amap-btn">📍 Teatro: Camel Bells Show</a>
+        <a href="#" onclick="runTest04('B0FFG0K907'); return false;" class="amap-btn">📍 Centro Commerciale: Joy City Mall</a>
+        <a href="#" onclick="runTest04('B000A8402A'); return false;" class="amap-btn">📍 Fontane Musicali: Piazza Nord (Pagoda)</a>
+    </div>
+
+    <div class="city-card">
+        <div class="day-title">15-19 Ago: Zhangjiajie & Fenghuang (张家界/凤凰)</div>
+        <div class="day-desc">Riserve naturali, parchi faunistici, hotel in quota e impianti di risalita.</div>
+        <a href="#" onclick="runTest04('B035F01A84'); return false;" class="amap-btn">📍 Parco Faunistico: Panda Qinling Base</a>
+        <a href="#" onclick="runTest04('B0FFJ6B819'); return false;" class="amap-btn">📍 Hotel: Jinjiang Metropolo (ZJJ Stazione)</a>
+        <a href="#" onclick="runTest04('B02DB04H8E'); return false;" class="amap-btn">📍 Impianto: Tianmen Mountain Cableway</a>
+        <a href="#" onclick="runTest04('B0FFK0L9M1'); return false;" class="amap-btn">📍 Hotel: Dayin Qianfu (Fenghuang 古城)</a>
+        <a href="#" onclick="openMap('B001797W7E'); return false;" class="amap-btn">📍 Ingresso Parco: Wulingyuan Signpost (Est)</a>
+        <a href="#" onclick="runTest04('B02DB137GZ'); return false;" class="amap-btn">📍 Impianto VIP: Ascensore Bailong</a>
+        <a href="#" onclick="runTest04('B0H057P0O5'); return false;" class="amap-btn">📍 Hotel: YOLO Resort (Yuanjiajie)</a>
+    </div>
+
+    <div class="city-card">
+        <div class="day-title">20-23 Ago: Shanghai (上海)</div>
+        <div class="day-desc">Quartieri coloniali, centri per lo shopping, musei e skyline futuristico.</div>
+        <a href="#" onclick="runTest04('B00155NYN3'); return false;" class="amap-btn">📍 Aeroporto Arrivo: Shanghai Pudong (PVG)</a>
+        <a href="#" onclick="runTest04('B00140P84R'); return false;" class="amap-btn">📍 Hotel: Hengshan Moller Villa</a>
+        <a href="#" onclick="runTest04('B0FFG0LX45'); return false;" class="amap-btn">📍 Terrazza: The Captain's Bar (Bund)</a>
+        <a href="#" onclick="runTest04('B0FFF07817'); return false;" class="amap-btn">📍 Cultura: Shanghai Museum East (Pudong)</a>
+        <a href="#" onclick="runTest04('B001416666'); return false;" class="amap-btn">📍 Architettura: Wukang Mansion (船形大楼)</a>
+        <a href="#" onclick="runTest04('B00140W1I3'); return false;" class="amap-btn">📍 Quartiere Storico: Xintiandi (新天地)</a>
+        <a href="#" onclick="runTest04('B00140134Q'); return false;" class="amap-btn">📍 Storico: Yuyuan Bazaar (豫园商城)</a>
+        <a href="#" onclick="runTest04('B02DB02370'); return false;" class="amap-btn">📍 Tempio: Tempio del Buddha di Giada</a>
+        <a href="#" onclick="runTest04('B02DB0117A'); return false;" class="amap-btn">📍 Shopping Premium: IAPM Mall (Songmont)</a>
+        <a href="#" onclick="runTest04('B0FFG44W0E'); return false;" class="amap-btn">📍 Osservatorio: Shanghai Tower (118° piano)</a>
+        <a href="#" onclick="runTest04('B001530T10'); return false;" class="amap-btn">📍 Aeroporto Rientro: Shanghai Hongqiao (SHA)</a>
     </div>
 </body>
 </html>
