@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Test 7</title>
+    <title>Itinerario Cina 2026 - Test 8</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
-        .test-badge { background: #2c3e50; color: #fff; padding: 10px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; border: 2px solid #e67e22; }
-        .city-card { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .day-title { color: #c0392b; font-weight: bold; margin-bottom: 5px; font-size: 16px; border-bottom: 2px solid #f5f7fa; padding-bottom: 8px; }
-        .amap-btn { display: block; background: #e8f4fd; color: #1a73e8; padding: 12px; margin: 6px 0; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
+        .test-badge { background: #c0392b; color: #fff; padding: 10px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; }
+        .amap-btn { display: block; background: #e8f4fd; color: #1a73e8; padding: 15px; margin: 10px 0; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: bold; text-align: center; border: 2px solid #1a73e8; }
     </style>
     <script>
-        // Metodo 7: Apertura nativa con coordinate estratte da link ufficiale Amap
         function openAmap(lat, lon, name) {
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             var encodedName = encodeURIComponent(name);
@@ -24,12 +21,10 @@
     </script>
 </head>
 <body>
-    <div class="test-badge">PROVA NUMERO: 07<br><small>Correzione Stey su link ufficiale</small></div>
+    <div class="test-badge">PROVA NUMERO: 08<br><small>Patch Correttiva Stey Wangfujing</small></div>
 
-    <div class="city-card">
-        <div class="day-title">Pechino: Hotel</div>
-        <a href="#" onclick="openAmap(39.916892, 116.416805, 'Stey Wangfujing'); return false;" class="amap-btn">📍 Hotel: Stey Wangfujing (CORRETTO)</a>
-    </div>
-
-    </body>
+    <a href="#" onclick="openAmap(39.91763, 116.41708, 'Stey Wangfujing'); return false;" class="amap-btn">
+        📍 Hotel: Stey Wangfujing (PATCHED)
+    </a>
+</body>
 </html>
