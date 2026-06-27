@@ -2,20 +2,43 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Test 18 - Protocollo di Sistema</title>
+    <title>Itinerario Cina 2026 - Combinazione T5+T15</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
+        .btn-t5 { display: block; background: #fff; border: 2px solid #27ae60; color: #27ae60; padding: 15px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; }
+        .btn-t15 { display: block; background: #fff; border: 2px solid #e67e22; color: #e67e22; padding: 15px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-weight: bold; text-align: center; }
+    </style>
     <script>
-        // Test 18: Risveglio tramite protocollo di sistema nativo
-        function openAmapSystem(poiId) {
-            // Il protocollo amapuri:// è il "motore" che sta sotto il link web
-            var url = "amapuri://detail?poiid=" + poiId;
+        // Metodo T5: Apertura Nativa Diretta (Per Monumenti)
+        function openDirect(lat, lon, name) {
+            var encodedName = encodeURIComponent(name);
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            var url = isIOS ? 
+                "iosamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0" : 
+                "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+            window.location.href = url;
+        }
+
+        // Metodo T15: Link Web Ufficiale (Per Hotel/Location Critiche)
+        function openLink(url) {
             window.location.href = url;
         }
     </script>
 </head>
 <body>
-    <h3>Test 18 (Forzatura Nativa)</h3>
-    <button onclick="openAmapSystem('B0FFG8E9XN')">
-        📍 Apri Stey (Protocollo amapuri)
-    </button>
+    <h3>Combinazione T5 + T15</h3>
+
+    <!-- Monumenti (Metodo T5) -->
+    <a href="#" onclick="openDirect(39.881913, 116.410829, 'Tempio del Cielo'); return false;" class="btn-t5">
+        📍 Tempio del Cielo (Metodo T5)
+    </a>
+    <a href="#" onclick="openDirect(39.947239, 116.417296, 'Tempio dei Lama'); return false;" class="btn-t5">
+        📍 Tempio dei Lama (Metodo T5)
+    </a>
+
+    <!-- Hotel (Metodo T15) -->
+    <a href="#" onclick="openLink('https://surl.amap.com/jsHEdsW1f2LY'); return false;" class="btn-t15">
+        📍 Stey Wangfujing (Metodo T15)
+    </a>
 </body>
 </html>
