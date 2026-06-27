@@ -2,48 +2,43 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test 21 - Comparativa Location</title>
+    <title>Test Definitivi Siji Minfu</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; }
-        .box { margin-bottom: 25px; background: #fff; padding: 15px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h3 { margin-top: 0; color: #2c3e50; }
-        button { display: block; width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; color: white; }
-        .btn-a { background: #e67e22; } /* Link Ufficiale */
-        .btn-b { background: #27ae60; } /* Ricerca Nome */
-        .btn-c { background: #3498db; } /* Coordinate */
+        body { font-family: sans-serif; padding: 20px; }
+        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; font-weight: bold; text-align: center; border: none; color: white; }
     </style>
     <script>
-        function openLink(url) { window.location.href = url; }
-        function openSearch(name) { window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + encodeURIComponent(name); }
-        function openCoord(lat, lon, name) { window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodeURIComponent(name) + "&lat=" + lat + "&lon=" + lon + "&dev=0"; }
+        // T22: Ricerca Testuale Pura
+        function test22() {
+            var name = encodeURIComponent("四季民福烤鸭店(灯市口店)");
+            window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + name;
+        }
+
+        // T23: Link SURL Nativo
+        function test23() {
+            window.location.href = "https://surl.amap.com/jSJsgNU139Pj";
+        }
+
+        // T24: POI Detail (ID estratto dal tuo link)
+        function test24() {
+            var poiId = "B0FFM8C222";
+            window.location.href = "androidamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId;
+        }
+
+        // T25: Coordinate + Nome
+        function test25() {
+            var lat = 39.91422;
+            var lon = 116.41378;
+            var name = encodeURIComponent("四季民福烤鸭店(灯市口店)");
+            window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + name + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+        }
     </script>
 </head>
 <body>
-
-    <!-- Test 21: Stey Wangfujing -->
-    <div class="box">
-        <h3>1. Stey Wangfujing</h3>
-        <button class="btn-a" onclick="openLink('https://surl.amap.com/jsHEdsW1f2LY')">A: Link Ufficiale</button>
-        <button class="btn-b" onclick="openSearch('Stey王府井酒店')">B: Ricerca Nome Cinese</button>
-        <button class="btn-c" onclick="openCoord(39.91764, 116.41708, 'Stey王府井酒店')">C: Coordinate Raffinate</button>
-    </div>
-
-    <!-- Test 21: Tempio del Cielo -->
-    <div class="box">
-        <h3>2. Tempio del Cielo</h3>
-        <button class="btn-a" onclick="openLink('https://surl.amap.com/a5eB8kS1bWl')">A: Link Ufficiale</button>
-        <button class="btn-b" onclick="openSearch('天坛公园')">B: Ricerca Nome Cinese</button>
-        <button class="btn-c" onclick="openCoord(39.8833, 116.4222, '天坛公园')">C: Coordinate Raffinate</button>
-    </div>
-
-    <!-- Test 21: Stazione Pechino Ovest -->
-    <div class="box">
-        <h3>3. Beijing West Station</h3>
-        <button class="btn-a" onclick="openLink('https://surl.amap.com/a7hW4sS2cKm')">A: Link Ufficiale</button>
-        <button class="btn-b" onclick="openSearch('北京西站')">B: Ricerca Nome Cinese</button>
-        <button class="btn-c" onclick="openCoord(39.8946, 116.3213, '北京西站')">C: Coordinate Raffinate</button>
-    </div>
-
+    <h3>Testare Siji Minfu (da 22 a 25):</h3>
+    <button class="btn" style="background: #3498db;" onclick="test22()">Test 22: Ricerca Nome Cinese</button>
+    <button class="btn" style="background: #e67e22;" onclick="test23()">Test 23: Link Ufficiale (SURL)</button>
+    <button class="btn" style="background: #9b59b6;" onclick="test24()">Test 24: POI ID Dettaglio</button>
+    <button class="btn" style="background: #27ae60;" onclick="test25()">Test 25: Coordinate + Nome</button>
 </body>
 </html>
