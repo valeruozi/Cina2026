@@ -13,6 +13,7 @@
             --text-muted: #666666;
             --accent-blue: #3498db;
             --warning: #e67e22;
+            --danger: #e53e3e;
         }
         body { 
             font-family: -apple-system, sans-serif; 
@@ -30,7 +31,6 @@
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
-        /* Stile Navigazione Giorni */
         .nav-giorni {
             display: flex;
             overflow-x: auto;
@@ -55,7 +55,6 @@
             color: white;
             border-color: var(--primary);
         }
-        /* Stile Card Giornata */
         .day-card { 
             background: var(--card-bg); 
             border-radius: 12px; 
@@ -63,7 +62,7 @@
             margin-bottom: 25px; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-left: 5px solid var(--primary);
-            scroll-margin-top: 20px; /* Per lo scroll automatico */
+            scroll-margin-top: 20px;
         }
         .day-header { 
             display: flex;
@@ -84,7 +83,6 @@
             color: var(--text-muted);
             font-weight: normal;
         }
-        /* Moduli Informazioni */
         .info-block {
             background: var(--bg);
             border-radius: 8px;
@@ -118,14 +116,13 @@
             font-weight: bold;
             color: var(--text-main);
         }
-        /* Alert e Highlight */
         .alert-todo {
-            background: #fff3cd;
-            border-left: 4px solid var(--warning);
-            padding: 10px 12px;
+            background: #ffebeb;
+            border-left: 4px solid var(--danger);
+            padding: 12px;
             border-radius: 4px;
             font-weight: bold;
-            color: #856404;
+            color: #c53030;
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -134,13 +131,12 @@
         .alert-success {
             background: #d4edda;
             border-left: 4px solid #28a745;
-            padding: 10px 12px;
+            padding: 12px;
             border-radius: 4px;
             color: #155724;
             font-size: 14px;
             margin-bottom: 15px;
         }
-        /* Stile Timeline Attività */
         .timeline {
             list-style: none;
             padding: 0;
@@ -165,7 +161,6 @@
             color: var(--primary);
             margin-right: 5px;
         }
-        /* Bottoni AMap */
         .amap-btn { 
             display: block; 
             background: #e8f4fd; 
@@ -178,17 +173,26 @@
             font-weight: bold; 
             text-align: center; 
             border: 1px solid #d2e3fc; 
-            transition: background 0.2s;
         }
-        .amap-btn:active { background: #d2e3fc; }
+        /* Nuovo stile per i documenti / PDF / Drive */
+        .file-btn {
+            display: block;
+            background: #2c3e50;
+            color: white;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #1a252f;
+        }
     </style>
     <script>
-        // Funzione per l'apertura tramite link SURL
         function openSurl(url) {
             window.location.href = url;
         }
-        
-        // Funzione per l'apertura basata su coordinate/nome se il SURL manca
         function openAmapFallback(lat, lon, name) {
             var encodedName = encodeURIComponent(name);
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -197,23 +201,15 @@
                 "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
             window.location.href = url;
         }
-
-        // Funzione futura per scrollare automaticamente al giorno corrente
-        document.addEventListener("DOMContentLoaded", function() {
-            // Simulazione: in futuro calcolerà la data odierna e farà lo scroll
-            // document.getElementById('day-8-ago').scrollIntoView({ behavior: 'smooth' });
-        });
     </script>
 </head>
 <body>
 
     <h1>🇨🇳 Viaggio in Cina 2026</h1>
 
-    <!-- Navigazione rapida giorni -->
     <div class="nav-giorni">
         <a href="#day-8-ago" class="nav-btn active">8 Ago - Roma</a>
         <a href="#day-9-ago" class="nav-btn">9 Ago - Pechino</a>
-        <a href="#day-10-ago" class="nav-btn" style="opacity: 0.5;">10 Ago (In arrivo)</a>
     </div>
 
     <!-- GIORNO 1: 8 AGOSTO -->
@@ -243,8 +239,11 @@
             🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).
         </div>
 
-        <div class="alert-success">
-            ✅ <b>VOLO AIR CHINA CA940 (Roma ➔ Pechino):</b> I biglietti elettronici e la prenotazione sono regolarmente salvati all'interno della cartella Drive "Cina 2026".
+        <div class="info-block">
+            <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
+            <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">
+                📄 APRI BIGLIETTO ELETTRONICO (Drive)
+            </a>
         </div>
 
         <div class="info-block">
@@ -272,14 +271,18 @@
                 <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Stey Beijing Wangfujing Hotel</span></div>
                 <div class="data-item"><span class="data-label">Costo Totale</span><span class="data-value">107,75 €</span></div>
             </div>
+            <!-- Predisposizione per il file di prenotazione -->
+            <a href="#" target="_blank" class="file-btn" style="background: #95a5a6; border-color: #7f8c8d;">
+                📄 APRI CONFERMA HOTEL (Link da inserire)
+            </a>
         </div>
 
         <div class="info-block">
-            <div class="info-title">🗺️ LINK AMAP (SURL DEFINITIVI)</div>
-            <a href="javascript:void(0)" onclick="openAmapFallback(40.0531, 116.6083, '北京首都国际机场T3航站楼');" class="amap-btn">📍 PEK Terminal 3 (Aeroporto) <small>[SURL Mancante - Uso Nome]</small></a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Hotel: Stey Wangfujing <small>[SURL Verificato]</small></a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Cena A: Siji Minfu (Dengshikou) <small>[SURL Verificato]</small></a>
-            <a href="javascript:void(0)" onclick="openAmapFallback(39.9324, 116.4382, '京尊烤鸭店');" class="amap-btn">📍 Cena B: Jingzun Roast Duck <small>[SURL Mancante - Uso Nome]</small></a>
+            <div class="info-title">🗺️ LINK AMAP</div>
+            <a href="javascript:void(0)" onclick="openAmapFallback(40.0531, 116.6083, '北京首都国际机场T3航站楼');" class="amap-btn">📍 PEK Terminal 3 (Aeroporto)</a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Hotel: Stey Wangfujing</a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Cena A: Siji Minfu (Dengshikou)</a>
+            <a href="javascript:void(0)" onclick="openAmapFallback(39.9324, 116.4382, '京尊烤鸭店');" class="amap-btn">📍 Cena B: Jingzun Roast Duck</a>
         </div>
 
         <div class="info-block">
