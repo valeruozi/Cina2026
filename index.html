@@ -2,29 +2,23 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Test 8</title>
-    <style>
-        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
-        .test-badge { background: #c0392b; color: #fff; padding: 10px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; }
-        .amap-btn { display: block; background: #e8f4fd; color: #1a73e8; padding: 15px; margin: 10px 0; border-radius: 8px; text-decoration: none; font-size: 16px; font-weight: bold; text-align: center; border: 2px solid #1a73e8; }
-    </style>
+    <title>Test 9 - Force POI ID</title>
     <script>
-        function openAmap(lat, lon, name) {
+        function openAmapForce(poiId, name) {
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
             var encodedName = encodeURIComponent(name);
+            // Il comando 'poiDetail' è quello che il tuo telefono ha dimostrato di accettare
+            // senza errori di aggiornamento, e forzando l'ID, non sbaglia edificio.
             var appUrl = isIOS ? 
-                "iosamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0" : 
-                "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+                "iosamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId : 
+                "androidamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId;
             window.location.href = appUrl;
         }
     </script>
 </head>
 <body>
-    <div class="test-badge">PROVA NUMERO: 08<br><small>Patch Correttiva Stey Wangfujing</small></div>
-
-    <a href="#" onclick="openAmap(39.91763, 116.41708, 'Stey Wangfujing'); return false;" class="amap-btn">
-        📍 Hotel: Stey Wangfujing (PATCHED)
-    </a>
+    <button onclick="openAmapForce('B0FFG8E9XN', 'Stey Wangfujing')">
+        📍 Vai allo Stey Wangfujing (Metodo POI ID)
+    </button>
 </body>
 </html>
