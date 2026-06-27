@@ -3,72 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Master Matrix</title>
+    <title>Viaggio in Cina 2026</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
-        .master-badge { background: #2c3e50; color: #fff; padding: 12px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; border: 2px solid #bdc3c7; }
-        .city-card { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .day-title { color: #c0392b; font-weight: bold; margin-bottom: 5px; font-size: 16px; border-bottom: 2px solid #f5f7fa; padding-bottom: 8px; }
-        .place-title { font-weight: bold; font-size: 14px; margin-top: 15px; color: #333; }
-        .place-desc { font-size: 12px; color: #666; margin-bottom: 8px; line-height: 1.3; }
-        .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
-        .btn-t { display: block; padding: 10px; border-radius: 6px; font-size: 12px; font-weight: bold; text-align: center; text-decoration: none; color: white; }
-        .b-blue { background: #3498db; }
-        .b-orange { background: #e67e22; }
-        .b-purple { background: #9b59b6; }
-        .b-green { background: #27ae60; }
+        :root {
+            --primary: #c0392b;
+            --bg: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --accent-blue: #3498db;
+            --warning: #e67e22;
+        }
+        body { 
+            font-family: -apple-system, sans-serif; 
+            background: var(--bg); 
+            color: var(--text-main);
+            padding: 15px; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            line-height: 1.5;
+        }
+        h1 {
+            text-align: center;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        /* Stile Navigazione Giorni */
+        .nav-giorni {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            scrollbar-width: thin;
+        }
+        .nav-btn {
+            background: var(--card-bg);
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .nav-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        /* Stile Card Giornata */
+        .day-card { 
+            background: var(--card-bg); 
+            border-radius: 12px; 
+            padding: 20px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--primary);
+            scroll-margin-top: 20px; /* Per lo scroll automatico */
+        }
+        .day-header { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--bg); 
+            padding-bottom: 10px; 
+            margin-bottom: 15px; 
+        }
+        .day-title { 
+            color: var(--primary); 
+            font-weight: 900; 
+            font-size: 20px; 
+            margin: 0;
+        }
+        .day-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: normal;
+        }
+        /* Moduli Informazioni */
+        .info-block {
+            background: var(--bg);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+        .info-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        .data-item {
+            font-size: 14px;
+        }
+        .data-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            display: block;
+        }
+        .data-value {
+            font-weight: bold;
+            color: var(--text-main);
+        }
+        /* Alert e Highlight */
+        .alert-todo {
+            background: #fff3cd;
+            border-left: 4px solid var(--warning);
+            padding: 10px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .alert-success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 10px 12px;
+            border-radius: 4px;
+            color: #155724;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        /* Stile Timeline Attività */
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .timeline li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .timeline li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: -2px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        .time-badge {
+            font-weight: bold;
+            color: var(--primary);
+            margin-right: 5px;
+        }
+        /* Bottoni AMap */
+        .amap-btn { 
+            display: block; 
+            background: #e8f4fd; 
+            color: var(--accent-blue); 
+            padding: 12px; 
+            margin: 8px 0; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: bold; 
+            text-align: center; 
+            border: 1px solid #d2e3fc; 
+            transition: background 0.2s;
+        }
+        .amap-btn:active { background: #d2e3fc; }
     </style>
     <script>
-        // Metodo A: Ricerca Testuale Pura
-        function runSearch(keywords) {
-            window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + encodeURIComponent(keywords);
-        }
-        // Metodo B: Link SURL Diretto
-        function runSurl(url) {
+        // Funzione per l'apertura tramite link SURL
+        function openSurl(url) {
             window.location.href = url;
         }
-        // Metodo C: POI ID Detail
-        function runPoiDetail(poiId) {
-            window.location.href = "androidamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId;
+        
+        // Funzione per l'apertura basata su coordinate/nome se il SURL manca
+        function openAmapFallback(lat, lon, name) {
+            var encodedName = encodeURIComponent(name);
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            var url = isIOS ? 
+                "iosamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0" : 
+                "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+            window.location.href = url;
         }
-        // Metodo D: Coordinate + Nome (viewMap)
-        function runViewMap(lat, lon, name) {
-            window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodeURIComponent(name) + "&lat=" + lat + "&lon=" + lon + "&dev=0";
-        }
+
+        // Funzione futura per scrollare automaticamente al giorno corrente
+        document.addEventListener("DOMContentLoaded", function() {
+            // Simulazione: in futuro calcolerà la data odierna e farà lo scroll
+            // document.getElementById('day-8-ago').scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </head>
 <body>
 
-    <div class="master-badge">ITINERARIO MASTER MATRIX<br><small>Archivio Dati Verificati Pechino</small></div>
+    <h1>🇨🇳 Viaggio in Cina 2026</h1>
 
-    <div class="city-card">
-        <div class="day-title">Pechino (8-12 Agosto) - Logistica e Tappe Verificate</div>
+    <!-- Navigazione rapida giorni -->
+    <div class="nav-giorni">
+        <a href="#day-8-ago" class="nav-btn active">8 Ago - Roma</a>
+        <a href="#day-9-ago" class="nav-btn">9 Ago - Pechino</a>
+        <a href="#day-10-ago" class="nav-btn" style="opacity: 0.5;">10 Ago (In arrivo)</a>
+    </div>
 
-        <div class="place-title">1. Stey Hotel (Wangfujing Branch)</div>
-        <div class="place-desc">柏树胡同15号 (Dengshikou Subway Station Exit A)</div>
-        <div class="matrix-grid">
-            <a href="javascript:void(0)" onclick="runSearch('Stey(王府井店)');" class="btn-t b-blue">Test 14: Nome</a>
-            <a href="javascript:void(0)" onclick="runSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="btn-t b-orange">Test 15: SURL</a>
-            <a href="javascript:void(0)" onclick="runPoiDetail('B0FFG8E9XN'); class="btn-t b-purple">Test 16: POI ID</a>
-            <a href="javascript:void(0)" onclick="runViewMap(39.91764, 116.41708, 'Stey(王府井店)');" class="btn-t b-green">Test 17: Coord</a>
+    <!-- GIORNO 1: 8 AGOSTO -->
+    <div id="day-8-ago" class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Sabato, 8 Agosto</h2>
+            <span class="day-subtitle">Torino ➔ Roma ➔ In Volo</span>
         </div>
 
-        <div class="place-title">2. Parco del Tempio del Cielo (天坛公园)</div>
-        <div class="place-desc">Tiantan Dongli No.A1 - Area Scenica 5A</div>
-        <div class="matrix-grid">
-            <a href="javascript:void(0)" onclick="runSearch('天坛公园');" class="btn-t b-blue">Test 18: Nome</a>
-            <a href="javascript:void(0)" onclick="runSurl('https://surl.amap.com/jYeW6uW115r');" class="btn-t b-orange">Test 19: SURL</a>
-            <a href="javascript:void(0)" onclick="runPoiDetail('B000A83U4I');" class="btn-t b-purple">Test 20: POI ID</a>
-            <a href="javascript:void(0)" onclick="runViewMap(39.88214, 116.41112, '天坛公园');" class="btn-t b-green">Test 21: Coord</a>
+        <div class="info-block">
+            <div class="info-title">🚆 TRENO ITALO</div>
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Codice PNR</span><span class="data-value">ALLSVR</span></div>
+                <div class="data-item"><span class="data-label">Treno / Tariffa</span><span class="data-value">9923 / Smart Flex</span></div>
+                <div class="data-item"><span class="data-label">Data</span><span class="data-value">08 Ago 2026</span></div>
+                <div class="data-item"><span class="data-label">Orario</span><span class="data-value">08:40 - 13:24</span></div>
+                <div class="data-item"><span class="data-label">Tratta</span><span class="data-value">Torino P. Susa ➔ Roma Termini</span></div>
+            </div>
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Valentina Ruozi</span><span class="data-value">Carrozza 6, Posto 11</span></div>
+                <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
+            </div>
         </div>
 
-        <div class="place-title">3. Siji Minfu Roast Duck (Wangfujing Dengshikou)</div>
-        <div class="place-desc">Beijing No.32, Dengshikou West Street Donghua Hotel Building 1</div>
-        <div class="matrix-grid">
-            <a href="javascript:void(0)" onclick="runSearch('四季民福烤鸭店(灯市口店)');" class="btn-t b-blue">Test 22: Nome</a>
-            <a href="javascript:void(0)" onclick="runSurl('https://surl.amap.com/jSJsgNU139Pj');" class="btn-t b-orange">Test 23: SURL</a>
-            <a href="javascript:void(0)" onclick="runPoiDetail('B0FFM8C222');" class="btn-t b-purple">Test 24: POI ID</a>
-            <a href="javascript:void(0)" onclick="runViewMap(39.91422, 116.41378, '四季民福烤鸭店(灯市口店)');" class="btn-t b-green">Test 25: Coord</a>
+        <div class="alert-todo">
+            🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).
+        </div>
+
+        <div class="alert-success">
+            ✅ <b>VOLO AIR CHINA CA940 (Roma ➔ Pechino):</b> I biglietti elettronici e la prenotazione sono regolarmente salvati all'interno della cartella Drive "Cina 2026".
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">08:40</span> Partenza Italo Treno 9923 da Torino Porta Susa.</li>
+                <li><span class="time-badge">13:24</span> Arrivo a Roma Termini.</li>
+                <li><span class="time-badge">14:30</span> Treno Leonardo Express per Fiumicino Aeroporto (FCO).</li>
+                <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card: Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code in galleria.</li>
+                <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- GIORNO 2: 9 AGOSTO -->
+    <div id="day-9-ago" class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Domenica, 9 Agosto</h2>
+            <span class="day-subtitle">Arrivo a Pechino</span>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">🏨 HOTEL E LOGISTICA</div>
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Stey Beijing Wangfujing Hotel</span></div>
+                <div class="data-item"><span class="data-label">Costo Totale</span><span class="data-value">107,75 €</span></div>
+            </div>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">🗺️ LINK AMAP (SURL DEFINITIVI)</div>
+            <a href="javascript:void(0)" onclick="openAmapFallback(40.0531, 116.6083, '北京首都国际机场T3航站楼');" class="amap-btn">📍 PEK Terminal 3 (Aeroporto) <small>[SURL Mancante - Uso Nome]</small></a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Hotel: Stey Wangfujing <small>[SURL Verificato]</small></a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Cena A: Siji Minfu (Dengshikou) <small>[SURL Verificato]</small></a>
+            <a href="javascript:void(0)" onclick="openAmapFallback(39.9324, 116.4382, '京尊烤鸭店');" class="amap-btn">📍 Cena B: Jingzun Roast Duck <small>[SURL Mancante - Uso Nome]</small></a>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">12:40</span> Atterraggio a Pechino (PEK) Terminal 3.</li>
+                <li><span class="time-badge">Kiosk</span> Fermatevi ai kiosk automatici (blu/gialle) prima dell'immigrazione per scansionare passaporto e impronte. Ritirare scontrino.</li>
+                <li><span class="time-badge">14:00</span> Dogana: Corsia "Foreigners". Preparare info su hotel e volo di ritorno.</li>
+                <li><span class="time-badge">Taxi/DiDi</span> Andare al Parcheggio P2, Livello B2. Cercare "Pillar Number" sull'app DiDi. Inviare messaggio automatico: "I am at Pillar [Numero]".</li>
+                <li><span class="time-badge">15:00</span> Check-in Stey Wangfujing.</li>
+                <li><span class="time-badge">15:15-18:45</span> Riposo obbligatorio in Hotel (Jet-lag).</li>
+                <li><span class="time-badge">17:15</span> Apertura mini-programma WeChat "四季民福" per coda virtuale. Cliccare "取号" (Prendi numero). Se >50 numeri, scatta Piano B (Jingzun Roast Duck).</li>
+                <li><span class="time-badge">19:45</span> Cena: Anatra Laccata. Ricordare di inzuppare la prima pelle nello zucchero.</li>
+                <li><span class="time-badge">21:15</span> Passeggiata sulla Wangfujing Pedestrian Street o rientro in hotel. Spesa al 7-Eleven aperto 24h per la colazione di domani.</li>
+            </ul>
         </div>
     </div>
 
