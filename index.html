@@ -67,51 +67,80 @@
         .driver-chinese { font-size: 32px; font-weight: bold; margin: 15px 0; color: var(--text-main); }
     </style>
     <script>
-        function openSurl(url) { window.location.href = url; }
+    function openSurl(url) { window.location.href = url; }
+    
+    function openRadar(lat, lon, keyword) {
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        var encodedKeyword = encodeURIComponent(keyword);
+        var url = isIOS ? 
+            `iosamap://aroubdpoi?sourceApplication=CoPilot&keywords=${encodedKeyword}&lat=${lat}&lon=${lon}&radius=1000` : 
+            `androidamap://aroubdpoi?sourceApplication=CoPilot&keywords=${encodedKeyword}&lat=${lat}&lon=${lon}&radius=1000`;
+        window.location.href = url;
+    }
+    
+    function initTheme() {
+        const orarioLocale = new Date().getHours();
+        if (orarioLocale >= 19 || orarioLocale < 7) { document.body.classList.add('dark-mode'); } 
+        else { document.body.classList.remove('dark-mode'); }
+    }
+
+    function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+
+    function showTab(containerId, tabId, element) {
+        const container = document.getElementById(containerId);
+        container.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        container.querySelectorAll('.nav-level-2 .nav-btn-context').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        element.classList.add('active');
+    }
+
+    function showCity(cityId, element) {
+        document.querySelectorAll('.city-container').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.nav-level-1 .nav-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(cityId).classList.add('active');
+        element.classList.add('active');
+    }
+
+    function showDay(programId, dayId, element) {
+        const container = document.getElementById(programId);
+        container.querySelectorAll('.day-section').forEach(el => el.classList.remove('active'));
+        container.querySelectorAll('.nav-giorni .nav-btn-context').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(dayId).classList.add('active');
+        element.classList.add('active');
+    }
+
+    // NUOVA FUNZIONE: Autoselezione intelligente del giorno
+    function initApp() {
+        initTheme(); // Imposta tema
         
-        // Funzione Radar: Apre Amap cercando ristoranti entro 1km dalle coordinate
-        function openRadar(lat, lon, keyword) {
-            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            var encodedKeyword = encodeURIComponent(keyword);
-            var url = isIOS ? 
-                `iosamap://aroubdpoi?sourceApplication=CoPilot&keywords=${encodedKeyword}&lat=${lat}&lon=${lon}&radius=1000` : 
-                `androidamap://aroubdpoi?sourceApplication=CoPilot&keywords=${encodedKeyword}&lat=${lat}&lon=${lon}&radius=1000`;
-            window.location.href = url;
+        // Crea la data di oggi in formato YYYY-MM-DD
+        const today = new Date();
+        const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+        
+        // Cerca il bottone del giorno corrispondente a oggi
+        let targetBtn = document.querySelector(`button[data-date="${dateStr}"]`);
+        
+        // Se non trova oggi (es. siamo prima del viaggio), prende il primo giorno di default
+        if (!targetBtn) {
+            targetBtn = document.querySelector('button[data-date="2026-08-08"]');
         }
         
-        function initTheme() {
-            const orarioLocale = new Date().getHours();
-            if (orarioLocale >= 19 || orarioLocale < 7) { document.body.classList.add('dark-mode'); } 
-            else { document.body.classList.remove('dark-mode'); }
+        // Se trova un bottone valido, lo attiva
+        if (targetBtn) {
+            // 1. Capisce in quale città si trova quel giorno e attiva il tab della città
+            const cityContainerId = targetBtn.closest('.city-container').id;
+            const cityBtn = document.querySelector(`button[onclick*="${cityContainerId}"]`);
+            if(cityBtn) cityBtn.click();
+            
+            // 2. Clicca il bottone del giorno per mostrarne il contenuto
+            targetBtn.click();
         }
+    }
 
-        function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+    // Lancia l'inizializzazione al caricamento
+    window.addEventListener('DOMContentLoaded', () => { initApp(); });
+</script>
 
-        function showTab(containerId, tabId, element) {
-            const container = document.getElementById(containerId);
-            container.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            container.querySelectorAll('.nav-level-2 .nav-btn-context').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            element.classList.add('active');
-        }
-
-        function showCity(cityId, element) {
-            document.querySelectorAll('.city-container').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.nav-level-1 .nav-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(cityId).classList.add('active');
-            element.classList.add('active');
-        }
-
-        function showDay(programId, dayId, element) {
-            const container = document.getElementById(programId);
-            container.querySelectorAll('.day-section').forEach(el => el.classList.remove('active'));
-            container.querySelectorAll('.nav-giorni .nav-btn-context').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(dayId).classList.add('active');
-            element.classList.add('active');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => { initTheme(); });
-    </script>
 </head>
 <body>
 
@@ -164,58 +193,62 @@
         <!-- TAB: PROGRAMMA PECHINO -->
         <div id="pechino-programma" class="tab-content active">
             <div class="nav-giorni" style="margin-top: 10px;">
-                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-8-ago', this)">8 Ago</button>
-                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-9-ago', this)">9 Ago</button>
-                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-10-ago', this)">10 Ago</button>
-                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-11-ago', this)">11 Ago</button>
-                <button class="nav-btn-context active" onclick="showDay('pechino-programma', 'day-12-ago', this)">12 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-08" onclick="showDay('pechino-programma', 'day-8-ago', this)">8 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-09" onclick="showDay('pechino-programma', 'day-9-ago', this)">9 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-10" onclick="showDay('pechino-programma', 'day-10-ago', this)">10 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-11" onclick="showDay('pechino-programma', 'day-11-ago', this)">11 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-12" onclick="showDay('pechino-programma', 'day-12-ago', this)">12 Ago</button>
             </div>
 
+
             <!-- INIZIO COPIA: GIORNO 8 AGOSTO -->
-            <div id="day-8-ago" class="day-section">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Sabato, 8 Agosto</h2>
-                        <span class="day-subtitle">Torino ➔ Roma ➔ In Volo</span>
-                    </div>
-                    <span class="weight-badge">🟢 Viaggio / Soft</span>
-            
-                    <div class="info-block">
-                        <div class="info-title">🚆 TRENO ITALO</div>
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Codice PNR</span><span class="data-value">ALLSVR</span></div>
-                            <div class="data-item"><span class="data-label">Treno / Tariffa</span><span class="data-value">9923 / Smart Flex</span></div>
-                            <div class="data-item"><span class="data-label">Data</span><span class="data-value">08 Ago 2026</span></div>
-                            <div class="data-item"><span class="data-label">Orario</span><span class="data-value">08:40 - 13:24</span></div>
-                            <div class="data-item"><span class="data-label">Tratta</span><span class="data-value">Torino P. Susa ➔ Roma Termini</span></div>
-                        </div>
-                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 10px 0;">
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Valentina Ruozi</span><span class="data-value">Carrozza 6, Posto 11</span></div>
-                            <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
-                        </div>
-                        <a href="https://italoinviaggio.italotreno.it/it/treno/9923" target="_blank" class="track-btn">🕒 STATO TRENO IN TEMPO REALE</a>
-                    </div>
-            
-                    <div class="info-block">
-                        <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
-                        <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">📄 APRI BIGLIETTO ELETTRONICO</a>
-                    </div>
-            
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">08:40</span> Partenza Italo Treno 9923 da Torino Porta Susa.</li>
-                            <li><span class="time-badge">13:24</span> Arrivo a Roma Termini.</li>
-                            <li><span class="time-badge">14:30</span> Treno Leonardo Express per Fiumicino Aeroporto (FCO).</li>
-                            <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card: Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code.</li>
-                            <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
-                        </ul>
-                    </div>
-                    <div class="alert-todo">🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).</div>
-                </div>
+<div id="day-8-ago" class="day-section">
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Sabato, 8 Agosto</h2>
+            <span class="day-subtitle">Torino ➔ Roma ➔ In Volo</span>
+        </div>
+        <span class="weight-badge">🟢 Viaggio / Soft</span>
+
+        <div class="info-block">
+            <div class="info-title">🚆 TRENO ITALO</div>
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Codice PNR</span><span class="data-value">ALLSVR</span></div>
+                <div class="data-item"><span class="data-label">Treno / Tariffa</span><span class="data-value">9923 / Smart Flex</span></div>
+                <div class="data-item"><span class="data-label">Data</span><span class="data-value">08 Ago 2026</span></div>
+                <div class="data-item"><span class="data-label">Orario</span><span class="data-value">08:40 - 13:24</span></div>
+                <div class="data-item"><span class="data-label">Tratta</span><span class="data-value">Torino P. Susa ➔ Roma Termini</span></div>
             </div>
-            <!-- FINE COPIA: GIORNO 8 AGOSTO -->
+            <hr style="border: 0; border-top: 1px solid var(--border); margin: 10px 0;">
+            <div class="data-grid">
+                <div class="data-item"><span class="data-label">Valentina</span><span class="data-value">Carrozza 6, Posto 11</span></div>
+                <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
+            </div>
+            <br>
+            <!-- BOTTONE ITALO MESSO IN EVIDENZA -->
+            <a href="https://italoinviaggio.italotreno.it/it/treno/9923" target="_blank" class="track-btn">🕒 STATO TRENO IN TEMPO REALE</a>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
+            <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">📄 APRI BIGLIETTO ELETTRONICO</a>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">08:40</span> Partenza Italo Treno 9923 da Torino Porta Susa.</li>
+                <li><span class="time-badge">13:24</span> Arrivo a Roma Termini.</li>
+                <li><span class="time-badge">14:30</span> Treno Leonardo Express per Fiumicino Aeroporto (FCO).</li>
+                <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card: Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code.</li>
+                <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
+            </ul>
+        </div>
+        <div class="alert-todo">🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).</div>
+    </div>
+</div>
+<!-- FINE COPIA: GIORNO 8 AGOSTO -->
+
 
             <!-- INIZIO COPIA: GIORNO 9 AGOSTO -->
             <div id="day-9-ago" class="day-section">
@@ -414,8 +447,9 @@
 
         <div id="xian-programma" class="tab-content active">
             <div class="nav-giorni" style="margin-top: 10px;">
-                <button class="nav-btn-context active" onclick="showDay('xian-programma', 'day-13-ago', this)">13 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-13" onclick="showDay('xian-programma', 'day-13-ago', this)">13 Ago</button>
             </div>
+
 
             <!-- INIZIO COPIA: GIORNO 13 AGOSTO -->
             <div id="day-13-ago" class="day-section active">
