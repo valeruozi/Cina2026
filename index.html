@@ -2,43 +2,75 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Test Definitivi Siji Minfu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerario Cina 2026 - Master Matrix</title>
     <style>
-        body { font-family: sans-serif; padding: 20px; }
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; font-weight: bold; text-align: center; border: none; color: white; }
+        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
+        .master-badge { background: #2c3e50; color: #fff; padding: 12px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; border: 2px solid #bdc3c7; }
+        .city-card { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .day-title { color: #c0392b; font-weight: bold; margin-bottom: 5px; font-size: 16px; border-bottom: 2px solid #f5f7fa; padding-bottom: 8px; }
+        .place-title { font-weight: bold; font-size: 14px; margin-top: 15px; color: #333; }
+        .place-desc { font-size: 12px; color: #666; margin-bottom: 8px; line-height: 1.3; }
+        .matrix-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px; }
+        .btn-t { display: block; padding: 10px; border-radius: 6px; font-size: 12px; font-weight: bold; text-align: center; text-decoration: none; color: white; }
+        .b-blue { background: #3498db; }
+        .b-orange { background: #e67e22; }
+        .b-purple { background: #9b59b6; }
+        .b-green { background: #27ae60; }
     </style>
     <script>
-        // T22: Ricerca Testuale Pura
-        function test22() {
-            var name = encodeURIComponent("四季民福烤鸭店(灯市口店)");
-            window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + name;
+        // Metodo A: Ricerca Testuale Pura
+        function runSearch(keywords) {
+            window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + encodeURIComponent(keywords);
         }
-
-        // T23: Link SURL Nativo
-        function test23() {
-            window.location.href = "https://surl.amap.com/jSJsgNU139Pj";
+        // Metodo B: Link SURL Diretto
+        function runSurl(url) {
+            window.location.href = url;
         }
-
-        // T24: POI Detail (ID estratto dal tuo link)
-        function test24() {
-            var poiId = "B0FFM8C222";
+        // Metodo C: POI ID Detail
+        function runPoiDetail(poiId) {
             window.location.href = "androidamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId;
         }
-
-        // T25: Coordinate + Nome
-        function test25() {
-            var lat = 39.91422;
-            var lon = 116.41378;
-            var name = encodeURIComponent("四季民福烤鸭店(灯市口店)");
-            window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + name + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+        // Metodo D: Coordinate + Nome (viewMap)
+        function runViewMap(lat, lon, name) {
+            window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodeURIComponent(name) + "&lat=" + lat + "&lon=" + lon + "&dev=0";
         }
     </script>
 </head>
 <body>
-    <h3>Testare Siji Minfu (da 22 a 25):</h3>
-    <button class="btn" style="background: #3498db;" onclick="test22()">Test 22: Ricerca Nome Cinese</button>
-    <button class="btn" style="background: #e67e22;" onclick="test23()">Test 23: Link Ufficiale (SURL)</button>
-    <button class="btn" style="background: #9b59b6;" onclick="test24()">Test 24: POI ID Dettaglio</button>
-    <button class="btn" style="background: #27ae60;" onclick="test25()">Test 25: Coordinate + Nome</button>
+
+    <div class="master-badge">ITINERARIO MASTER MATRIX<br><small>Archivio Dati Verificati Pechino</small></div>
+
+    <div class="city-card">
+        <div class="day-title">Pechino (8-12 Agosto) - Logistica e Tappe Verificate</div>
+
+        <div class="place-title">1. Stey Hotel (Wangfujing Branch)</div>
+        <div class="place-desc">柏树胡同15号 (Dengshikou Subway Station Exit A)</div>
+        <div class="matrix-grid">
+            <a href="javascript:void(0)" onclick="runSearch('Stey(王府井店)');" class="btn-t b-blue">Test 14: Nome</a>
+            <a href="javascript:void(0)" onclick="runSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="btn-t b-orange">Test 15: SURL</a>
+            <a href="javascript:void(0)" onclick="runPoiDetail('B0FFG8E9XN'); class="btn-t b-purple">Test 16: POI ID</a>
+            <a href="javascript:void(0)" onclick="runViewMap(39.91764, 116.41708, 'Stey(王府井店)');" class="btn-t b-green">Test 17: Coord</a>
+        </div>
+
+        <div class="place-title">2. Parco del Tempio del Cielo (天坛公园)</div>
+        <div class="place-desc">Tiantan Dongli No.A1 - Area Scenica 5A</div>
+        <div class="matrix-grid">
+            <a href="javascript:void(0)" onclick="runSearch('天坛公园');" class="btn-t b-blue">Test 18: Nome</a>
+            <a href="javascript:void(0)" onclick="runSurl('https://surl.amap.com/jYeW6uW115r');" class="btn-t b-orange">Test 19: SURL</a>
+            <a href="javascript:void(0)" onclick="runPoiDetail('B000A83U4I');" class="btn-t b-purple">Test 20: POI ID</a>
+            <a href="javascript:void(0)" onclick="runViewMap(39.88214, 116.41112, '天坛公园');" class="btn-t b-green">Test 21: Coord</a>
+        </div>
+
+        <div class="place-title">3. Siji Minfu Roast Duck (Wangfujing Dengshikou)</div>
+        <div class="place-desc">Beijing No.32, Dengshikou West Street Donghua Hotel Building 1</div>
+        <div class="matrix-grid">
+            <a href="javascript:void(0)" onclick="runSearch('四季民福烤鸭店(灯市口店)');" class="btn-t b-blue">Test 22: Nome</a>
+            <a href="javascript:void(0)" onclick="runSurl('https://surl.amap.com/jSJsgNU139Pj');" class="btn-t b-orange">Test 23: SURL</a>
+            <a href="javascript:void(0)" onclick="runPoiDetail('B0FFM8C222');" class="btn-t b-purple">Test 24: POI ID</a>
+            <a href="javascript:void(0)" onclick="runViewMap(39.91422, 116.41378, '四季民福烤鸭店(灯市口店)');" class="btn-t b-green">Test 25: Coord</a>
+        </div>
+    </div>
+
 </body>
 </html>
