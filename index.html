@@ -2,42 +2,39 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Itinerario Cina 2026</title>
+    <title>Viaggio Cina 2026</title>
     <style>
-        :root { --primary: #c0392b; --bg: #f5f7fa; --card-bg: #ffffff; --text-main: #333333; --accent-blue: #3498db; --food: #f39c12; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); padding: 15px; max-width: 800px; margin: 0 auto; }
-        h1 { text-align: center; color: var(--primary); }
-        .nav-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
-        .nav-btn { padding: 10px 15px; background: var(--card-bg); border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-weight: bold; }
-        .nav-btn:hover { background: var(--primary); color: white; }
-        #contenuto-principale { margin-top: 20px; }
-        /* Stili ripresi dai componenti consolidati */
-        .day-card { background: white; padding: 20px; border-radius: 12px; border-left: 5px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .info-block { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
-        .amap-btn { display: block; background: #e8f4fd; color: var(--accent-blue); padding: 10px; margin: 5px 0; border-radius: 6px; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
+        /* Inserisci qui il tuo CSS globale (colori, bottoni, card) */
+        .hub-nav { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; }
+        .city-section { margin-top: 30px; border-top: 2px solid #ddd; padding-top: 10px; }
     </style>
 </head>
 <body>
-    <h1>🇨🇳 Master Itinerario Cina 2026</h1>
+    <h1>🇨🇳 Viaggio Cina 2026</h1>
     
-    <div class="nav-bar">
-        <button class="nav-btn" onclick="carica('giorno_08')">08 Ago</button>
-        <button class="nav-btn" onclick="carica('giorno_09')">09 Ago</button>
-        </div>
+    <!-- MENU DINAMICO -->
+    <div class="hub-nav" id="menu-giorni">
+        <button onclick="carica('giorno_08')">08 Ago</button>
+        <button onclick="carica('giorno_09')">09 Ago</button>
+    </div>
 
-    <div id="contenuto-principale">
-        <p style="text-align:center; color:#666;">Seleziona una data per visualizzare il piano dettagliato.</p>
+    <!-- ZONA DINAMICA -->
+    <div id="contenitore"></div>
+
+    <!-- DATABASE CITTÀ (Link Rapidi) -->
+    <div class="city-section" id="pechino">
+        <h2>📍 Pechino: Risorse Utili</h2>
+        <a href="https://surl.amap.com/..." class="amap-btn">Elenco Ristoranti e Mappe</a>
     </div>
 
     <script>
-        function carica(nomeFile) {
-            fetch('data/' + nomeFile + '.html')
-                .then(res => res.text())
-                .then(html => {
-                    document.getElementById('contenuto-principale').innerHTML = html;
-                });
+        function carica(file) {
+            fetch('data/' + file + '.html')
+                .then(r => r.text())
+                .then(html => { document.getElementById('contenitore').innerHTML = html; });
         }
+        // Scroll automatico al giorno di oggi (esempio logica)
+        window.onload = () => { /* Logica per attivare il tasto del giorno corrente */ };
     </script>
 </body>
 </html>
