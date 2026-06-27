@@ -2,31 +2,45 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Test 13</title>
+    <title>Test Definitivi Stey Wangfujing</title>
     <style>
-        body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 20px; }
-        .btn { display: block; background: #fff; border: 2px solid #e67e22; color: #e67e22; padding: 20px; margin: 10px 0; border-radius: 12px; text-decoration: none; font-size: 18px; font-weight: bold; text-align: center; }
+        body { font-family: sans-serif; padding: 20px; }
+        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 8px; font-weight: bold; text-align: center; border: none; color: white; }
     </style>
     <script>
-        // Test 13: Usiamo viewMap (che sappiamo funzionare) 
-        // ma passiamo il nome in cinese puro, che Amap usa per la localizzazione interna
-        function openAmapStable(lat, lon, name) {
-            var encodedName = encodeURIComponent(name);
-            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            var url = isIOS ? 
-                "iosamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0" : 
-                "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
-            
-            window.location.href = url;
+        // T14: Ricerca Testuale Pura (nessuna coordinata, solo stringa di query)
+        function test14() {
+            var name = encodeURIComponent("Stey(王府井店)");
+            window.location.href = "androidamap://poi?sourceApplication=Itinerario&keywords=" + name;
+        }
+
+        // T15: Link SURL Nativo (il tuo link ufficiale)
+        function test15() {
+            window.location.href = "https://surl.amap.com/jsHEdsW1f2LY";
+        }
+
+        // T16: POI Detail (la scheda tecnica dell'edificio)
+        function test16() {
+            // ID univoco estratto dal tuo link
+            var poiId = "B0FFG8E9XN";
+            window.location.href = "androidamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId;
+        }
+
+        // T17: Coordinate + Nome (Forzatura offset)
+        function test17() {
+            // Coordinate corrette dell'edificio in Baishu Hutong
+            var lat = 39.91764;
+            var lon = 116.41708;
+            var name = encodeURIComponent("Stey(王府井店)");
+            window.location.href = "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + name + "&lat=" + lat + "&lon=" + lon + "&dev=0";
         }
     </script>
 </head>
 <body>
-    <h3>Test 13 (Ripristino Stabilità + Nomi Cinesi)</h3>
-    <!-- Coordinate millimetriche del punto di ingresso dello Stey -->
-    <a href="javascript:void(0)" onclick="openAmapStable(39.91763, 116.41708, 'Stey王府井酒店');" class="btn">
-        📍 Apri Stey Wangfujing (Nome Cinese)
-    </a>
+    <h3>Testare in ordine da 14 a 17:</h3>
+    <button class="btn" style="background: #3498db;" onclick="test14()">Test 14: Ricerca Nome Cinese</button>
+    <button class="btn" style="background: #e67e22;" onclick="test15()">Test 15: Link Ufficiale (SURL)</button>
+    <button class="btn" style="background: #9b59b6;" onclick="test16()">Test 16: POI ID Dettaglio</button>
+    <button class="btn" style="background: #27ae60;" onclick="test17()">Test 17: Coordinate + Nome</button>
 </body>
 </html>
