@@ -2,27 +2,41 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Viaggio in Cina 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Itinerario Cina 2026</title>
     <style>
-        /* Aggiungi qui lo stile CSS comune che abbiamo già consolidato */
-        body { font-family: sans-serif; padding: 20px; background: #f5f7fa; }
-        .nav-giorni { display: flex; gap: 10px; margin-bottom: 20px; }
-        .nav-btn { padding: 10px; background: white; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
+        :root { --primary: #c0392b; --bg: #f5f7fa; --card-bg: #ffffff; --text-main: #333333; --accent-blue: #3498db; --food: #f39c12; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); padding: 15px; max-width: 800px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--primary); }
+        .nav-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .nav-btn { padding: 10px 15px; background: var(--card-bg); border: 1px solid #ddd; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        .nav-btn:hover { background: var(--primary); color: white; }
+        #contenuto-principale { margin-top: 20px; }
+        /* Stili ripresi dai componenti consolidati */
+        .day-card { background: white; padding: 20px; border-radius: 12px; border-left: 5px solid var(--primary); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .info-block { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 15px; }
+        .amap-btn { display: block; background: #e8f4fd; color: var(--accent-blue); padding: 10px; margin: 5px 0; border-radius: 6px; text-decoration: none; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
     </style>
 </head>
 <body>
-    <h1>🇨🇳 Viaggio in Cina 2026</h1>
-    <div class="nav-giorni">
-        <button class="nav-btn" onclick="caricaGiorno('giorno_08')">8 Ago</button>
-        <button class="nav-btn" onclick="caricaGiorno('giorno_09')">9 Ago</button>
+    <h1>🇨🇳 Master Itinerario Cina 2026</h1>
+    
+    <div class="nav-bar">
+        <button class="nav-btn" onclick="carica('giorno_08')">08 Ago</button>
+        <button class="nav-btn" onclick="carica('giorno_09')">09 Ago</button>
+        </div>
+
+    <div id="contenuto-principale">
+        <p style="text-align:center; color:#666;">Seleziona una data per visualizzare il piano dettagliato.</p>
     </div>
-    <div id="contenitore"></div>
 
     <script>
-        function caricaGiorno(nome) {
-            fetch('data/' + nome + '.html')
-                .then(response => response.text())
-                .then(html => { document.getElementById('contenitore').innerHTML = html; });
+        function carica(nomeFile) {
+            fetch('data/' + nomeFile + '.html')
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById('contenuto-principale').innerHTML = html;
+                });
         }
     </script>
 </body>
