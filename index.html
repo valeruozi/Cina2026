@@ -3,57 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viaggio in Cina 2026</title>
+    <title>Cina 2026 - Master</title>
     <style>
-        /* TEMA CHIARO (Default) */
         :root {
-            --primary: #c0392b;
-            --bg: #f5f7fa;
-            --card-bg: #ffffff;
-            --text-main: #333333;
-            --text-muted: #666666;
-            --accent-blue: #3498db;
-            --warning: #e67e22;
-            --danger: #e53e3e;
-            --italo: #8e1828;
-            --food: #f39c12;
-            --border: #ddd;
+            --primary: #c0392b; --bg: #f5f7fa; --card-bg: #ffffff;
+            --text-main: #333333; --text-muted: #666666; --accent-blue: #3498db;
+            --warning: #e67e22; --danger: #e53e3e; --italo: #8e1828;
+            --food: #f39c12; --border: #ddd;
         }
 
-        /* TEMA SCURO (Attivato automaticamente) */
         body.dark-mode {
-            --bg: #121212;
-            --card-bg: #1e1e1e;
-            --text-main: #e0e0e0;
-            --text-muted: #aaaaaa;
-            --border: #333;
-            --primary: #e74c3c;
+            --bg: #121212; --card-bg: #1e1e1e; --text-main: #e0e0e0;
+            --text-muted: #aaaaaa; --border: #333; --primary: #e74c3c;
             --accent-blue: #2980b9;
         }
 
         body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text-main); padding: 15px; max-width: 800px; margin: 0 auto; line-height: 1.5; transition: background 0.3s, color 0.3s; }
         
-        /* HEADER & THEME SWITCH */
         .header-container { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--primary); padding-bottom: 10px; margin-bottom: 20px; }
         h1 { color: var(--primary); margin: 0; font-size: 24px; }
         .theme-btn { background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border); padding: 8px 12px; border-radius: 20px; cursor: pointer; font-weight: bold; }
 
-        /* NAVIGAZIONE CONTEXT-AWARE */
         .nav-level-1, .nav-level-2, .nav-giorni { display: flex; overflow-x: auto; gap: 10px; margin-bottom: 15px; scrollbar-width: thin; padding-bottom: 5px; }
         .nav-btn { background: var(--card-bg); border: 1px solid var(--border); padding: 10px 15px; border-radius: 20px; white-space: nowrap; cursor: pointer; color: var(--text-main); font-weight: bold; font-size: 14px; transition: all 0.2s; }
         .nav-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         .nav-btn-context { background: var(--bg); border: 1px dashed var(--text-muted); padding: 8px 12px; border-radius: 8px; font-size: 13px; cursor: pointer; color: var(--text-main); }
         .nav-btn-context.active { background: var(--text-main); color: var(--bg); border-style: solid; }
 
-        /* BLOCCHI CONTENUTO (TABS) - NASCOSTI DI DEFAULT */
         .city-container, .tab-content, .day-section { display: none; animation: fadeIn 0.3s ease-in-out; }
-        
-        /* MOSTRA SOLO QUELLI ATTIVI */
         .city-container.active, .tab-content.active, .day-section.active { display: block; }
-        
         @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* STILI CARDS E INFO */
         .day-card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); }
         .day-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--bg); padding-bottom: 10px; margin-bottom: 10px; }
         .day-title { color: var(--primary); font-weight: 900; font-size: 20px; margin: 0; }
@@ -77,67 +57,60 @@
         .time-badge { font-weight: bold; color: var(--primary); margin-right: 5px; }
         
         .amap-btn { display: block; background: rgba(52, 152, 219, 0.1); color: var(--accent-blue); padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid rgba(52, 152, 219, 0.3); }
+        .radar-btn { display: block; background: rgba(155, 89, 182, 0.1); color: #8e44ad; padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid rgba(155, 89, 182, 0.3); }
         .file-btn { display: block; background: var(--text-main); color: var(--bg); padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid var(--border); }
-        .track-btn { display: block; background: rgba(142, 24, 40, 0.1); color: var(--italo); padding: 12px; margin: 8px 0; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid rgba(142, 24, 40, 0.3); }
         
         .feature-img { width: 100%; border-radius: 8px; margin-bottom: 10px; object-fit: cover; border: 1px solid var(--border); }
         .copy-badge { background: var(--border); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 15px; letter-spacing: 1px; user-select: all; color: var(--text-main); }
         
-        /* SHOW TO DRIVER UI */
         .driver-card { background: var(--card-bg); padding: 30px 20px; text-align: center; border: 2px solid var(--primary); border-radius: 12px; margin-bottom: 20px; }
         .driver-chinese { font-size: 32px; font-weight: bold; margin: 15px 0; color: var(--text-main); }
     </style>
     <script>
         function openSurl(url) { window.location.href = url; }
         
-        // Logica offline-first per fuso orario
+        // Funzione Radar: Apre Amap cercando ristoranti entro 1km dalle coordinate
+        function openRadar(lat, lon, keyword) {
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            var encodedKeyword = encodeURIComponent(keyword);
+            var url = isIOS ? 
+                `iosamap://aroubdpoi?sourceApplication=CoPilot&keywords=${encodedKeyword}&lat=${lat}&lon=${lon}&radius=1000` : 
+                `androidamap://aroubdpoi?sourceApplication=CoPilot&keywords=${encodedKeyword}&lat=${lat}&lon=${lon}&radius=1000`;
+            window.location.href = url;
+        }
+        
         function initTheme() {
             const orarioLocale = new Date().getHours();
-            if (orarioLocale >= 19 || orarioLocale < 7) {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
+            if (orarioLocale >= 19 || orarioLocale < 7) { document.body.classList.add('dark-mode'); } 
+            else { document.body.classList.remove('dark-mode'); }
         }
 
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
+        function toggleTheme() { document.body.classList.toggle('dark-mode'); }
 
-        // Navigazione dei tab contestuali (Programma vs Database vs Utility)
         function showTab(containerId, tabId, element) {
             const container = document.getElementById(containerId);
             container.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             container.querySelectorAll('.nav-level-2 .nav-btn-context').forEach(btn => btn.classList.remove('active'));
-            
             document.getElementById(tabId).classList.add('active');
             element.classList.add('active');
         }
 
-        // Navigazione principale delle macro-aree (città)
         function showCity(cityId, element) {
             document.querySelectorAll('.city-container').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-level-1 .nav-btn').forEach(btn => btn.classList.remove('active'));
-            
             document.getElementById(cityId).classList.add('active');
             element.classList.add('active');
         }
 
-        // SEPARAZIONE PER GIORNATA: Navigazione esclusiva tra i giorni
-        function showDay(dayId, element) {
-            // Nasconde tutti i giorni all'interno del programma attivo
-            document.querySelectorAll('.day-section').forEach(el => el.classList.remove('active'));
-            // Resetta i bottoni dei giorni
-            document.querySelectorAll('.nav-giorni .nav-btn-context').forEach(btn => btn.classList.remove('active'));
-            
-            // Mostra solo il giorno cliccato
+        function showDay(programId, dayId, element) {
+            const container = document.getElementById(programId);
+            container.querySelectorAll('.day-section').forEach(el => el.classList.remove('active'));
+            container.querySelectorAll('.nav-giorni .nav-btn-context').forEach(btn => btn.classList.remove('active'));
             document.getElementById(dayId).classList.add('active');
             element.classList.add('active');
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-        });
+        window.addEventListener('DOMContentLoaded', () => { initTheme(); });
     </script>
 </head>
 <body>
@@ -151,176 +124,255 @@
     <!-- LIVELLO 1: SELEZIONE CITTÀ -->
     <div class="nav-level-1">
         <button class="nav-btn active" onclick="showCity('pechino-container', this)">Pechino</button>
-        <button class="nav-btn" style="opacity: 0.5;">Xi'an (In Arrivo)</button>
+        <button class="nav-btn" onclick="showCity('xian-container', this)">Xi'an</button>
     </div>
 
-    <!-- CONTENITORE DINAMICO PECHINO -->
+    <!-- ========================================================= -->
+    <!-- CONTENITORE PECHINO                                       -->
+    <!-- ========================================================= -->
     <div id="pechino-container" class="city-container active">
         
-        <!-- LIVELLO 2: CONTESTO DELLA CITTÀ -->
         <div class="nav-level-2">
             <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Programma</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-ristoranti', this)">🍽️ Ristoranti & Luoghi</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🚨 Utility & Autisti</button>
+            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-ristoranti', this)">🍽️ Database Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🚨 Utility</button>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB: RISTORANTI E LUOGHI (DATABASE)                       -->
-        <!-- ========================================================= -->
+        <!-- TAB: RISTORANTI PECHINO -->
         <div id="pechino-ristoranti" class="tab-content">
             <div class="day-card" style="border-left-color: var(--food);">
                 <h2>🍽️ Database Ristoranti Pechino</h2>
-                <!-- INIZIO COPIA: DATABASE RISTORANTI PECHINO -->
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Siji Minfu (Dengshikou)</a>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Beijing Roast Duck (Nanchizi)</a>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" class="amap-btn" style="border-color:#27ae60; color:#27ae60;">📍 Wangfujing Pedestrian Street</a>
-                <!-- FINE COPIA: DATABASE RISTORANTI PECHINO -->
+                <!-- Da compilare con i dati della tabella -->
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn">📍 Siji Minfu (Dengshikou)</a>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn">📍 Beijing Roast Duck (Nanchizi)</a>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" class="amap-btn">📍 Wangfujing Pedestrian Street</a>
+                <div class="alert-todo">🔴 Manca la lista completa dei ristoranti.</div>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB: UTILITY, EMERGENZA, SHOW TO DRIVER                   -->
-        <!-- ========================================================= -->
+        <!-- TAB: UTILITY PECHINO -->
         <div id="pechino-utility" class="tab-content">
             <div class="driver-card">
-                <div class="info-title" style="justify-content: center; color: var(--primary);">🚕 SHOW TO DRIVER</div>
-                <p style="margin: 0; color: var(--text-muted);">Per favore, mi porti a questo hotel:</p>
-                <!-- INIZIO COPIA: INDIRIZZO HOTEL PECHINO -->
+                <div class="info-title" style="justify-content: center; color: var(--primary);">🚕 HOTEL STEY WANGFUJING</div>
                 <div class="driver-chinese">Stey王府井酒店</div>
                 <p>Dongcheng District, Baishu Hutong</p>
-                <!-- FINE COPIA: INDIRIZZO HOTEL PECHINO -->
-            </div>
-            
-            <div class="day-card" style="border-left-color: var(--danger);">
-                <div class="info-title">🚨 Numeri Utili & Sopravvivenza</div>
-                <a href="tel:+861085327600" class="file-btn" style="background: var(--danger); border-color: var(--danger);">📞 Ambasciata Italiana Pechino</a>
-                <div class="data-grid" style="margin-top: 15px;">
-                    <div class="data-item"><span class="data-label">Bagno (Toilet)</span><span class="data-value">洗手间 (Xǐshǒujiān)</span></div>
-                    <div class="data-item"><span class="data-label">Acqua</span><span class="data-value">水 (Shuǐ)</span></div>
-                </div>
+                <!-- FUNZIONE RADAR DEMO -->
+                <a href="javascript:void(0)" onclick="openRadar(39.9171, 116.4116, '餐饮')" class="radar-btn">📡 Cerca Cibo a 1km dall'Hotel</a>
             </div>
         </div>
 
-        <!-- ========================================================= -->
-        <!-- TAB: PROGRAMMA GIORNALIERO                                -->
-        <!-- ========================================================= -->
+        <!-- TAB: PROGRAMMA PECHINO -->
         <div id="pechino-programma" class="tab-content active">
-            
-            <!-- MENU DI SELEZIONE GIORNO -->
             <div class="nav-giorni" style="margin-top: 10px;">
-                <button class="nav-btn-context active" onclick="showDay('day-8-ago', this)">8 Ago</button>
-                <button class="nav-btn-context" onclick="showDay('day-9-ago', this)">9 Ago</button>
+                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-8-ago', this)">8 Ago</button>
+                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-9-ago', this)">9 Ago</button>
+                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-10-ago', this)">10 Ago</button>
+                <button class="nav-btn-context" onclick="showDay('pechino-programma', 'day-11-ago', this)">11 Ago</button>
+                <button class="nav-btn-context active" onclick="showDay('pechino-programma', 'day-12-ago', this)">12 Ago</button>
             </div>
 
-            <!-- INIZIO COPIA: GIORNO 8 AGOSTO -->
-            <div id="day-8-ago" class="day-section active">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Sabato, 8 Agosto</h2>
-                        <span class="day-subtitle">Torino ➔ Roma ➔ In Volo</span>
-                    </div>
-                    <span class="weight-badge">🟢 Viaggio / Soft</span>
-
-                    <div class="info-block">
-                        <div class="info-title">🚆 TRENO ITALO</div>
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Codice PNR</span><span class="data-value">ALLSVR</span></div>
-                            <div class="data-item"><span class="data-label">Treno / Tariffa</span><span class="data-value">9923 / Smart Flex</span></div>
-                            <div class="data-item"><span class="data-label">Data</span><span class="data-value">08 Ago 2026</span></div>
-                            <div class="data-item"><span class="data-label">Orario</span><span class="data-value">08:40 - 13:24</span></div>
-                            <div class="data-item"><span class="data-label">Tratta</span><span class="data-value">Torino P. Susa ➔ Roma Termini</span></div>
-                        </div>
-                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 10px 0;">
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Valentina</span><span class="data-value">Carrozza 6, Posto 11</span></div>
-                            <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
-                        </div>
-                        <a href="https://italoinviaggio.italotreno.it/it/treno/9923" target="_blank" class="track-btn">🕒 STATO TRENO IN TEMPO REALE</a>
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
-                        <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">📄 APRI BIGLIETTO ELETTRONICO</a>
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">08:40</span> Partenza Italo Treno 9923 da Torino Porta Susa.</li>
-                            <li><span class="time-badge">13:24</span> Arrivo a Roma Termini.</li>
-                            <li><span class="time-badge">14:30</span> Treno Leonardo Express per Fiumicino Aeroporto (FCO).</li>
-                            <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card: Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code.</li>
-                            <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
-                        </ul>
-                    </div>
-                    <div class="alert-todo">🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).</div>
-                </div>
+            <!-- INIZIO COPIA: GIORNO 8 E 9 (Omesi per brevità, sono identici a prima) -->
+            <div id="day-8-ago" class="day-section">
+                <div class="day-card"><h2 class="day-title">Sabato, 8 Agosto</h2><p>In Volo.</p></div>
             </div>
-            <!-- FINE COPIA: GIORNO 8 AGOSTO -->
-
-            <!-- INIZIO COPIA: GIORNO 9 AGOSTO -->
             <div id="day-9-ago" class="day-section">
+                <div class="day-card"><h2 class="day-title">Domenica, 9 Agosto</h2><p>Arrivo a Pechino.</p></div>
+            </div>
+            <!-- FINE COPIA: GIORNO 8 E 9 -->
+
+            <!-- INIZIO COPIA: GIORNO 10 AGOSTO -->
+            <div id="day-10-ago" class="day-section">
                 <div class="day-card">
                     <div class="day-header">
-                        <h2 class="day-title">Domenica, 9 Agosto</h2>
-                        <span class="day-subtitle">Arrivo a Pechino & Anatra Laccata</span>
+                        <h2 class="day-title">Lunedì, 10 Agosto</h2>
+                        <span class="day-subtitle">Pechino (Muraglia & Relax)</span>
                     </div>
-                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Jet-Lag / Moderato</span>
-
-                    <div class="info-block">
-                        <div class="info-title">🏨 HOTEL E LOGISTICA</div>
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/506196385.jpg?k=4d82bc61d800bf68284474153ca0801133b7611478f4042a75d6b2ba0ea9c465&o=" alt="Stey Hotel Facade" class="feature-img">
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Stey Beijing Wangfujing Hotel</span></div>
-                            <div class="data-item"><span class="data-label">Costo Totale</span><span class="data-value">107,75 €</span></div>
-                        </div>
-                    </div>
+                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Trekking / Intenso</span>
 
                     <div class="info-block">
                         <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
                         <ul class="timeline">
-                            <li><span class="time-badge">12:40</span> Atterraggio a Pechino (PEK) Terminal 3.</li>
-                            <li><span class="time-badge">Kiosk</span> Fermarsi ai kiosk automatici (blu/gialli) prima dell'immigrazione. Scansionare passaporto e impronte. Ritirare scontrino.</li>
-                            <li><span class="time-badge">14:00</span> Dogana: Corsia "Foreigners". Preparare info su hotel e volo di ritorno.</li>
-                            <li><span class="time-badge">DiDi</span> Andare al Parcheggio P2, Livello B2. Cercare "Pillar Number" sull'app DiDi. Inviare messaggio al driver: "I am at Pillar [Numero]".</li>
-                            <li><span class="time-badge">15:00</span> Check-in Stey Wangfujing.</li>
-                            <li><span class="time-badge">15:15 - 18:45</span> Riposo obbligatorio in Hotel (Oscurare tutto, ricaricare le batterie).</li>
-                            <li><span class="time-badge">17:15</span> TATTICA CODA: Aprire mini-programma WeChat e cercare: <span class="copy-badge">四季民福</span> (copia testo). Cliccare "取号" (Prendi numero).</li>
-                            <li><span class="time-badge">19:15</span> Monitorare lo scorrimento. Quando mancano 15-20 tavoli, uscire in direzione ristorante.</li>
-                            <li><span class="time-badge">19:45 - 21:00</span> Cena: Anatra Laccata.</li>
-                            <li><span class="time-badge">21:15</span> Dopo Cena: Passeggiata sulla Wangfujing Pedestrian Street o rientro in hotel. Spesa al 7-Eleven aperto 24h per la colazione di domani.</li>
+                            <li><span class="time-badge">07:30</span> Uscita Hotel. Partenza con Driver privato. Portare cambio post trekking e post massaggio.</li>
+                            <li><span class="time-badge">09:30</span> Arrivo a Mutianyu. Salita in Funivia chiusa (Torre 14).</li>
+                            <li><span class="time-badge">10:00 - 13:00</span> Trekking sezione Alta: Salita torre 13, camminata verso la Torre 23 (Opzione Torre 26 in base alla stanchezza).</li>
+                            <li><span class="time-badge">13:00</span> Discesa in Funivia.</li>
+                            <li><span class="time-badge">13:30</span> Rientro immediato a Pechino.</li>
+                            <li><span class="time-badge">16:00</span> <b>Opzione A:</b> Massaggio Oriental Taipan (90 min) + doccia + snack.<br><b>Opzione B (15:00):</b> Rientro in Hotel, dormita 2 ore.</li>
+                            <li><span class="time-badge">18:30</span> Snack al buffet della SPA o cena leggera.</li>
+                            <li><span class="time-badge">20:30</span> Passeggiata Serale. Opzioni: Gui Jie (Ghost Street), Qianmen, Sanlitun o Wangfujing.</li>
                         </ul>
                     </div>
 
                     <div class="info-block food-tips">
-                        <div class="info-title">💡 SUGGERIMENTI E OPZIONI</div>
-                        <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🦆 Ordine Anatra Laccata</p>
-                        <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
-                            <li><b>L'Anatra:</b> <i>Bàn zhī</i> 半只 (Mezza) oppure <i>Yī zhī</i> 一只 (Intera).</li>
-                            <li><b>Il Kit Essenziale:</b> Condiment set (crespelline/pancakes, salsa scura dolce, cetriolo e porro per avvolgere).</li>
-                            <li><b>La Regola d'Oro:</b> La primissima pelle croccante del petto NON si arrotola. Si intinge nello zucchero bianco e si fa sciogliere in bocca.</li>
-                            <li><b>Contorni:</b> Cuori di cavolo in agrodolce o spinaci all'aglio (per pulire la bocca dal grasso).</li>
+                        <div class="info-title">💡 LOGISTICA SPA ORIENTAL TAIPAN</div>
+                        <p style="font-size: 14px; margin: 0;">Non cercate di prenotare via Dianping da soli. Mostrate il nome <b>东方大班</b> alla reception dello Stey e chiedete di prenotare per le 16:00. Chiedete all'hotel o al driver di aiutarvi a prendere il coupon (Tuan Gou) su Dianping per pagare la tariffa scontata (~350 RMB invece di 500).</p>
+                    </div>
+                    <div class="alert-todo">🔴 PRENOTARE: Chiamare Oriental Taipan in mattinata.</div>
+                </div>
+            </div>
+            <!-- FINE COPIA: GIORNO 10 AGOSTO -->
+
+            <!-- INIZIO COPIA: GIORNO 11 AGOSTO -->
+            <div id="day-11-ago" class="day-section">
+                <div class="day-card">
+                    <div class="day-header">
+                        <h2 class="day-title">Martedì, 11 Agosto</h2>
+                        <span class="day-subtitle">Pechino (Città Proibita & Hutong)</span>
+                    </div>
+                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Storico / Moderato</span>
+
+                    <div class="info-block">
+                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:00</span> Uscita Hotel. <b>No Bag:</b> evitare borse per saltare la fila ai controlli.</li>
+                            <li><span class="time-badge">08:30</span> Meeting point: Hotel Kapok. Tour Città Proibita.</li>
+                            <li><span class="time-badge">13:00 - 13:45</span> Jingshan Park (Vista panoramica).</li>
+                            <li><span class="time-badge">13:45</span> <b>Rientro:</b> Uscire da PORTA EST Jingshan Park. Camminare 200m a sud su Beiheyan Avenue e chiamare DiDi (evita blocco traffico).</li>
+                            <li><span class="time-badge">14:00 - 14:45</span> Riposo in Hotel.</li>
+                            <li><span class="time-badge">14:45</span> Uscita hotel, Metro Dengshikou (L5 dir. Yonghegong).</li>
+                            <li><span class="time-badge">15:10 - 16:30</span> Tempio dei Lama (Tornelli chiudono alle 16:30!). Se in ritardo: piano B Wudaoying Hutong.</li>
+                            <li><span class="time-badge">16:30 - 17:30</span> Passeggiata: Tempio ➔ Guozijian St ➔ Wudaoying Hutong.</li>
+                            <li><span class="time-badge">17:35</span> Metro Yonghegong (L5 dir. Tiantandongmen) ➔ Dengshikou (Uscita B).</li>
+                            <li><span class="time-badge">18:00 - 21:00</span> Food Tour Guidato Hutong. Meeting: Dengshikou Exit B.</li>
+                            <li><span class="time-badge">21:30</span> Dopo Cena: Qianmen Street (20 min DiDi, relax) o Sanlitun Taikoo Li.</li>
                         </ul>
-                        <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🚨 Piani Alternativi (Cena & Dopo Cena)</p>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                            <li><b>Piano B Cena:</b> Se la coda virtuale su WeChat per Siji Minfu supera i 50 numeri, abbandonare l'idea e puntare al Beijing Roast Duck (Nanchizi).</li>
-                            <li><b>Piano A Serale (Energia Residua):</b> Passeggiata sulla Wangfujing Pedestrian Street.</li>
-                            <li><b>Piano B Serale (Sconfitti dal fuso):</b> Rientro immediato in Hotel a dormire (Fatica 0).</li>
-                            <li><b>Tip Logistico:</b> Spesa per la colazione di domani e trekking alla Muraglia presso il 7-Eleven sotto l'hotel.</li>
+                    </div>
+
+                    <div class="info-block food-tips">
+                        <div class="info-title">💡 FOOD TOUR & REGOLE DIETETICHE</div>
+                        <p style="font-size: 14px; margin-bottom: 5px;">Must da richiedere alla guida: Jianbing (crepe salata), Baozi (panini al vapore), Chuan'r (spiedini d'agnello), Birra Yanjing o Bingfeng (soda arancia).</p>
+                        <p style="font-size: 14px; font-weight: bold; color: var(--danger);">🚨 REGOLA PEPERONI (Per Valentina):</p>
+                        <p style="font-size: 14px; margin: 0;">Fai tradurre e mostrare questo alla guida: <b>不要青椒 (Bú yào qīngjiāo - Niente peperoni verdi)</b> o <b>我不能吃灯笼椒 (Wǒ bù néng chī dēnglóngjiāo - Non posso mangiare peperoni).</b></p>
+                    </div>
+                    
+                    <div class="alert-todo">🔴 DA VERIFICARE: Dati prenotazione Tour Città Proibita e Tempio Lama (7gg prima).</div>
+                </div>
+            </div>
+            <!-- FINE COPIA: GIORNO 11 AGOSTO -->
+
+            <!-- INIZIO COPIA: GIORNO 12 AGOSTO -->
+            <div id="day-12-ago" class="day-section active">
+                <div class="day-card">
+                    <div class="day-header">
+                        <h2 class="day-title">Mercoledì, 12 Agosto</h2>
+                        <span class="day-subtitle">Tempio del Cielo & Palazzo d'Estate</span>
+                    </div>
+                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Parchi / Intenso</span>
+
+                    <div class="info-block">
+                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:30</span> Uscita Hotel. Metro L5.</li>
+                            <li><span class="time-badge">09:00 - 11:30</span> Tempio del Cielo (Porta Est). Audioguida ai chioschi (100 RMB dep). Percorso: Lungo Corridoio, Padiglione Preghiera, Ponte Danbi, Cripta Imperiale, Altare. Uscita Porta Sud.</li>
+                            <li><span class="time-badge">11:45</span> DiDi verso Hotel. Pranzo in zona: Heyan Roubing o Din Tai Fung.</li>
+                            <li><span class="time-badge">13:15 - 14:15</span> Riposo in Hotel (1 ora piena).</li>
+                            <li><span class="time-badge">14:15</span> <b>Tassativo:</b> DiDi verso Palazzo d'Estate (Porta Est - Donggongmen).</li>
+                            <li><span class="time-badge">15:00 - 15:45</span> Ingresso Porta Est. Palazzo Benevolenza, Lungo Corridoio.</li>
+                            <li><span class="time-badge">15:45 - 16:45</span> Torre Incenso Buddista (Ultimo ingresso 16:30, chiude 17:00).</li>
+                            <li><span class="time-badge">16:45 - 17:15</span> Discesa verso Nave di Marmo.</li>
+                            <li><span class="time-badge">17:15 - 17:45</span> Traghetto da Nave di Marmo a Isola Lago Sud. <i>(Da verificare orario ultima corsa sul posto)</i>. Se chiuso, costeggiare lago a piedi.</li>
+                            <li><span class="time-badge">17:45 - 19:30</span> Relax e Tramonto sul Ponte dei 17 Archi (Luce migliore 19:15).</li>
+                            <li><span class="time-badge">19:45</span> Uscita Porta Nuova (Xin Gong Men). DiDi per Houhai.</li>
+                            <li><span class="time-badge">20:30</span> Cena Hot Pot da Ya'er Liji. Passeggiata a Shichahai/Yandai Xiejie.</li>
                         </ul>
+                    </div>
+                    <div class="alert-todo">🔴 DA ACQUISTARE: Through Ticket / Combo Ticket (联票 - Lian Piao) Tempio + Palazzo su trip.com/WeChat.</div>
+                </div>
+            </div>
+            <!-- FINE COPIA: GIORNO 12 AGOSTO -->
+
+        </div> <!-- Fine Tab Programma Pechino -->
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- CONTENITORE XI'AN                                         -->
+    <!-- ========================================================= -->
+    <div id="xian-container" class="city-container">
+        
+        <div class="nav-level-2">
+            <button class="nav-btn-context active" onclick="showTab('xian-container', 'xian-programma', this)">📅 Programma</button>
+            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-ristoranti', this)">🍽️ Database Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-utility', this)">🚨 Utility</button>
+        </div>
+
+        <div id="xian-ristoranti" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--food);">
+                <h2>🍽️ Database Ristoranti Xi'an</h2>
+                <div class="alert-todo">🔴 Database Xi'an vuoto. Fornire lista.</div>
+            </div>
+        </div>
+
+        <div id="xian-utility" class="tab-content">
+            <div class="driver-card">
+                <div class="info-title" style="justify-content: center; color: var(--primary);">🚕 HOTEL XI'AN</div>
+                <div class="driver-chinese">美豪丽致酒店</div>
+                <p>Mehood Lestie, Bell & Drum Tower South Gate</p>
+                <!-- FUNZIONE RADAR DEMO -->
+                <a href="javascript:void(0)" onclick="openRadar(34.2536, 108.9463, '餐饮')" class="radar-btn">📡 Cerca Cibo a 1km dall'Hotel</a>
+            </div>
+        </div>
+
+        <div id="xian-programma" class="tab-content active">
+            <div class="nav-giorni" style="margin-top: 10px;">
+                <button class="nav-btn-context active" onclick="showDay('xian-programma', 'day-13-ago', this)">13 Ago</button>
+            </div>
+
+            <!-- INIZIO COPIA: GIORNO 13 AGOSTO -->
+            <div id="day-13-ago" class="day-section active">
+                <div class="day-card">
+                    <div class="day-header">
+                        <h2 class="day-title">Giovedì, 13 Agosto</h2>
+                        <span class="day-subtitle">Trasferimento Xi'an & Mura al Tramonto</span>
+                    </div>
+                    <span class="weight-badge">🟢 Viaggio & Bici / Moderato</span>
+
+                    <div class="info-block">
+                        <div class="info-title">🚆 TRENO ALTA VELOCITÀ PECHINO ➔ XI'AN</div>
+                        <div class="data-grid">
+                            <div class="data-item"><span class="data-label">Da - A</span><span class="data-value">Beijing West ➔ Xi'an North</span></div>
+                            <div class="data-item"><span class="data-label">Orario</span><span class="data-value">09:55 - 14:23</span></div>
+                        </div>
+                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 10px 0;">
+                        <div class="data-grid">
+                            <div class="data-item"><span class="data-label">Valentina</span><span class="data-value">Da Verificare</span></div>
+                            <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Da Verificare</span></div>
+                        </div>
                     </div>
 
                     <div class="info-block">
-                        <div class="info-title">📁 ARCHIVIO DOCUMENTI</div>
-                        <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" target="_blank" class="file-btn" style="background: #95a5a6; border-color: #7f8c8d;">
-                            📄 APRI CONFERMA PRENOTAZIONE HOTEL
-                        </a>
+                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:15</span> DiDi per Beijing West Station.</li>
+                            <li><span class="time-badge">09:55 - 14:23</span> Treno Alta Velocità.</li>
+                            <li><span class="time-badge">14:45</span> Xi'an: Seguire METRO (地铁). Linea 2 (Rossa) dir. SUD. Scendere Yongningmen (Uscita A o D).</li>
+                            <li><span class="time-badge">15:45</span> Check-in Hotel Mehood Lestie. <b>Task: Consegnare vestiti in lavanderia.</b></li>
+                            <li><span class="time-badge">17:45</span> DiDi verso Porta Ovest (Andingmen).</li>
+                            <li><span class="time-badge">18:15 - 19:30</span> <b>Mura al Tramonto:</b> Noleggio Bici (Ingresso tassativo entro 18:30!). Da Ovest a Sud (3,5 km).</li>
+                            <li><span class="time-badge">19:45</span> DiDi da Porta Sud a Stazione Metro Sajinqiao (Nord del Quartiere Musulmano).</li>
+                            <li><span class="time-badge">20:00 - 21:30</span> Self-Guided Food Tour (Sajinqiao ➔ Dapiyuan ➔ Xiyangshi ➔ Drum Tower).</li>
+                            <li><span class="time-badge">21:45</span> Passeggiata Torre della Campana/Tamburo illuminate.</li>
+                        </ul>
                     </div>
+
+                    <div class="info-block food-tips">
+                        <div class="info-title">💡 QUARTIERE MUSULMANO (Cosa mangiare)</div>
+                        <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
+                            <li><b>Spiedini di Salice (Hongliu Kao Rou):</b> Cerca il ramo di legno vero con grossi pezzi di carne al cumino (ottime proteine magre).</li>
+                            <li><b>Hamburger (Roujiamo):</b> Carne tritata al momento e panino sfornato.</li>
+                            <li><b>Riso ai Datteri (Zenggao):</b> Pentoloni enormi con poltiglia marrone scura e riso appiccicoso.</li>
+                            <li><b>Succo di Melograno:</b> Spremuti al momento con presse a leva.</li>
+                        </ul>
+                        <p style="font-size: 14px; font-weight: bold; color: var(--danger);">🚨 REGOLA PEPERONI:</p>
+                        <p style="font-size: 14px; margin: 0;">Attenzione ai piatti saltati nel wok in questo quartiere. Per sicurezza sui piatti misti mostra: <b>不要青椒 (Bú yào qīngjiāo)</b>. Sugli spiedini e sul Roujiamo classico non ci sono peperoni.</p>
+                    </div>
+
+                    <div class="alert-todo">🔴 DA INTEGRARE: Dati treno, PNR e posti a sedere.</div>
                 </div>
             </div>
-            <!-- FINE COPIA: GIORNO 9 AGOSTO -->
+            <!-- FINE COPIA: GIORNO 13 AGOSTO -->
 
-        </div> <!-- Fine Tab Programma -->
-    </div> <!-- Fine Contenitore Pechino -->
+        </div> <!-- Fine Tab Programma Xi'an -->
+    </div>
+
 </body>
 </html>
