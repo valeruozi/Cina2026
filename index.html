@@ -3,54 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Versione 011</title>
+    <title>Itinerario Cina 2026 - Test 01</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 15px; max-width: 600px; margin: 0 auto; }
-        .version-badge { background: #8e44ad; color: #fff; padding: 5px 10px; border-radius: 4px; font-size: 12px; text-align: center; margin-bottom: 10px; font-weight: bold; }
+        .test-badge { background: #000; color: #fff; padding: 10px; border-radius: 8px; font-size: 16px; text-align: center; margin-bottom: 20px; font-weight: bold; border: 2px solid #e74c3c; }
         .city-card { background: #fff; border-radius: 8px; padding: 15px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .day-title { color: #c0392b; font-weight: bold; margin-bottom: 10px; font-size: 16px; border-bottom: 2px solid #f5f7fa; padding-bottom: 8px; }
+        .day-title { color: #c0392b; font-weight: bold; margin-bottom: 5px; font-size: 16px; border-bottom: 2px solid #f5f7fa; padding-bottom: 8px; }
+        .day-desc { font-size: 13px; color: #555; margin-bottom: 12px; line-height: 1.4; }
         .amap-btn { display: block; background: #e8f4fd; color: #1a73e8; padding: 12px; margin: 6px 0; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
         .ticket-btn { display: block; background: #38a169; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 10px; font-size: 16px; }
         .flight-btn { display: block; background: #e53e3e; color: white; padding: 15px; text-align: center; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 25px; font-size: 16px; }
     </style>
     <script>
-        // Versione semplificata al massimo per non attivare i blocchi di sicurezza dell'app
-        function openMap(lat, lon, name) {
-            var url = "amapuri://uri?latitude=" + lat + "&longitude=" + lon + "&name=" + encodeURIComponent(name);
-            window.location.href = url;
+        // TEST 01: Protocollo Nativo Diretto con coordinate GCJ-02 e dev=0
+        function runTest01(lat, lon, name) {
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            var encodedName = encodeURIComponent(name);
+            var appUrl = "";
+            
+            if (isIOS) {
+                appUrl = "iosamap://viewMap?sourceApplication=ItinerarioTest&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+            } else {
+                appUrl = "androidamap://viewMap?sourceApplication=ItinerarioTest&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
+            }
+            
+            window.location.href = appUrl;
         }
     </script>
 </head>
 <body>
-    <div class="version-badge">Versione Codice: 011</div>
+    <div class="test-badge">PROVA NUMERO: 01<br><small>Protocollo Nativo (androidamap/iosamap)</small></div>
+    
     <a href="https://drive.google.com/drive/folders/1yyMAudQCVAiROs_vOvmkA4btDsTxQChn" target="_blank" class="ticket-btn">🎫 TUTTI I BIGLIETTI (DRIVE)</a>
     <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="flight-btn">✈️ VOLO AIR CHINA</a>
 
-    <!-- PECHINO -->
     <div class="city-card">
         <div class="day-title">8-12 Ago: Pechino</div>
-        <a href="#" onclick="openMap(39.91742, 116.41185, 'Stey Wangfujing'); return false;" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
-        <a href="#" onclick="openMap(39.94195, 116.41755, 'Siji Minfu'); return false;" class="amap-btn">📍 Ristorante: Siji Minfu</a>
+        <div class="day-desc">Arrivo T3, Muraglia, Città Proibita, Hutong, Parchi Imperiali.</div>
+        <a href="#" onclick="runTest01(40.05310, 116.60830, 'PEK Terminal 3'); return false;" class="amap-btn">📍 PEK Terminal 3</a>
+        <a href="#" onclick="runTest01(39.91742, 116.41185, 'Stey Wangfujing'); return false;" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
+        <a href="#" onclick="runTest01(39.94195, 116.41755, 'Siji Minfu Roast Duck'); return false;" class="amap-btn">📍 Siji Minfu (Anatra)</a>
+        <a href="#" onclick="runTest01(39.93240, 116.43820, 'Jingzun Roast Duck'); return false;" class="amap-btn">📍 Jingzun Roast Duck</a>
+        <a href="#" onclick="runTest01(40.43790, 116.56210, 'Mutianyu Great Wall'); return false;" class="amap-btn">📍 Mutianyu Great Wall</a>
+        <a href="#" onclick="runTest01(39.91610, 116.42170, 'Oriental Taipan SPA'); return false;" class="amap-btn">📍 Oriental Taipan SPA</a>
+        <a href="#" onclick="runTest01(39.94720, 116.41720, 'Tempio dei Lama'); return false;" class="amap-btn">📍 Tempio dei Lama</a>
+        <a href="#" onclick="runTest01(39.88330, 116.42220, 'Tempio del Cielo'); return false;" class="amap-btn">📍 Tempio del Cielo</a>
+        <a href="#" onclick="runTest01(39.99780, 116.27550, 'Palazzo Estate'); return false;" class="amap-btn">📍 Palazzo d'Estate</a>
     </div>
 
-    <!-- XI'AN -->
     <div class="city-card">
         <div class="day-title">13-14 Ago: Xi'an</div>
-        <a href="#" onclick="openMap(34.25365, 108.94655, 'Mehood Boutique'); return false;" class="amap-btn">📍 Hotel: Mehood Boutique</a>
-        <a href="#" onclick="openMap(34.38450, 109.27850, 'Terracotta Army'); return false;" class="amap-btn">📍 Esercito di Terracotta</a>
+        <div class="day-desc">Treno AV, Mura, Esercito Terracotta, Quartiere Musulmano.</div>
+        <a href="#" onclick="runTest01(34.25365, 108.94655, 'Mehood Lestie'); return false;" class="amap-btn">📍 Hotel: Mehood Lestie</a>
+        <a href="#" onclick="runTest01(34.38450, 109.27850, 'Terracotta Army'); return false;" class="amap-btn">📍 Esercito di Terracotta</a>
+        <a href="#" onclick="runTest01(34.26900, 108.93170, 'Sajinqiao'); return false;" class="amap-btn">📍 Quartiere Musulmano (Sajinqiao)</a>
     </div>
 
-    <!-- ZHANGJIAJIE -->
     <div class="city-card">
-        <div class="day-title">15-19 Ago: Zhangjiajie</div>
-        <a href="#" onclick="openMap(29.12380, 110.47990, 'Jinjiang Metropolo'); return false;" class="amap-btn">📍 Hotel: Jinjiang Metropolo</a>
-        <a href="#" onclick="openMap(29.35720, 110.44920, 'YOLO Resort'); return false;" class="amap-btn">📍 Hotel: YOLO Resort</a>
+        <div class="day-title">15-19 Ago: Zhangjiajie e Fenghuang</div>
+        <div class="day-desc">Tianmen, Fenghuang, Wulingyuan, Avatar Mountains.</div>
+        <a href="#" onclick="runTest01(29.12380, 110.47990, 'Jinjiang Metropolo'); return false;" class="amap-btn">📍 Hotel: Jinjiang Metropolo (ZJJ Città)</a>
+        <a href="#" onclick="runTest01(27.95460, 109.60150, 'Dayin Qianfu'); return false;" class="amap-btn">📍 Hotel: Dayin Qianfu (Fenghuang)</a>
+        <a href="#" onclick="runTest01(29.35720, 110.44920, 'YOLO Resort'); return false;" class="amap-btn">📍 Hotel: YOLO Resort (Wulingyuan)</a>
+        <a href="#" onclick="runTest01(29.12150, 110.47790, 'Tianmen Cableway'); return false;" class="amap-btn">📍 Funivia Tianmen</a>
+        <a href="#" onclick="runTest01(29.35330, 110.46110, 'Bailong Elevator'); return false;" class="amap-btn">📍 Ascensore Bailong</a>
+        <a href="#" onclick="runTest01(29.10220, 110.45130, 'DYG Airport'); return false;" class="amap-btn">📍 Aeroporto ZJJ (DYG)</a>
     </div>
 
-    <!-- SHANGHAI -->
     <div class="city-card">
         <div class="day-title">20-23 Ago: Shanghai</div>
-        <a href="#" onclick="openMap(31.22460, 121.45470, 'Moller Villa'); return false;" class="amap-btn">📍 Hotel: Moller Villa</a>
+        <div class="day-desc">Pudong, Concessione Francese, Yu Garden, Skyline.</div>
+        <a href="#" onclick="runTest01(31.22460, 121.45470, 'Moller Villa'); return false;" class="amap-btn">📍 Hotel: Moller Villa</a>
+        <a href="#" onclick="runTest01(31.14430, 121.80820, 'PVG Airport'); return false;" class="amap-btn">📍 Aeroporto PVG</a>
+        <a href="#" onclick="runTest01(31.22150, 121.54350, 'Shanghai Museum East'); return false;" class="amap-btn">📍 Museo Shanghai Est</a>
+        <a href="#" onclick="runTest01(31.22230, 121.47450, 'Xintiandi'); return false;" class="amap-btn">📍 Xintiandi</a>
+        <a href="#" onclick="runTest01(31.22720, 121.49210, 'Yu Garden'); return false;" class="amap-btn">📍 Giardino Yu</a>
+        <a href="#" onclick="runTest01(31.23350, 121.50560, 'Shanghai Tower'); return false;" class="amap-btn">📍 Shanghai Tower</a>
+        <a href="#" onclick="runTest01(31.19660, 121.32590, 'SHA Airport T2'); return false;" class="amap-btn">📍 Aeroporto SHA T2</a>
     </div>
 </body>
 </html>
