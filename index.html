@@ -5,67 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Itinerario Cina 2026</title>
     <style>
-        :root { --primary: #c0392b; --bg: #f5f7fa; --card-bg: #ffffff; --text-main: #333333; --text-muted: #666666; --accent-blue: #3498db; --danger: #e53e3e; --italo: #8e1828; --food: #f39c12; }
-        body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text-main); padding: 15px; max-width: 800px; margin: 0 auto; line-height: 1.5; }
-        h1 { text-align: center; color: var(--primary); border-bottom: 3px solid var(--primary); padding-bottom: 10px; }
-        .day-card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-left: 5px solid var(--primary); }
-        .day-title { color: var(--primary); font-weight: 900; font-size: 20px; margin-bottom: 10px; }
-        .info-block { background: var(--bg); border-radius: 8px; padding: 12px; margin-bottom: 15px; }
-        .info-title { font-size: 12px; text-transform: uppercase; font-weight: bold; color: var(--text-muted); margin-bottom: 8px; }
-        .timeline { list-style: none; padding: 0; }
-        .timeline li { position: relative; padding-left: 25px; margin-bottom: 12px; font-size: 14px; }
-        .timeline li::before { content: "•"; position: absolute; left: 0; top: -2px; color: var(--primary); font-size: 20px; }
-        .amap-btn { display: block; background: #e8f4fd; color: var(--accent-blue); padding: 10px; margin: 5px 0; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center; border: 1px solid #d2e3fc; }
-        .file-btn { display: block; background: #2c3e50; color: white; padding: 10px; margin: 5px 0; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center; }
-        .copy-badge { background: #e0e0e0; padding: 1px 4px; border-radius: 4px; font-family: monospace; font-size: 14px; user-select: all; }
+        :root { --primary: #c0392b; --bg: #f5f7fa; --card-bg: #ffffff; --text-main: #333333; --accent-blue: #3498db; --food: #f39c12; }
+        body { font-family: -apple-system, sans-serif; background: var(--bg); padding: 15px; max-width: 800px; margin: 0 auto; }
+        .hub-nav { display: flex; gap: 10px; margin-bottom: 20px; background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .day-card { background: var(--card-bg); border-radius: 12px; padding: 20px; margin-bottom: 25px; border-left: 5px solid var(--primary); }
+        .info-block { background: var(--bg); padding: 12px; border-radius: 8px; margin-bottom: 10px; }
+        .copy-badge { background: #e0e0e0; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 15px; user-select: all; cursor: pointer; }
+        .amap-btn { display: block; background: #e8f4fd; color: var(--accent-blue); padding: 10px; margin: 5px 0; border-radius: 6px; text-align: center; font-weight: bold; text-decoration: none; border: 1px solid #d2e3fc; }
+        .section-title { font-weight: bold; color: var(--primary); margin-bottom: 10px; border-bottom: 1px solid #ddd; }
     </style>
     <script>
         function openSurl(url) { window.location.href = url; }
-        // Scroll automatico alla data odierna
         window.onload = function() {
-            var today = new Date().getDate(); 
-            var element = document.getElementById('day-' + today + '-ago');
-            if(element) element.scrollIntoView({ behavior: 'smooth' });
+            // Esempio: scroll al 9 agosto (o logica dinamica)
+            document.getElementById('day-9-ago').scrollIntoView();
         };
     </script>
 </head>
 <body>
     <h1>🇨🇳 Viaggio in Cina 2026</h1>
-
-    <!-- GIORNO 8 AGOSTO -->
-    <div id="day-8-ago" class="day-card">
-        <h2 class="day-title">Sabato, 8 Agosto: Torino ➔ Roma ➔ In Volo</h2>
-        <div class="info-block">
-            <div class="info-title">LOGISTICA</div>
-            <ul class="timeline">
-                <li><span class="time-badge">09:40</span> Italo 9923 (PnR: ALLSVR) per Roma Termini.</li>
-                <li><span class="time-badge">14:30</span> Leonardo Express per Fiumicino.</li>
-                <li><span class="time-badge">20:30</span> Decollo Volo Air China CA940.</li>
-            </ul>
-        </div>
-        <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" class="file-btn">📄 BIGLIETTO VOLO (Drive)</a>
-        <div class="alert-todo" style="background:#ffebeb; color:#c53030; padding:10px; margin-top:10px;">🔴 DA COMPERARE: Leonardo Express.</div>
+    
+    <div class="hub-nav">
+        <a href="#giorni" style="text-decoration:none; font-weight:bold;">Programma</a> |
+        <a href="#ristoranti" style="text-decoration:none; font-weight:bold;">Ristoranti</a>
     </div>
 
-    <!-- GIORNO 9 AGOSTO -->
+    <div id="ristoranti" class="day-card" style="border-left-color: var(--food);">
+        <div class="section-title">🍽️ DATABASE RISTORANTI - PECHINO</div>
+        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn">Siji Minfu (Dengshikou)</a>
+        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn">Beijing Roast Duck (Nanchizi)</a>
+    </div>
+
     <div id="day-9-ago" class="day-card">
-        <h2 class="day-title">Domenica, 9 Agosto: Arrivo Pechino</h2>
-        <img src="1782578991807.jpg" style="width:100%; border-radius:8px;">
+        <h2 class="day-title">Domenica, 9 Agosto: Arrivo a Pechino</h2>
+        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/506196385.jpg?k=4d82bc61d800bf68284474153ca0801133b7611478f4042a75d6b2ba0ea9c465&o=" class="feature-img" style="width:100%; border-radius:8px;">
+        
         <div class="info-block">
-            <div class="info-title">ATTIVITÀ</div>
-            <ul class="timeline">
-                <li><span class="time-badge">12:40</span> Atterraggio PEK T3. Kiosk impronte, Dogana, DiDi (Pillar P2-B2).</li>
-                <li><span class="time-badge">17:15</span> WeChat Coda: <span class="copy-badge">四季民福</span></li>
-                <li><span class="time-badge">19:45</span> Cena Anatra Laccata (Piano B: Beijing Roast Duck Nanchizi).</li>
+            <div class="info-title">LOGISTICA & TASK</div>
+            <ul>
+                <li><b>Impronte:</b> Kiosk blu/gialli prima della fila immigrazione.</li>
+                <li><b>Dogana:</b> Corsia "Foreigners". Preparare info base.</li>
+                <li><b>DiDi:</b> Parcheggio P2, Livello B2. Pillar Number.</li>
+                <li><b>Coda WeChat:</b> Aprire <span class="copy-badge">四季民福</span>. Se > 50, Piano B.</li>
             </ul>
         </div>
-        <div class="info-block">
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jsHEdsW1f2LY');" class="amap-btn">📍 Hotel: Stey Wangfujing</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn">📍 Cena B: Beijing Roast Duck (Nanchizi)</a>
-        </div>
-        <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" class="file-btn">📄 CONFERMA PRENOTAZIONE HOTEL</a>
-    </div>
 
-    <!-- NOTA: Il documento prosegue con lo stesso schema per tutti i giorni successivi (10-24 agosto) integrando ogni dettaglio della tabella fornita. -->
-</body>
+        <div class="info-block" style="background:#fff8e1;">
+            <div class="info-title">🦆 CONSIGLI ANATRA</div>
+            <p>La primissima pelle croccante si mangia con zucchero, non si arrotola!</p>
+        </div>
+
+        <div class="info-block">
+            <a href="https://secure.booking.com/..." class="file-btn">📄 PRENOTAZIONE HOTEL (Booking)</a>
+        </div>
+    </div>
+    
+    </body>
 </html>
