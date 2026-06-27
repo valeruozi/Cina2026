@@ -14,6 +14,7 @@
             --accent-blue: #3498db;
             --warning: #e67e22;
             --danger: #e53e3e;
+            --italo: #8e1828;
         }
         body { 
             font-family: -apple-system, sans-serif; 
@@ -123,10 +124,11 @@
             border-radius: 4px;
             font-weight: bold;
             color: #c53030;
-            margin-bottom: 15px;
+            margin-top: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 14px;
         }
         .alert-success {
             background: #d4edda;
@@ -174,7 +176,6 @@
             text-align: center; 
             border: 1px solid #d2e3fc; 
         }
-        /* Nuovo stile per i documenti / PDF / Drive */
         .file-btn {
             display: block;
             background: #2c3e50;
@@ -187,6 +188,19 @@
             font-weight: bold;
             text-align: center;
             border: 1px solid #1a252f;
+        }
+        .track-btn {
+            display: block;
+            background: #fdf2f3;
+            color: var(--italo);
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #e0b4b9;
         }
     </style>
     <script>
@@ -233,16 +247,15 @@
                 <div class="data-item"><span class="data-label">Valentina Ruozi</span><span class="data-value">Carrozza 6, Posto 11</span></div>
                 <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
             </div>
-        </div>
-
-        <div class="alert-todo">
-            🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).
+            <a href="https://italoinviaggio.italotreno.it/it/treno/9923" target="_blank" class="track-btn">
+                🕒 STATO TRENO IN TEMPO REALE
+            </a>
         </div>
 
         <div class="info-block">
             <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
             <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">
-                📄 APRI BIGLIETTO ELETTRONICO (Drive)
+                📄 APRI BIGLIETTO ELETTRONICO
             </a>
         </div>
 
@@ -255,6 +268,10 @@
                 <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card: Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code in galleria.</li>
                 <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
             </ul>
+        </div>
+
+        <div class="alert-todo">
+            🔴 DA COMPERARE: Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO).
         </div>
     </div>
 
@@ -271,9 +288,8 @@
                 <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Stey Beijing Wangfujing Hotel</span></div>
                 <div class="data-item"><span class="data-label">Costo Totale</span><span class="data-value">107,75 €</span></div>
             </div>
-            <!-- Predisposizione per il file di prenotazione -->
             <a href="#" target="_blank" class="file-btn" style="background: #95a5a6; border-color: #7f8c8d;">
-                📄 APRI CONFERMA HOTEL (Link da inserire)
+                📄 APRI CONFERMA HOTEL
             </a>
         </div>
 
