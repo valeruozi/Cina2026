@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Itinerario Cina 2026 - Test 12</title>
+    <title>Itinerario Cina 2026 - Test 13</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f5f7fa; padding: 20px; }
-        .btn { display: block; background: #fff; border: 2px solid #27ae60; color: #27ae60; padding: 20px; margin: 10px 0; border-radius: 12px; text-decoration: none; font-size: 18px; font-weight: bold; text-align: center; }
+        .btn { display: block; background: #fff; border: 2px solid #e67e22; color: #e67e22; padding: 20px; margin: 10px 0; border-radius: 12px; text-decoration: none; font-size: 18px; font-weight: bold; text-align: center; }
     </style>
     <script>
-        // Questa funzione chiama l'app e chiede di aprire il POI specifico per ID
-        // È il metodo più preciso in assoluto perché non usa coordinate calcolate da noi
-        function openAmapById(poiId, name) {
+        // Test 13: Usiamo viewMap (che sappiamo funzionare) 
+        // ma passiamo il nome in cinese puro, che Amap usa per la localizzazione interna
+        function openAmapStable(lat, lon, name) {
             var encodedName = encodeURIComponent(name);
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
             var url = isIOS ? 
-                "iosamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId : 
-                "androidamap://poiDetail?sourceApplication=Itinerario&poiid=" + poiId;
+                "iosamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0" : 
+                "androidamap://viewMap?sourceApplication=Itinerario&poiname=" + encodedName + "&lat=" + lat + "&lon=" + lon + "&dev=0";
             
             window.location.href = url;
         }
     </script>
 </head>
 <body>
-    <h3>Test 12 (POI ID Precisione)</h3>
-    <!-- POI ID dello Stey Wangfujing ufficiale -->
-    <a href="javascript:void(0)" onclick="openAmapById('B0FFG8E9XN', 'Stey Wangfujing');" class="btn">
-        📍 Apri Stey Wangfujing (Preciso)
+    <h3>Test 13 (Ripristino Stabilità + Nomi Cinesi)</h3>
+    <!-- Coordinate millimetriche del punto di ingresso dello Stey -->
+    <a href="javascript:void(0)" onclick="openAmapStable(39.91763, 116.41708, 'Stey王府井酒店');" class="btn">
+        📍 Apri Stey Wangfujing (Nome Cinese)
     </a>
 </body>
 </html>
