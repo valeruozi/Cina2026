@@ -66,6 +66,13 @@
         
         .driver-card { background: var(--card-bg); padding: 30px 20px; text-align: center; border: 2px solid var(--primary); border-radius: 12px; margin-bottom: 20px; }
         .driver-chinese { font-size: 32px; font-weight: bold; margin: 15px 0; color: var(--text-main); }
+        
+        .day-footer { margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--border); }
+        .note-area { width: 100%; min-height: 80px; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text-main); font-family: inherit; resize: vertical; box-sizing: border-box; }
+        .day-nav-buttons { display: flex; justify-content: space-between; margin-top: 15px; }
+        .day-nav-btn { background: var(--card-bg); border: 1px solid var(--primary); color: var(--primary); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px; }
+
+
     </style>
     <script>
     function openSurl(url) { window.location.href = url; }
@@ -523,6 +530,17 @@ function showDriverMessage() {
         </div>
         </div>
         
+        <div class="day-footer">
+    <div class="info-title">📝 Note di fine giornata</div>
+    <textarea class="note-area save-note" id="note-day-8-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
+    
+    <div class="day-nav-buttons">
+        <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
+        <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
+    </div>
+</div>
+
+        
 </div>
 <!-- FINE COPIA: GIORNO 8 AGOSTO -->
 
@@ -798,6 +816,59 @@ function showDriverMessage() {
 
         </div> <!-- Fine Tab Programma Xi'an -->
     </div>
+    
+    <script>
+// 1. Salvataggio Note e Checkbox in LocalStorage
+document.addEventListener('DOMContentLoaded', () => {
+    // Ripristina e salva stato checkbox
+    document.querySelectorAll('.save-state').forEach(cb => {
+        cb.checked = localStorage.getItem(cb.id) === 'true';
+        cb.addEventListener('change', (e) => localStorage.setItem(e.target.id, e.target.checked));
+    });
+    
+    // Ripristina e salva testo delle note
+    document.querySelectorAll('.save-note').forEach(ta => {
+        ta.value = localStorage.getItem(ta.id) || '';
+        ta.addEventListener('input', (e) => localStorage.setItem(e.target.id, e.target.value));
+    });
+});
+
+// 2. Navigazione tramite Bottoni
+function navigateDay(direction) {
+    const activeCity = document.querySelector('.city-container.active');
+    const days = Array.from(activeCity.querySelectorAll('.nav-giorni .nav-btn-context'));
+    const activeIndex = days.findIndex(btn => btn.classList.contains('active'));
+    
+    if (direction === 'prev' && activeIndex > 0) days[activeIndex - 1].click();
+    if (direction === 'next' && activeIndex < days.length - 1) days[activeIndex + 1].click();
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Torna in cima al cambio giorno
+}
+
+// 3. Navigazione tramite Swipe (Touch su Mobile)
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener('touchstart', e => {
+    // Registra solo se il tocco avviene dentro una day-section attiva
+    if(e.target.closest('.day-section.active')) {
+        touchStartX = e.changedTouches[0].screenX;
+    }
+}, {passive: true});
+
+document.addEventListener('touchend', e => {
+    if(e.target.closest('.day-section.active')) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }
+}, {passive: true});
+
+function handleSwipe() {
+    const threshold = 80; // Distanza minima per considerare il gesto uno swipe
+    if (touchEndX + threshold < touchStartX) navigateDay('next'); // Swipe verso sinistra
+    if (touchEndX - threshold > touchStartX) navigateDay('prev'); // Swipe verso destra
+}
+</script>
+
 
 </body>
 </html>
