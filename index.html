@@ -373,11 +373,22 @@ n<!DOCTYPE html>
     
     <!-- Pulsante unico che fa tutto -->
     <a href="javascript:void(0)" 
-       onclick="showDriverMessage()" 
-       class="radar-btn" 
-       style="font-size: 16px; padding: 20px; width: 100%; display: block; border: 2px solid var(--primary);">
-       🚖 MOSTRA INDIRIZZO AL TASSISTA
-    </a>
+   onclick="showDriverMessage()" 
+   class="radar-btn" 
+   style="display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          width: 90%; 
+          max-width: 400px; 
+          margin: 10px auto; 
+          padding: 15px; 
+          font-size: 16px; 
+          border: 2px solid var(--primary); 
+          text-align: center; 
+          box-sizing: border-box;">
+   🚖 MOSTRA INDIRIZZO AL TASSISTA
+</a>
+
 
     <!-- Navigazione rapida -->
     <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cwv4H2O1t8O1');" style="display: block; margin-top: 10px; font-size: 14px; color: var(--primary);">📍 Apri su Amap</a>
