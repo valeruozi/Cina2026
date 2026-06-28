@@ -174,24 +174,24 @@
         
         <div class="nav-level-2">
             <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Programma</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-ristoranti', this)">🍽️ Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-ristoranti', this)">📍 Luoghi</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-cibo', this)">🍽️ Cibo</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🚨 Utility</button>
         </div>
 
-        <!-- TAB: DATABASE LUOGHI PECHINO -->
+        <!-- INIZIO COPIA: DATABASE LUOGHI PECHINO -->
 <div id="pechino-luoghi" class="tab-content">
     
     <!-- CATEGORIA 1: HOTEL -->
     <div class="day-card" style="border-left-color: var(--accent-blue);">
-        <h2>🏨 Hotel</h2>
+        <h2>🏨 Database Hotel</h2>
         <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" target="_blank" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Stey Wangfujing (Hotel Principale)</a>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Hotel Kapok (Fascia Alta / Punto di Ritrovo)</a>
+        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Hotel Kapok (Punto di Ritrovo Tour)</a>
     </div>
 
     <!-- CATEGORIA 2: LUOGHI -->
     <div class="day-card" style="border-left-color: var(--primary);">
-        <h2>📍 Luoghi di Interesse</h2>
+        <h2>📍 Database Luoghi di Interesse</h2>
         
         <div class="info-block">
             <div class="info-title">🗺️ CON LINK AMAP ATTIVI</div>
@@ -201,7 +201,7 @@
         </div>
 
         <div class="info-block">
-            <div class="info-title">📌 IN PIANO (DA VERIFICARE E INSERIRE LINK AMAP)</div>
+            <div class="info-title">📌 IN PIANO (DA VERIFICARE LINK AMAP)</div>
             <ul class="timeline">
                 <li><b>Muraglia (Mutianyu):</b> Epico. Salita funivia / Discesa slittino.</li>
                 <li><b>Tempio del Cielo:</b> Architettura circolare e Tai Chi (Porta Est).</li>
@@ -217,13 +217,13 @@
         </div>
 
         <div class="info-block">
-            <div class="info-title">💡 JOLLY E PIANI B (DA VERIFICARE E INSERIRE LINK AMAP)</div>
+            <div class="info-title">💡 JOLLY E PIANI B</div>
             <ul class="timeline">
                 <li><b>Qianmen & Dashilan:</b> Lanterne e negozi storici.</li>
                 <li><b>Olympic Park:</b> Nido d'Uccello illuminato.</li>
                 <li><b>Qiwei Guofeng Fushi:</b> Boutique abiti tradizionali.</li>
                 <li><b>NAMOC (Arte):</b> Arte moderna, relax (10 min a piedi).</li>
-                <li><b>National Museum / Capital Museum:</b> Storia (Al coperto).</li>
+                <li><b>National/Capital Museum:</b> Storia (Al coperto).</li>
                 <li><b>798 Art District:</b> Arte industriale e cyberpunk.</li>
             </ul>
         </div>
@@ -231,45 +231,45 @@
 
     <!-- CATEGORIA 3: RISTORANTI E CIBO -->
     <div class="day-card" style="border-left-color: var(--food);">
-        <h2>🍽️ Ristoranti e Cibo</h2>
+        <h2>🍽️ Database Ristoranti e Cibo</h2>
         
         <div class="info-block">
             <div class="info-title">🗺️ RISTORANTI CON LINK AMAP ATTIVI</div>
             <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ Siji Minfu (Dengshikou) - <i>Anatra Laccata</i></a>
             <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ Beijing Roast Duck (Nanchizi) - <i>Backup Anatra</i></a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/18GzUrU1geMw');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ No.69 Fang Zhuan Chang (Wangfu Century) - <i>Zhajiangmian</i></a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/18GzUrU1geMw');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ No.69 Fang Zhuan Chang - <i>Zhajiangmian</i></a>
         </div>
 
         <div class="info-block">
-            <div class="info-title">📝 DA COMPLETARE CON LINK AMAP (NOME IN CINESE DISPONIBILE)</div>
+            <div class="info-title">📝 DA COMPLETARE CON LINK AMAP</div>
             <div class="data-grid">
-                <div class="data-item"><span class="data-label">Lei Garden (Jinbao) | 利苑酒家</span><span class="data-value">Cantonese 1* Michelin</span></div>
-                <div class="data-item"><span class="data-label">Ya'er Liji (Houhai) | 鸦儿李记</span><span class="data-value">Hot pot tradizionale</span></div>
+                <div class="data-item"><span class="data-label">Lei Garden | 利苑酒家</span><span class="data-value">Cantonese 1* Michelin</span></div>
+                <div class="data-item"><span class="data-label">Ya'er Liji | 鸦儿李记</span><span class="data-value">Hot pot tradizionale</span></div>
                 <div class="data-item"><span class="data-label">Hua Sheng Feng | 花生丰</span><span class="data-value">Sapori del sud (Dongpo Rou)</span></div>
                 <div class="data-item"><span class="data-label">Dong Lai Shun | 东来顺</span><span class="data-value">Hot Pot Imperiale 1903</span></div>
                 <div class="data-item"><span class="data-label">Liu Ma Ma Dumplings | 柳妈妈水饺</span><span class="data-value">Ravioli fatti a mano</span></div>
                 <div class="data-item"><span class="data-label">Bao Bao Hao | 煲煲好</span><span class="data-value">Oasi Cantonese</span></div>
                 <div class="data-item"><span class="data-label">Heyan Roubing | 河沿肉饼</span><span class="data-value">Beef Pie (Salva-vita)</span></div>
                 <div class="data-item"><span class="data-label">23 Seats | 23坐</span><span class="data-value">Noodle bar futuristico</span></div>
-                <div class="data-item"><span class="data-label">Fei Da Chu | 费大厨</span><span class="data-value">Amato dai giovani (Cavolo/Tofu)</span></div>
+                <div class="data-item"><span class="data-label">Fei Da Chu | 费大厨</span><span class="data-value">Amato dai giovani</span></div>
                 <div class="data-item"><span class="data-label">Mr. Wildman | 野人先生</span><span class="data-value">Gelato artigianale (Riso)</span></div>
                 <div class="data-item"><span class="data-label">Nanmen Shuanrou | 宏源南门涮肉</span><span class="data-value">Post-Tempio Cielo (Agnello)</span></div>
                 <div class="data-item"><span class="data-label">Baikui Laohao | 白魁老号饭庄</span><span class="data-value">Spartano (Zona Nord)</span></div>
-                <div class="data-item"><span class="data-label">Jubaoyuan | 聚宝源</span><span class="data-value">Storico Musulmano (Code lunghe)</span></div>
+                <div class="data-item"><span class="data-label">Jubaoyuan | 聚宝源</span><span class="data-value">Storico Musulmano</span></div>
                 <div class="data-item"><span class="data-label">Quan Ju De | 全聚德</span><span class="data-value">Turistico (Backup Anatra)</span></div>
                 <div class="data-item"><span class="data-label">Hu Guo Si Xiaochi | 护国寺小吃</span><span class="data-value">Street food dolce</span></div>
             </div>
         </div>
 
         <div class="info-block food-tips">
-            <div class="info-title">🥢 GUIDA AI PIATTI TIPICI E DOVE MANGIARLI</div>
+            <div class="info-title">🥢 GUIDA AI PIATTI TIPICI</div>
             <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
                 <li><b>Beijing Kaoya (Anatra):</b> Siji Minfu. Intingi la pelle nello zucchero!</li>
                 <li><b>Zhajiangmian (Noodles):</b> No.69 Fang Zhuan Chang. Soia fermentata e maiale.</li>
-                <li><b>Mending Roubing:</b> Baikui Laohao. Focaccia ripiena, attenzione al brodo interno.</li>
-                <li><b>Chuan'r (Spiedini):</b> Hutong/Houhai. Agnello speziato (cumino/pepe).</li>
+                <li><b>Mending Roubing:</b> Baikui Laohao. Focaccia ripiena, occhio al brodo.</li>
+                <li><b>Chuan'r (Spiedini):</b> Hutong/Houhai. Agnello speziato.</li>
                 <li><b>Baodu (Trippa):</b> Street food. Scottata con salsa di sesamo.</li>
-                <li><b>Lü Da Gun / Zha Gao / Jiang Mi Niangao:</b> Hu Guo Si Xiaochi. Dolci tipici a base di riso glutinoso e pasta di fagioli.</li>
+                <li><b>Lü Da Gun / Zha Gao:</b> Hu Guo Si Xiaochi. Dolci al riso glutinoso.</li>
                 <li><b>Miancha:</b> Porridge di miglio, si beve ruotando la ciotola.</li>
                 <li><b>Shao Mai:</b> Liu Ma Ma. Ravioli aperti in cima.</li>
                 <li><b>Dou Zhi & Jiao Quan:</b> Sconsigliato per Carlo. Latte di fagioli estremamente acido.</li>
@@ -277,6 +277,8 @@
         </div>
     </div>
 </div>
+<!-- FINE COPIA: DATABASE LUOGHI PECHINO -->
+
 
 
 		<!-- INIZIO COPIA: TAB CIBO -->
