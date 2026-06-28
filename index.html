@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
@@ -364,7 +364,9 @@
                 <button class="nav-btn-context" data-date="2026-08-12" onclick="showDay('pechino-programma', 'day-12-ago', this)">12 Ago</button>
             </div>
 
-            <div id="day-8-ago" class="day-section">
+
+<!-- GIORNO 8 AGOSTO -->
+  <div id="day-8-ago" class="day-section">
                 <div class="day-card">
                     <div class="day-header">
                         <h2 class="day-title">Sabato, 8 Agosto</h2>
@@ -435,8 +437,12 @@
                     </div>
                 </div>
             </div>
+<!-- FINE GIORNO 8 AGOSTO -->
 
-            <div id="day-9-ago" class="day-section">
+
+
+<!-- GIORNO 9 AGOSTO -->
+<div id="day-9-ago" class="day-section">
                 <div class="day-card">
                     <div class="day-header">
                         <h2 class="day-title">Domenica, 9 Agosto</h2>
@@ -516,128 +522,205 @@
                     </div>
                 </div>
             </div>
+<!-- FINE GIORNO 9 AGOSTO -->
 
-            <div id="day-10-ago" class="day-section">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Lunedì, 10 Agosto</h2>
-                        <span class="day-subtitle">Pechino (Muraglia & Relax)</span>
-                    </div>
-                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Trekking / Intenso</span>
 
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">07:30</span> Uscita Hotel. Partenza con Driver privato. Portare cambio post trekking e post massaggio.</li>
-                            <li><span class="time-badge">09:30</span> Arrivo a Mutianyu. Salita in Funivia chiusa (Torre 14).</li>
-                            <li><span class="time-badge">10:00 - 13:00</span> Trekking sezione Alta: Salita torre 13, camminata verso la Torre 23 (Opzione Torre 26 in base alla stanchezza).</li>
-                            <li><span class="time-badge">13:00</span> Discesa in Funivia.</li>
-                            <li><span class="time-badge">13:30</span> Rientro immediato a Pechino.</li>
-                            <li><span class="time-badge">16:00</span> <b>Opzione A:</b> Massaggio Oriental Taipan (90 min) + doccia + snack.<br><b>Opzione B (15:00):</b> Rientro in Hotel, dormita 2 ore.</li>
-                            <li><span class="time-badge">18:30</span> Snack al buffet della SPA o cena leggera.</li>
-                            <li><span class="time-badge">20:30</span> Passeggiata Serale. Opzioni: Gui Jie (Ghost Street), Qianmen, Sanlitun o Wangfujing.</li>
-                        </ul>
-                    </div>
 
-                    <div class="info-block food-tips">
-                        <div class="info-title">💡 LOGISTICA SPA ORIENTAL TAIPAN</div>
-                        <p style="font-size: 14px; margin: 0;">Non cercate di prenotare via Dianping da soli. Mostrate il nome <b>东方大班</b> alla reception dello Stey e chiedete di prenotare per le 16:00. Chiedete all'hotel o al driver di aiutarvi a prendere il coupon (Tuan Gou) su Dianping per pagare la tariffa scontata (~350 RMB invece di 500).</p>
-                    </div>
-                    <div class="alert-todo">🔴 PRENOTARE: Chiamare Oriental Taipan in mattinata.</div>
-                    
-                    <div class="day-footer">
-                        <div class="info-title">📝 Note di fine giornata</div>
-                        <textarea class="note-area save-note" id="note-day-10-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-                        <div class="day-nav-buttons">
-                            <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                            <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-                        </div>
-                    </div>
-                </div>
+<!-- GIORNO 10 AGOSTO -->
+<div id="day-10-ago" class="day-section">
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Lunedì, 10 Agosto</h2>
+            <span class="day-subtitle">Pechino (Muraglia & Relax)</span>
+        </div>
+        <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Trekking / Intenso</span>
+
+        <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
+            <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                <li>Driver privato + Ticket Grande Muraglia (Mutianyu)</li>
+            </ul>
+        </div>
+
+        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+            <div class="info-title" style="color: var(--warning);">🔔 TASK: DA PRENOTARE OGGI</div>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                <input type="checkbox" id="task-spa-10ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                <span><b>PRENOTARE SPA:</b> Chiedere all'hotel o al driver di chiamare l'Oriental Taipan (Jinbao Street) per le 16:00.</span>
+            </label>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">07:30</span> 🚪 Uscita Hotel. Partenza con Driver privato (portare cambio post trekking e post massaggio).</li>
+                <li><span class="time-badge">09:30</span> 🚠 Arrivo a Mutianyu. Salita in Funivia chiusa (Torre 14).</li>
+                <li><span class="time-badge">10:00 - 13:00</span> 🧱 Trekking sezione Alta: Salita torre 13, camminata verso la Torre 23 (in base alla stanchezza decidiamo se fare fino alla 26).</li>
+                <li><span class="time-badge">13:00</span> 🛷 Discesa in Funivia.</li>
+                <li><span class="time-badge">13:30</span> 🚗 Rientro immediato a Pechino.</li>
+                <li><span class="time-badge">15:00 / 16:00</span> 💆 <b>Bivio Pomeridiano:</b><br>
+                    A) 16:00 Massaggio Oriental Taipan (90 min) + doccia + snack.<br>
+                    B) 15:00 Rientro in Hotel, dormita 2 ore.</li>
+                <li><span class="time-badge">18:30</span> 🍲 Snack al buffet della SPA o cena leggera.</li>
+                <li><span class="time-badge">20:30</span> 🌃 <b>Passeggiata (Scelta in loco):</b><br>
+                    A) Gui Jie (Ghost Street): 1,5 km di lanterne rosse, tempio del cibo notturno (gamberi piccanti) (15 min DiDi).<br>
+                    B) Qianmen & Dashilan: Lanterne, negozi storici, shopping (20 min DiDi).<br>
+                    C) Sanlitun: Cyberpunk (15 min DiDi).<br>
+                    D) Wangfujing: Zero sforzo, a piedi dall'hotel.
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-block food-tips">
+            <div class="info-title">💡 LOGISTICA SPA E RISPARMIO</div>
+            <p style="font-size: 14px; margin-bottom: 5px;"><b>Logistica SPA:</b> Non cercate di prenotare via Dianping (difficile senza numero cinese). Mostrate il nome <b>东方大班</b> alla reception dello Stey e chiedete di prenotare per le 16:00.</p>
+            <p style="font-size: 14px; margin: 0;"><b>Tattica Risparmio:</b> Chiedete all'hotel o al driver di aiutarvi a prendere il coupon (Tuan Gou) su Dianping per pagare la tariffa scontata (~350 RMB invece di 500).</p>
+        </div>
+
+        <div class="day-footer">
+            <div class="info-title">📝 Note di fine giornata</div>
+            <textarea class="note-area save-note" id="note-day-10-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
+            <div class="day-nav-buttons">
+                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
+                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
             </div>
+        </div>
+    </div>
+</div>
+<!-- FINE GIORNO 10 AGOSTO -->
 
-            <div id="day-11-ago" class="day-section">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Martedì, 11 Agosto</h2>
-                        <span class="day-subtitle">Pechino (Città Proibita & Hutong)</span>
-                    </div>
-                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Storico / Moderato</span>
 
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">08:00</span> Uscita Hotel. <b>No Bag:</b> evitare borse per saltare la fila ai controlli.</li>
-                            <li><span class="time-badge">08:30</span> Meeting point: Hotel Kapok. Tour Città Proibita.</li>
-                            <li><span class="time-badge">13:00 - 13:45</span> Jingshan Park (Vista panoramica).</li>
-                            <li><span class="time-badge">13:45</span> <b>Rientro:</b> Uscire da PORTA EST Jingshan Park. Camminare 200m a sud su Beiheyan Avenue e chiamare DiDi (evita blocco traffico).</li>
-                            <li><span class="time-badge">14:00 - 14:45</span> Riposo in Hotel.</li>
-                            <li><span class="time-badge">14:45</span> Uscita hotel, Metro Dengshikou (L5 dir. Yonghegong).</li>
-                            <li><span class="time-badge">15:10 - 16:30</span> Tempio dei Lama (Tornelli chiudono alle 16:30!). Se in ritardo: piano B Wudaoying Hutong.</li>
-                            <li><span class="time-badge">16:30 - 17:30</span> Passeggiata: Tempio ➔ Guozijian St ➔ Wudaoying Hutong.</li>
-                            <li><span class="time-badge">17:35</span> Metro Yonghegong (L5 dir. Tiantandongmen) ➔ Dengshikou (Uscita B).</li>
-                            <li><span class="time-badge">18:00 - 21:00</span> Food Tour Guidato Hutong. Meeting: Dengshikou Exit B.</li>
-                            <li><span class="time-badge">21:30</span> Dopo Cena: Qianmen Street (20 min DiDi, relax) o Sanlitun Taikoo Li.</li>
-                        </ul>
-                    </div>
 
-                    <div class="info-block food-tips">
-                        <div class="info-title">💡 FOOD TOUR & REGOLE DIETETICHE</div>
-                        <p style="font-size: 14px; margin-bottom: 5px;">Must da richiedere alla guida: Jianbing (crepe salata), Baozi (panini al vapore), Chuan'r (spiedini d'agnello), Birra Yanjing o Bingfeng (soda arancia).</p>
-                        <p style="font-size: 14px; font-weight: bold; color: var(--danger);">🚨 REGOLA PEPERONI (Per Valentina):</p>
-                        <p style="font-size: 14px; margin: 0;">Fai tradurre e mostrare questo alla guida: <b>不要青椒 (Bú yào qīngjiāo - Niente peperoni verdi)</b> o <b>我不能吃灯笼椒 (Wǒ bù néng chī dēnglóngjiāo - Non posso mangiare peperoni).</b></p>
-                    </div>
-                    
-                    <div class="alert-todo">🔴 DA VERIFICARE: Dati prenotazione Tour Città Proibita e Tempio Lama (7gg prima).</div>
+<!-- GIORNO 11 AGOSTO -->
+<div id="day-11-ago" class="day-section">
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Martedì, 11 Agosto</h2>
+            <span class="day-subtitle">Pechino (Città Proibita & Hutong)</span>
+        </div>
+        <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Storico / Moderato</span>
 
-                    <div class="day-footer">
-                        <div class="info-title">📝 Note di fine giornata</div>
-                        <textarea class="note-area save-note" id="note-day-11-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-                        <div class="day-nav-buttons">
-                            <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                            <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-                        </div>
-                    </div>
-                </div>
+        <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
+            <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                <li>Tour Città Proibita</li>
+                <li>Food Tour Hutong (Nota: Divieto assoluto peperoni già comunicato alla guida)</li>
+            </ul>
+        </div>
+
+        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+            <div class="info-title" style="color: var(--warning);">🔔 TASK: DA PRENOTARE OGGI</div>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                <input type="checkbox" id="task-lama-11ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                <span>Prenotare <b>Tempio dei Lama</b> (Apre 7gg prima esatti).</span>
+            </label>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                <input type="checkbox" id="task-anatra-11ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                <span>Prenotare cena Anatra Laccata.</span>
+            </label>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">08:00</span> 🚪 Uscita Hotel (Stey Wangfujing). <b>NO BAG:</b> non portiamo borse così evitiamo la fila ai controlli.</li>
+                <li><span class="time-badge">08:30</span> 🚩 Meeting point: Hotel Kapok. Inizio Tour Città Proibita.</li>
+                <li><span class="time-badge">13:00 - 13:45</span> ⛰️ Jingshan Park (Vista panoramica).</li>
+                <li><span class="time-badge">13:45</span> 🚕 <b>Logistica di Rientro:</b> Uscire dalla PORTA EST di Jingshan Park. Camminare 200m verso sud su Beiheyan Avenue (北河沿大街). Chiamare DiDi da qui (zona fuori dal blocco traffico della Porta Nord).</li>
+                <li><span class="time-badge">14:00 - 14:45</span> 💤 RIPOSO IN HOTEL (Essenziale per ricaricare le batterie).</li>
+                <li><span class="time-badge">14:45</span> 🚇 Uscita hotel e ingresso immediato in Metro Dengshikou (Linea 5, dir. Yonghegong).</li>
+                <li><span class="time-badge">15:10 - 16:30</span> 🙏 Ingresso Tempio dei Lama (Tornelli chiudono tassativamente alle 16:30!). <i>Piano B: Passeggiata in Wudaoying Hutong e Tempio di Confucio esterno.</i></li>
+                <li><span class="time-badge">16:30 - 17:30</span> 🚶 Passeggiata lineare: Uscita Tempio ➔ Guozijian St (Archi storici) ➔ Wudaoying Hutong (Caffè e Boutique).</li>
+                <li><span class="time-badge">17:35</span> 🚇 Metro Yonghegong (Linea 5 - Dir. Tiantandongmen) ➔ Dengshikou (Uscita B).</li>
+                <li><span class="time-badge">18:00 - 21:00</span> 🥟 <b>Food Tour Guidato negli Hutong.</b> Meeting point: Dengshikou Exit B.</li>
+                <li><span class="time-badge">21:30</span> 🌃 <b>Dopo Cena (Opzioni):</b><br>
+                    A) Qianmen Street (20 min DiDi): Architettura anni '20, tram storici e lanterne.<br>
+                    B) Sanlitun Taikoo Li (25 min DiDi): Cuore della moda, maxischermi 3D (Store chiudono alle 22:00).
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-block food-tips">
+            <div class="info-title">💡 COSA MANGIARE & TIPS (HUTONG E OLTRE)</div>
+            <p style="font-size: 14px; margin-bottom: 5px;"><b>Must del Food Tour:</b> Usate la guida per farvi tradurre i cartelli e chiedete esplicitamente:</p>
+            <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
+                <li><b>Jianbing (煎饼):</b> Crepe cinese croccante e salata, re dello street food.</li>
+                <li><b>Baozi (包子):</b> Soffici panini al vapore ripieni (senza peperoni).</li>
+                <li><b>Chuan'r (串儿):</b> Spiedini di agnello al cumino arrostiti sulla brace.</li>
+                <li><b>Da bere:</b> Birra Yanjing ghiacciata o Bingfeng (soda all'arancia vintage).</li>
+            </ul>
+            <p style="font-size: 14px; margin-bottom: 5px;"><b>Logistica Passeggiata:</b> Wudaoying è la versione pechinese di Xintiandi/Tianzifang. Si cammina tra design moderno e case storiche.</p>
+            <p style="font-size: 14px; margin: 0;"><b>Piani B Cena:</b> Se Siji Minfu ha code >90 min, Jingzun Roast Duck è a 10 min di DiDi.</p>
+        </div>
+
+        <div class="day-footer">
+            <div class="info-title">📝 Note di fine giornata</div>
+            <textarea class="note-area save-note" id="note-day-11-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
+            <div class="day-nav-buttons">
+                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
+                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
             </div>
+        </div>
+    </div>
+</div>
+<!-- FINE GIORNO 11 AGOSTO -->
 
-            <div id="day-12-ago" class="day-section">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Mercoledì, 12 Agosto</h2>
-                        <span class="day-subtitle">Tempio del Cielo & Palazzo d'Estate</span>
-                    </div>
-                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Parchi / Intenso</span>
 
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">08:30</span> Uscita Hotel. Metro L5.</li>
-                            <li><span class="time-badge">09:00 - 11:30</span> Tempio del Cielo (Porta Est). Audioguida ai chioschi (100 RMB dep). Percorso: Lungo Corridoio, Padiglione Preghiera, Ponte Danbi, Cripta Imperiale, Altare. Uscita Porta Sud.</li>
-                            <li><span class="time-badge">11:45</span> DiDi verso Hotel. Pranzo in zona: Heyan Roubing o Din Tai Fung.</li>
-                            <li><span class="time-badge">13:15 - 14:15</span> Riposo in Hotel (1 ora piena).</li>
-                            <li><span class="time-badge">14:15</span> <b>Tassativo:</b> DiDi verso Palazzo d'Estate (Porta Est - Donggongmen).</li>
-                            <li><span class="time-badge">15:00 - 15:45</span> Ingresso Porta Est. Palazzo Benevolenza, Lungo Corridoio.</li>
-                            <li><span class="time-badge">15:45 - 16:45</span> Torre Incenso Buddista (Ultimo ingresso 16:30, chiude 17:00).</li>
-                            <li><span class="time-badge">16:45 - 17:15</span> Discesa verso Nave di Marmo.</li>
-                            <li><span class="time-badge">17:15 - 17:45</span> Traghetto da Nave di Marmo a Isola Lago Sud. <i>(Da verificare orario ultima corsa sul posto)</i>. Se chiuso, costeggiare lago a piedi.</li>
-                            <li><span class="time-badge">17:45 - 19:30</span> Relax e Tramonto sul Ponte dei 17 Archi (Luce migliore 19:15).</li>
-                            <li><span class="time-badge">19:45</span> Uscita Porta Nuova (Xin Gong Men). DiDi per Houhai.</li>
-                            <li><span class="time-badge">20:30</span> Cena Hot Pot da Ya'er Liji. Passeggiata a Shichahai/Yandai Xiejie.</li>
-                        </ul>
-                    </div>
-                    <div class="alert-todo">🔴 DA ACQUISTARE: Through Ticket / Combo Ticket (联票 - Lian Piao) Tempio + Palazzo su trip.com/WeChat.</div>
 
-                    <div class="day-footer">
-                        <div class="info-title">📝 Note di fine giornata</div>
-                        <textarea class="note-area save-note" id="note-day-12-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-                        <div class="day-nav-buttons">
-                            <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                            <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-                        </div>
-                    </div>
-                </div>
+<!-- GIORNO 12 AGOSTO -->
+<div id="day-12-ago" class="day-section">
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Mercoledì, 12 Agosto</h2>
+            <span class="day-subtitle">Tempio del Cielo & Palazzo d'Estate</span>
+        </div>
+        <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Parchi / Intenso</span>
+
+        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+            <div class="info-title" style="color: var(--warning);">🔔 TASK: DA PRENOTARE OGGI</div>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                <input type="checkbox" id="task-combo-12ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                <span>Acquistare <b>Through Ticket / Combo Ticket (联票 - Lian Piao)</b> per Tempio del Cielo e Palazzo d'Estate (Trip.com o WeChat).</span>
+            </label>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">08:30</span> 🚪 Uscita Hotel. Prendere Metro L5.</li>
+                <li><span class="time-badge">09:00 - 11:30</span> 🌳 <b>Tempio del Cielo</b> (Ingresso Porta Est). Prendere audioguida ai chioschi (100 RMB deposito). Esplorazione: Lungo Corridoio, Padiglione della Preghiera, Ponte Danbi, Cripta Imperiale (Muro dell'Eco), Altare Circolare. Uscire da Porta Sud.</li>
+                <li><span class="time-badge">11:45</span> 🚕 DiDi verso la zona dell'Hotel.</li>
+                <li><span class="time-badge">12:15 - 13:15</span> 🥟 <b>Pranzo:</b> Heyan Roubing (Beef Pie), Din Tai Fung (Xiaolongbao), o Grandma’s Home (Pollo).</li>
+                <li><span class="time-badge">13:15 - 14:15</span> 💤 <b>Riposino in Hotel</b> (1 ora piena).</li>
+                <li><span class="time-badge">14:15</span> 🚕 Partenza tassativa con DiDi verso il <b>Palazzo d'Estate</b> (Porta Est - Donggongmen).</li>
+                <li><span class="time-badge">15:00 - 15:45</span> 🏯 Ingresso Porta Est. Visita del Palazzo della Benevolenza e passeggiata lungo il favoloso Lungo Corridoio.</li>
+                <li><span class="time-badge">15:45 - 16:45</span> ⛰️ Salita e visita alla <b>Torre dell'Incenso Buddista</b> (Foxiang Ge). <i>(Ultimo ingresso 16:30, chiusura 17:00).</i></li>
+                <li><span class="time-badge">16:45 - 17:15</span> 🚶 Discesa dalla collina verso la Nave di Marmo.</li>
+                <li><span class="time-badge">17:15 - 17:45</span> ⛴️ Imbarco sul traghetto dalla Nave di Marmo verso l'Isola del Lago Sud (verificare ultima corsa sul posto). Se chiuso, costeggiare il lago a piedi.</li>
+                <li><span class="time-badge">17:45 - 19:30</span> 🌅 Arrivo all'Isola del Lago Sud. Relax e Golden Hour al <b>Ponte dei 17 Archi</b> (luce top alle 19:15).</li>
+                <li><span class="time-badge">19:45</span> 🚕 Uscita dalla Porta Nuova (Xin Gong Men). Chiamare DiDi per Houhai.</li>
+                <li><span class="time-badge">20:30</span> 🍲 <b>Cena Houhai:</b> Ya'er Liji (Hot Pot tradizionale con vista laghi).</li>
+                <li><span class="time-badge">21:30</span> 🌃 Passeggiata digestiva lungo Shichahai o Yandai Xiejie.</li>
+            </ul>
+        </div>
+
+        <div class="day-footer">
+            <div class="info-title">📝 Note di fine giornata</div>
+            <textarea class="note-area save-note" id="note-day-12-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
+            <div class="day-nav-buttons">
+                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
+                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
             </div>
+        </div>
+    </div>
+</div>
+<!-- FINE GIORNO 12 AGOSTO -->
+
+          
+
+            
+
+          
 
         </div> </div>
 
@@ -670,66 +753,78 @@
                 <button class="nav-btn-context active" data-date="2026-08-13" onclick="showDay('xian-programma', 'day-13-ago', this)">13 Ago</button>
             </div>
 
-            <div id="day-13-ago" class="day-section active">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Giovedì, 13 Agosto</h2>
-                        <span class="day-subtitle">Trasferimento Xi'an & Mura al Tramonto</span>
-                    </div>
-                    <span class="weight-badge">🟢 Viaggio & Bici / Moderato</span>
 
-                    <div class="info-block">
-                        <div class="info-title">🚆 TRENO ALTA VELOCITÀ PECHINO ➔ XI'AN</div>
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Da - A</span><span class="data-value">Beijing West ➔ Xi'an North</span></div>
-                            <div class="data-item"><span class="data-label">Orario</span><span class="data-value">09:55 - 14:23</span></div>
-                        </div>
-                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 10px 0;">
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Valentina</span><span class="data-value">Da Verificare</span></div>
-                            <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Da Verificare</span></div>
-                        </div>
-                    </div>
+<!-- GIORNO 13 AGOSTO -->
+<div id="day-13-ago" class="day-section">
+    <div class="day-card">
+        <div class="day-header">
+            <h2 class="day-title">Giovedì, 13 Agosto</h2>
+            <span class="day-subtitle">Trasferimento Xi'an & Mura al Tramonto</span>
+        </div>
+        <span class="weight-badge" style="background: #e8f5e9; color: #2ecc71;">🟢 Viaggio & Bici / Moderato</span>
 
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">08:15</span> DiDi per Beijing West Station.</li>
-                            <li><span class="time-badge">09:55 - 14:23</span> Treno Alta Velocità.</li>
-                            <li><span class="time-badge">14:45</span> Xi'an: Seguire METRO (地铁). Linea 2 (Rossa) dir. SUD. Scendere Yongningmen (Uscita A o D).</li>
-                            <li><span class="time-badge">15:45</span> Check-in Hotel Mehood Lestie. <b>Task: Consegnare vestiti in lavanderia.</b></li>
-                            <li><span class="time-badge">17:45</span> DiDi verso Porta Ovest (Andingmen).</li>
-                            <li><span class="time-badge">18:15 - 19:30</span> <b>Mura al Tramonto:</b> Noleggio Bici (Ingresso tassativo entro 18:30!). Da Ovest a Sud (3,5 km).</li>
-                            <li><span class="time-badge">19:45</span> DiDi da Porta Sud a Stazione Metro Sajinqiao (Nord del Quartiere Musulmano).</li>
-                            <li><span class="time-badge">20:00 - 21:30</span> Self-Guided Food Tour (Sajinqiao ➔ Dapiyuan ➔ Xiyangshi ➔ Drum Tower).</li>
-                            <li><span class="time-badge">21:45</span> Passeggiata Torre della Campana/Tamburo illuminate.</li>
-                        </ul>
-                    </div>
+        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+            <div class="info-title" style="color: var(--warning);">🔔 TASK: DA PRENOTARE OGGI</div>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                <input type="checkbox" id="task-laundry-13ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                <span><b>Lavanderia Hotel:</b> Consegnare i vestiti per fare il bucato di metà viaggio.</span>
+            </label>
+        </div>
 
-                    <div class="info-block food-tips">
-                        <div class="info-title">💡 QUARTIERE MUSULMANO (Cosa mangiare)</div>
-                        <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
-                            <li><b>Spiedini di Salice (Hongliu Kao Rou):</b> Cerca il ramo di legno vero con grossi pezzi di carne al cumino (ottime proteine magre).</li>
-                            <li><b>Hamburger (Roujiamo):</b> Carne tritata al momento e panino sfornato.</li>
-                            <li><b>Riso ai Datteri (Zenggao):</b> Pentoloni enormi con poltiglia marrone scura e riso appiccicoso.</li>
-                            <li><b>Succo di Melograno:</b> Spremuti al momento con presse a leva.</li>
-                        </ul>
-                        <p style="font-size: 14px; font-weight: bold; color: var(--danger);">🚨 REGOLA PEPERONI (Per Valentina):</p>
-                        <p style="font-size: 14px; margin: 0;">Attenzione ai piatti saltati nel wok in questo quartiere. Per sicurezza sui piatti misti mostra: <b>不要青椒 (Bú yào qīngjiāo)</b>. Sugli spiedini e sul Roujiamo classico non ci sono peperoni.</p>
-                    </div>
-
-                    <div class="alert-todo">🔴 DA INTEGRARE: Dati treno, PNR e posti a sedere.</div>
-                    
-                    <div class="day-footer">
-                        <div class="info-title">📝 Note di fine giornata</div>
-                        <textarea class="note-area save-note" id="note-day-13-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-                        <div class="day-nav-buttons">
-                            <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                            <button class="day-nav-btn" onclick="navigateDay('next')" style="visibility: hidden;">Successivo →</button>
-                        </div>
-                    </div>
-                </div>
+        <!-- HOTEL HUB XI'AN STILE PECHINO -->
+        <div class="info-block">
+            <div class="info-title">🏨 HOTEL XI'AN</div>
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/337190013.jpg?k=f64c1ec663c0cd72b9a1ec4b126588267253fa4a34bba46c592ed68231e3b610&o=" alt="Mehood Lestie Hotel" class="feature-img" style="max-height: 150px; width: 100%; object-fit: cover;">
+            <div class="data-grid" style="margin-bottom: 10px;">
+                <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Mehood Lestie (Bell & Drum Tower South Gate)</span></div>
+                <div class="data-item"><span class="data-label">Indirizzo Cinese</span><span class="data-value">美豪丽致酒店(西安钟鼓楼南门苑店)</span></div>
             </div>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/8QpZbqC2eX');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Apri su Amap</a>
+        </div>
+
+        <div class="info-block">
+            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+            <ul class="timeline">
+                <li><span class="time-badge">08:15</span> 🚗 DiDi per Beijing West Station.</li>
+                <li><span class="time-badge">09:55 - 14:23</span> 🚄 <b>Treno Alta Velocità</b> per Xi'an North (西安北站).</li>
+                <li><span class="time-badge">14:45</span> 🚇 <b>Arrivo a Xi'an:</b> Seguire frecce METRO (地铁). Prendere LINEA 2 (Rossa) direzione SUD.</li>
+                <li><span class="time-badge">15:20</span> 🚏 Scendere a <b>Yongningmen (永宁门)</b> - Uscita A o D. L'hotel è a 5 minuti a piedi.</li>
+                <li><span class="time-badge">15:45</span> 🏨 Check-in e Relax. <i>(Consegnare vestiti in lavanderia)</i>.</li>
+                <li><span class="time-badge">17:45</span> 🚕 Chiamata DiDi dall'hotel con destinazione <b>Porta Ovest (Andingmen)</b>. Tragitto di ~15 minuti.</li>
+                <li><span class="time-badge">18:15 - 19:30</span> 🌅 <b>Mura al Tramonto:</b> Noleggio bici. Partenza dalla porta Ovest e arrivo alla Sud (3,5 km). <i>Ingresso tassativo entro le 18:30 (orario limite noleggio bici). Non fate tutti i 14km!</i></li>
+                <li><span class="time-badge">19:45</span> 🚕 Dalla Porta Sud prendere un DiDi (~15 minuti) verso la stazione Metro <b>Sajinqiao</b> (ingresso Nord del quartiere, meno turistico).</li>
+                <li><span class="time-badge">20:00 - 21:30</span> 🏮 <b>Cena Quartiere Musulmano (Huimin Jie):</b> Seguire il percorso a piedi: Sajinqiao ➔ Dapiyuan ➔ Xiyangshi ➔ Drum Tower.</li>
+                <li><span class="time-badge">21:45</span> 🌃 Passeggiata digestiva attorno a Torre della Campana e del Tamburo illuminate.</li>
+            </ul>
+        </div>
+
+        <div class="info-block food-tips">
+            <div class="info-title">💡 SELF-GUIDED FOOD TOUR (QUARTIERE MUSULMANO)</div>
+            <p style="font-size: 14px; margin-bottom: 5px;">Un mix culturale pazzesco. Il segreto è non fermarsi sulla via principale, ma infilarsi nei vicoli laterali (Sajinqiao o Dapiyuan). Cosa cercare visivamente:</p>
+            <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
+                <li><b>Spiedini di Salice Rosso (Hongliu Kao Rou):</b> Cerca il vero ramo di legno spesso e rossastro con grossi pezzi di carne al cumino.</li>
+                <li><b>Hamburger di Xi'an (Roujiamo):</b> Carne tritata sul momento su un ceppo di legno con la mannaia, infilata in un pane piatto appena sfornato.</li>
+                <li><b>Riso ai Datteri (Zenggao):</b> Enormi pentoloni fumanti. Sotto riso appiccicoso, sopra poltiglia marrone scuro (datteri).</li>
+                <li><b>Succo di Melograno:</b> Spremuti davanti a te con presse manuali in metallo a leva.</li>
+                <li><b>Frittelle di Cachi (Shizi Bing):</b> Dischi arancioni fritti in padelle basse. Dolci, caldi e morbidi.</li>
+            </ul>
+        </div>
+
+        <div class="day-footer">
+            <div class="info-title">📝 Note di fine giornata</div>
+            <textarea class="note-area save-note" id="note-day-13-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
+            <div class="day-nav-buttons">
+                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
+                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FINE GIORNO 13 AGOSTO -->
+
+
+
+         
 
         </div> </div>
     
