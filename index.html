@@ -172,20 +172,23 @@
     <!-- ========================================================= -->
     <div id="pechino-container" class="city-container active">
         
-        <div class="nav-level-2">
-            <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Programma</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-ristoranti', this)">🍽️ Database Luoghi</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🚨 Utility</button>
-        </div>
+        <!-- INIZIO MENU CONTESTO PECHINO -->
+<div class="nav-level-2" style="margin-top: 15px;">
+    <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Programma</button>
+    <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-luoghi', this)">📍 Luoghi & Food</button>
+    <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🛠️ Utility</button>
+</div>
+<!-- FINE MENU CONTESTO PECHINO -->
 
-        <!-- TAB: DATABASE LUOGHI PECHINO -->
+
+        <!-- INIZIO COPIA: DATABASE LUOGHI PECHINO -->
 <div id="pechino-luoghi" class="tab-content">
     
     <!-- CATEGORIA 1: HOTEL -->
     <div class="day-card" style="border-left-color: var(--accent-blue);">
         <h2>🏨 Database Hotel</h2>
         <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" target="_blank" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Stey Wangfujing (Hotel Principale)</a>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Hotel Kapok (Fascia Alta / Punto di Ritrovo)</a>
+        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Hotel Kapok (Punto di Ritrovo Tour)</a>
     </div>
 
     <!-- CATEGORIA 2: LUOGHI -->
@@ -200,7 +203,7 @@
         </div>
 
         <div class="info-block">
-            <div class="info-title">📌 IN PIANO (DA VERIFICARE E INSERIRE LINK AMAP)</div>
+            <div class="info-title">📌 IN PIANO (DA VERIFICARE LINK AMAP)</div>
             <ul class="timeline">
                 <li><b>Muraglia (Mutianyu):</b> Epico. Salita funivia / Discesa slittino.</li>
                 <li><b>Tempio del Cielo:</b> Architettura circolare e Tai Chi (Porta Est).</li>
@@ -216,13 +219,13 @@
         </div>
 
         <div class="info-block">
-            <div class="info-title">💡 JOLLY E PIANI B (DA VERIFICARE E INSERIRE LINK AMAP)</div>
+            <div class="info-title">💡 JOLLY E PIANI B</div>
             <ul class="timeline">
                 <li><b>Qianmen & Dashilan:</b> Lanterne e negozi storici.</li>
                 <li><b>Olympic Park:</b> Nido d'Uccello illuminato.</li>
                 <li><b>Qiwei Guofeng Fushi:</b> Boutique abiti tradizionali.</li>
                 <li><b>NAMOC (Arte):</b> Arte moderna, relax (10 min a piedi).</li>
-                <li><b>National Museum / Capital Museum:</b> Storia (Al coperto).</li>
+                <li><b>National/Capital Museum:</b> Storia (Al coperto).</li>
                 <li><b>798 Art District:</b> Arte industriale e cyberpunk.</li>
             </ul>
         </div>
@@ -236,39 +239,39 @@
             <div class="info-title">🗺️ RISTORANTI CON LINK AMAP ATTIVI</div>
             <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ Siji Minfu (Dengshikou) - <i>Anatra Laccata</i></a>
             <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ Beijing Roast Duck (Nanchizi) - <i>Backup Anatra</i></a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/18GzUrU1geMw');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ No.69 Fang Zhuan Chang (Wangfu Century) - <i>Zhajiangmian</i></a>
+            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/18GzUrU1geMw');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍽️ No.69 Fang Zhuan Chang - <i>Zhajiangmian</i></a>
         </div>
 
         <div class="info-block">
-            <div class="info-title">📝 DA COMPLETARE CON LINK AMAP (NOME IN CINESE DISPONIBILE)</div>
+            <div class="info-title">📝 DA COMPLETARE CON LINK AMAP</div>
             <div class="data-grid">
-                <div class="data-item"><span class="data-label">Lei Garden (Jinbao) | 利苑酒家</span><span class="data-value">Cantonese 1* Michelin</span></div>
-                <div class="data-item"><span class="data-label">Ya'er Liji (Houhai) | 鸦儿李记</span><span class="data-value">Hot pot tradizionale</span></div>
+                <div class="data-item"><span class="data-label">Lei Garden | 利苑酒家</span><span class="data-value">Cantonese 1* Michelin</span></div>
+                <div class="data-item"><span class="data-label">Ya'er Liji | 鸦儿李记</span><span class="data-value">Hot pot tradizionale</span></div>
                 <div class="data-item"><span class="data-label">Hua Sheng Feng | 花生丰</span><span class="data-value">Sapori del sud (Dongpo Rou)</span></div>
                 <div class="data-item"><span class="data-label">Dong Lai Shun | 东来顺</span><span class="data-value">Hot Pot Imperiale 1903</span></div>
                 <div class="data-item"><span class="data-label">Liu Ma Ma Dumplings | 柳妈妈水饺</span><span class="data-value">Ravioli fatti a mano</span></div>
                 <div class="data-item"><span class="data-label">Bao Bao Hao | 煲煲好</span><span class="data-value">Oasi Cantonese</span></div>
                 <div class="data-item"><span class="data-label">Heyan Roubing | 河沿肉饼</span><span class="data-value">Beef Pie (Salva-vita)</span></div>
                 <div class="data-item"><span class="data-label">23 Seats | 23坐</span><span class="data-value">Noodle bar futuristico</span></div>
-                <div class="data-item"><span class="data-label">Fei Da Chu | 费大厨</span><span class="data-value">Amato dai giovani (Cavolo/Tofu)</span></div>
+                <div class="data-item"><span class="data-label">Fei Da Chu | 费大厨</span><span class="data-value">Amato dai giovani</span></div>
                 <div class="data-item"><span class="data-label">Mr. Wildman | 野人先生</span><span class="data-value">Gelato artigianale (Riso)</span></div>
                 <div class="data-item"><span class="data-label">Nanmen Shuanrou | 宏源南门涮肉</span><span class="data-value">Post-Tempio Cielo (Agnello)</span></div>
                 <div class="data-item"><span class="data-label">Baikui Laohao | 白魁老号饭庄</span><span class="data-value">Spartano (Zona Nord)</span></div>
-                <div class="data-item"><span class="data-label">Jubaoyuan | 聚宝源</span><span class="data-value">Storico Musulmano (Code lunghe)</span></div>
+                <div class="data-item"><span class="data-label">Jubaoyuan | 聚宝源</span><span class="data-value">Storico Musulmano</span></div>
                 <div class="data-item"><span class="data-label">Quan Ju De | 全聚德</span><span class="data-value">Turistico (Backup Anatra)</span></div>
                 <div class="data-item"><span class="data-label">Hu Guo Si Xiaochi | 护国寺小吃</span><span class="data-value">Street food dolce</span></div>
             </div>
         </div>
 
         <div class="info-block food-tips">
-            <div class="info-title">🥢 GUIDA AI PIATTI TIPICI E DOVE MANGIARLI</div>
+            <div class="info-title">🥢 GUIDA AI PIATTI TIPICI</div>
             <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
                 <li><b>Beijing Kaoya (Anatra):</b> Siji Minfu. Intingi la pelle nello zucchero!</li>
                 <li><b>Zhajiangmian (Noodles):</b> No.69 Fang Zhuan Chang. Soia fermentata e maiale.</li>
-                <li><b>Mending Roubing:</b> Baikui Laohao. Focaccia ripiena, attenzione al brodo interno.</li>
-                <li><b>Chuan'r (Spiedini):</b> Hutong/Houhai. Agnello speziato (cumino/pepe).</li>
+                <li><b>Mending Roubing:</b> Baikui Laohao. Focaccia ripiena, occhio al brodo.</li>
+                <li><b>Chuan'r (Spiedini):</b> Hutong/Houhai. Agnello speziato.</li>
                 <li><b>Baodu (Trippa):</b> Street food. Scottata con salsa di sesamo.</li>
-                <li><b>Lü Da Gun / Zha Gao / Jiang Mi Niangao:</b> Hu Guo Si Xiaochi. Dolci tipici a base di riso glutinoso e pasta di fagioli.</li>
+                <li><b>Lü Da Gun / Zha Gao:</b> Hu Guo Si Xiaochi. Dolci al riso glutinoso.</li>
                 <li><b>Miancha:</b> Porridge di miglio, si beve ruotando la ciotola.</li>
                 <li><b>Shao Mai:</b> Liu Ma Ma. Ravioli aperti in cima.</li>
                 <li><b>Dou Zhi & Jiao Quan:</b> Sconsigliato per Carlo. Latte di fagioli estremamente acido.</li>
@@ -276,6 +279,7 @@
         </div>
     </div>
 </div>
+<!-- FINE COPIA: DATABASE LUOGHI PECHINO -->
 
 
         <!-- TAB: UTILITY PECHINO -->
@@ -360,6 +364,24 @@
         </div>
         <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Jet-Lag / Moderato</span>
 
+        <!-- CHECKLIST 1: COSA DEVE ESSERE GIA' PRONTO -->
+        <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
+            <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
+            <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                <li>Volo Air China CA940 (Biglietti emessi)</li>
+                <li>Stey Wangfujing Hotel (Confermato)</li>
+            </ul>
+        </div>
+
+        <!-- CHECKLIST 2: COSA FARE OGGI PER IL FUTURO -->
+        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+            <div class="info-title" style="color: var(--warning);">🔔 TASK: DA PRENOTARE OGGI</div>
+            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                <input type="checkbox" id="task-shaanxi-9ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                <span><b>h 17:00:</b> Prenotare <b>Shaanxi History Museum</b> (per il 15 ago) su WeChat. <br><i style="font-size: 12px; color: var(--text-muted);">Piano B in caso di fallimento: Archaeology Museum (da prenotare domani).</i></span>
+            </label>
+        </div>
+
         <div class="info-block">
             <div class="info-title">🏨 HOTEL E LOGISTICA</div>
             <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/506196385.jpg?k=4d82bc61d800bf68284474153ca0801133b7611478f4042a75d6b2ba0ea9c465&o=" alt="Stey Hotel Facade" class="feature-img" style="max-height: 150px; width: 100%; object-fit: cover;">
@@ -375,23 +397,23 @@
             <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
             <ul class="timeline">
                 <li><span class="time-badge">12:40</span> Atterraggio a Pechino (PEK) Terminal 3.</li>
-                <li><span class="time-badge">Kiosk</span> Fermarsi ai kiosk automatici (blu/gialli) prima dell'immigrazione. Scansionare passaporto e impronte. Ritirare scontrino.</li>
-                <li><span class="time-badge">14:00</span> Dogana: Corsia "Foreigners". Preparare info su hotel e volo di ritorno.</li>
-                <li><span class="time-badge">DiDi</span> Andare al Parcheggio P2, Livello B2. Cercare "Pillar Number" sull'app DiDi. Inviare messaggio al driver: "I am at Pillar [Numero]".</li>
+                <li><span class="time-badge">Kiosk</span> Fermarsi ai kiosk automatici (blu/gialli) prima dell'immigrazione per impronte e scontrino.</li>
+                <li><span class="time-badge">14:00</span> Dogana: Corsia "Foreigners".</li>
+                <li><span class="time-badge">DiDi</span> Parcheggio P2, Livello B2. Cercare "Pillar Number" sull'app e avvisare il driver: "I am at Pillar [Numero]".</li>
                 <li><span class="time-badge">15:00</span> Check-in Stey Wangfujing.</li>
-                <li><span class="time-badge">15:15 - 18:45</span> Riposo obbligatorio in Hotel (Oscurare tutto, ricaricare le batterie).</li>
-                <li><span class="time-badge">17:15</span> TATTICA CODA: Aprire mini-programma WeChat e cercare: <span class="copy-badge">四季民福</span> (copia testo). Cliccare "取号" (Prendi numero).</li>
-                <li><span class="time-badge">19:15</span> Monitorare lo scorrimento. Quando mancano 15-20 tavoli, uscire in direzione ristorante.</li>
+                <li><span class="time-badge">15:15 - 18:45</span> Riposo obbligatorio in Hotel.</li>
+                <li><span class="time-badge">17:15</span> TATTICA CODA: Aprire mini-programma WeChat e cercare: <span class="copy-badge">四季民福</span>. Cliccare "取号" (Prendi numero).</li>
+                <li><span class="time-badge">19:15</span> Monitorare lo scorrimento e uscire quando mancano 15-20 tavoli.</li>
                 <li><span class="time-badge">19:45 - 21:00</span> Cena: Anatra Laccata. <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin-left: 5px;">📍 Apri Navigatore</a></li>
-                <li><span class="time-badge">21:15</span> Dopo Cena: Passeggiata sulla Wangfujing Pedestrian Street o rientro in hotel. <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin-left: 5px;">📍 Apri Mappa</a>
-                    <br><i style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 4px;">👀 <b>Cosa vedere:</b> Le spettacolari insegne al neon, i mega schermi 3D (come quello del mall APM), i colossali flagship store (Lego, Huawei) e, risalendo verso nord, la storica Chiesa Cattolica di San Giuseppe illuminata.</i>
+                <li><span class="time-badge">21:15</span> Dopo Cena: Passeggiata Wangfujing o rientro in hotel. <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin-left: 5px;">📍 Apri Mappa</a>
+                    <br><i style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 4px;">👀 <b>Cosa vedere:</b> Insegne al neon, mega schermi 3D (mall APM), flagship store e Chiesa di San Giuseppe.</i>
                 </li>
-                <li><span class="time-badge">22:30</span> Spesa al 7-Eleven aperto 24h per la colazione di domani.</li>
+                <li><span class="time-badge">22:30</span> Spesa tattica al 7-Eleven (aperto 24h) per la colazione.</li>
             </ul>
         </div>
 
         <div class="info-block food-tips">
-            <div class="info-title">💡 SUGGERIMENTI E OPZIONI</div>
+            <div class="info-title">💡 SUGGERIMENTI CENA (TARGET: SIJI MINFU)</div>
             <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🦆 Ordine Anatra Laccata</p>
             <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
                 <li><b>L'Anatra:</b> <i>Bàn zhī</i> 半只 (Mezza) oppure <i>Yī zhī</i> 一只 (Intera).</li>
@@ -401,24 +423,15 @@
             </ul>
             <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🚨 Piani Alternativi (Cena & Dopo Cena)</p>
             <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                <li><b>Piano B Cena:</b> Se la coda virtuale su WeChat per Siji Minfu supera i 50 numeri, abbandonare l'idea e puntare al Beijing Roast Duck (Nanchizi).</li>
-                <li><b>Piano A Serale (Energia Residua):</b> Passeggiata sulla Wangfujing Pedestrian Street.</li>
-                <li><b>Piano B Serale (Sconfitti dal fuso):</b> Rientro immediato in Hotel a dormire (Fatica 0).</li>
-                <li><b>Tip Logistico:</b> Spesa per la colazione di domani e trekking alla Muraglia presso il 7-Eleven sotto l'hotel.</li>
+                <li><b>Piano B Cena:</b> Se la coda per Siji Minfu supera i 50 numeri, abbandonare e puntare al Beijing Roast Duck (Nanchizi).</li>
+                <li><b>Piano A Serale (Energia Residua):</b> Passeggiata sulla Wangfujing.</li>
+                <li><b>Piano B Serale (Sconfitti dal fuso):</b> Rientro immediato in Hotel a dormire.</li>
             </ul>
-        </div>
-
-        <!-- CHECKLIST PRENOTAZIONI DEL GIORNO -->
-        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-            <div class="info-title" style="color: var(--warning);">✅ TASK: DA PRENOTARE OGGI</div>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                <input type="checkbox" style="margin-top: 3px; transform: scale(1.2);">
-                <span><b>h 17:00 locali:</b> Prenotare <b>Shaanxi History Museum</b> (per il 15 ago) su WeChat. <br><i style="font-size: 12px; color: var(--text-muted);">Piano B in caso di fallimento: Archaeology Museum (da prenotare domani).</i></span>
-            </label>
         </div>
     </div>
 </div>
 <!-- FINE COPIA: GIORNO 9 AGOSTO -->
+
 
 
             <!-- INIZIO COPIA: GIORNO 10 AGOSTO -->
