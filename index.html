@@ -184,14 +184,14 @@
     
     <!-- CATEGORIA 1: HOTEL -->
     <div class="day-card" style="border-left-color: var(--accent-blue);">
-        <h2>🏨 Database Hotel</h2>
+        <h2>🏨 Hotel</h2>
         <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" target="_blank" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Stey Wangfujing (Hotel Principale)</a>
         <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Hotel Kapok (Punto di Ritrovo Tour)</a>
     </div>
 
     <!-- CATEGORIA 2: LUOGHI -->
     <div class="day-card" style="border-left-color: var(--primary);">
-        <h2>📍 Database Luoghi di Interesse</h2>
+        <h2>📍 Luoghi di Interesse</h2>
         
         <div class="info-block">
             <div class="info-title">🗺️ CON LINK AMAP ATTIVI</div>
@@ -231,7 +231,7 @@
 
     <!-- CATEGORIA 3: RISTORANTI E CIBO -->
     <div class="day-card" style="border-left-color: var(--food);">
-        <h2>🍽️ Database Ristoranti e Cibo</h2>
+        <h2>🍽️ Ristoranti e Cibo</h2>
         
         <div class="info-block">
             <div class="info-title">🗺️ RISTORANTI CON LINK AMAP ATTIVI</div>
@@ -260,22 +260,6 @@
                 <div class="data-item"><span class="data-label">Hu Guo Si Xiaochi | 护国寺小吃</span><span class="data-value">Street food dolce</span></div>
             </div>
         </div>
-
-        <div class="info-block food-tips">
-            <div class="info-title">🥢 GUIDA AI PIATTI TIPICI</div>
-            <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                <li><b>Beijing Kaoya (Anatra):</b> Siji Minfu. Intingi la pelle nello zucchero!</li>
-                <li><b>Zhajiangmian (Noodles):</b> No.69 Fang Zhuan Chang. Soia fermentata e maiale.</li>
-                <li><b>Mending Roubing:</b> Baikui Laohao. Focaccia ripiena, occhio al brodo.</li>
-                <li><b>Chuan'r (Spiedini):</b> Hutong/Houhai. Agnello speziato.</li>
-                <li><b>Baodu (Trippa):</b> Street food. Scottata con salsa di sesamo.</li>
-                <li><b>Lü Da Gun / Zha Gao:</b> Hu Guo Si Xiaochi. Dolci al riso glutinoso.</li>
-                <li><b>Miancha:</b> Porridge di miglio, si beve ruotando la ciotola.</li>
-                <li><b>Shao Mai:</b> Liu Ma Ma. Ravioli aperti in cima.</li>
-                <li><b>Dou Zhi & Jiao Quan:</b> Sconsigliato per Carlo. Latte di fagioli estremamente acido.</li>
-            </ul>
-        </div>
-    </div>
 </div>
 <!-- FINE COPIA: DATABASE LUOGHI PECHINO -->
 
@@ -286,28 +270,79 @@
     <div class="day-card" style="border-left-color: var(--food);">
         <h2>🍽️ Cibo & Esperienze</h2>
 
-        <!-- Esempio Piatto -->
-        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start;">
-            <img src="URL_IMMAGINE_ANATRA" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <!-- 1. Anatra Laccata -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+            <img src="https://images.unsplash.com/photo-1562565632-2d0617596950?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
             <div>
                 <div style="font-weight: bold; color: var(--food);">Anatra Laccata (北京烤鸭)</div>
-                <div style="font-size: 13px;">Rituale: Intingi la pelle nello zucchero, poi avvolgi la carne nella crêpe con cetriolo/cipollotto.</div>
+                <div style="font-size: 13px;">Rituale: intingi la pelle nello zucchero. Avvolgi la carne nella crêpe con cetriolo e porro.</div>
                 <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Siji Minfu</div>
             </div>
         </div>
-        
-        <!-- Esempio Ravioli -->
-        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start;">
-            <img src="URL_IMMAGINE_RAVIOLI" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+
+        <!-- 2. Zhajiangmian -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+            <img src="https://images.unsplash.com/photo-1612203852022-054452140131?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
             <div>
-                <div style="font-weight: bold; color: var(--food);">Ravioli (水饺)</div>
-                <div style="font-size: 13px;">Fatti a mano, ripieni di maiale e verdure. Perfetti come pranzo rapido.</div>
+                <div style="font-weight: bold; color: var(--food);">Zhajiangmian (炸酱面)</div>
+                <div style="font-size: 13px;">Noodles con salsa di soia fermentata e carne macinata. Mescolare energicamente!</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: No.69 Fang Zhuan Chang</div>
+            </div>
+        </div>
+
+        <!-- 3. Mending Roubing -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+            <img src="https://images.unsplash.com/photo-1563245372-f213b8e1259e?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div>
+                <div style="font-weight: bold; color: var(--food);">Mending Roubing (肉饼)</div>
+                <div style="font-size: 13px;">Focaccia ripiena di manzo succoso. Attenzione al succo bollente all'interno!</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Baikui Laohao</div>
+            </div>
+        </div>
+
+        <!-- 4. Chuan'r -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+            <img src="https://images.unsplash.com/photo-1599487488170-d11e9c20403d?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div>
+                <div style="font-weight: bold; color: var(--food);">Chuan'r (串儿)</div>
+                <div style="font-size: 13px;">Spiedini di agnello tenerissimi, speziati con cumino e peperoncino.</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Street Food / Hutong</div>
+            </div>
+        </div>
+
+        <!-- 5. Baodu -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+            <img src="https://images.unsplash.com/photo-1555126384-3432729a633a?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div>
+                <div style="font-weight: bold; color: var(--food);">Baodu (爆肚)</div>
+                <div style="font-size: 13px;">Trippa scottata, servita con salsa di sesamo ricca e olio piccante.</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Locali Tipici Hutong</div>
+            </div>
+        </div>
+
+        <!-- 6. Dolci (Lü Da Gun / Zha Gao) -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+            <img src="https://images.unsplash.com/photo-1590080875421-f0e20603a270?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div>
+                <div style="font-weight: bold; color: var(--food);">Dolci (Lü Da Gun / Zha Gao)</div>
+                <div style="font-size: 13px;">Riso glutinoso, fagioli azuki. Zha Gao è lo gnocco fritto dolce (bomba calorica).</div>
+                <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Hu Guo Si Xiaochi</div>
+            </div>
+        </div>
+        
+        <!-- 7. Shao Mai -->
+        <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start;">
+            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172d756?w=200" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+            <div>
+                <div style="font-weight: bold; color: var(--food);">Shao Mai (烧麦)</div>
+                <div style="font-size: 13px;">Ravioli aperti in cima a forma di melograno. Intingi nell'aceto scuro.</div>
                 <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Liu Ma Ma Dumplings</div>
             </div>
         </div>
     </div>
 </div>
 <!-- FINE COPIA: TAB CIBO -->
+
 
 
         <!-- TAB: UTILITY PECHINO -->
