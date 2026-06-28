@@ -366,14 +366,37 @@
 
         <!-- TAB: UTILITY PECHINO -->
         <div id="pechino-utility" class="tab-content">
+    
             <div class="driver-card">
                 <div class="info-title" style="justify-content: center; color: var(--primary);">🚕 HOTEL STEY WANGFUJING</div>
                 <div class="driver-chinese">Stey王府井酒店</div>
-                <p>Dongcheng District, Baishu Hutong</p>
-                <!-- FUNZIONE RADAR DEMO -->
-                <a href="javascript:void(0)" onclick="openRadar(39.9171, 116.4116, '餐饮')" class="radar-btn">📡 Cerca Cibo a 1km dall'Hotel</a>
+                <p style="font-size: 14px;">Dongcheng District, Baishu Hutong</p>
+                
+                <a href="javascript:void(0)" onclick="alert('Indirizzo per il Taxista: \n\nStey王府井酒店 \n东城区白术胡同 \n\n(Mostrare questo testo al guidatore)')" class="file-btn" style="background: var(--primary); color: white;">🚖 MOSTRA AL TASSISTA</a>
+                
+                <a href="javascript:void(0)" onclick="openRadar(39.9171, 116.4116, '餐饮')" class="radar-btn">📡 Cerca Cibo a 1km</a>
             </div>
+        
+            <div class="day-card" style="border-left-color: #2ecc71;">
+                <div class="info-title" style="color: #27ae60;">📂 ARCHIVIO DOCUMENTI (DRIVE)</div>
+                <div class="data-grid">
+                    <a href="URL_DEL_TUO_DRIVE_PASSAPORTI" target="_blank" class="amap-btn">🛂 Passaporti</a>
+                    <a href="URL_DEL_TUO_DRIVE_VISTO" target="_blank" class="amap-btn">📄 Visto / Assicurazione</a>
+                    <a href="URL_DEL_TUO_DRIVE_QR_CODE" target="_blank" class="amap-btn">🎟️ QR Code Immigrazione</a>
+                </div>
+            </div>
+        
+            <div class="day-card" style="border-left-color: var(--danger);">
+                <div class="info-title" style="color: var(--danger);">🚨 EMERGENZE (CLICCA PER CHIAMARE)</div>
+                <div class="data-grid">
+                    <a href="tel:110" class="track-btn">🚔 Polizia (110)</a>
+                    <a href="tel:120" class="track-btn">🚑 Ambulanza (120)</a>
+                    <a href="tel:+861085327600" class="track-btn">🇮🇹 Ambasciata</a>
+                </div>
+            </div>
+        
         </div>
+
 
         <!-- TAB: PROGRAMMA PECHINO -->
         <div id="pechino-programma" class="tab-content active">
