@@ -118,22 +118,34 @@
     }
 
     function initApp() {
-        initTheme(); 
-        const today = new Date();
-        const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-        let targetBtn = document.querySelector(`button[data-date="${dateStr}"]`);
-        
-        if (!targetBtn) {
-            targetBtn = document.querySelector('button[data-date="2026-08-08"]');
-        }
-        
-        if (targetBtn) {
-            const cityContainerId = targetBtn.closest('.city-container').id;
-            const cityBtn = document.querySelector(`button[onclick*="${cityContainerId}"]`);
-            if(cityBtn) cityBtn.click();
-            targetBtn.click();
-        }
+    initTheme(); 
+    
+    // 1. Definiamo la data di oggi
+    const today = new Date();
+    const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+    
+    // 2. Cerchiamo il bottone di oggi
+    let targetBtn = document.querySelector(`button[data-date="${dateStr}"]`);
+    
+    // 3. Se non esiste (siamo fuori date), prendiamo il primo bottone della lista in assoluto
+    if (!targetBtn) {
+        targetBtn = document.querySelector('.nav-giorni .nav-btn-context');
     }
+    
+    // 4. Se abbiamo trovato un bottone, lo attiviamo
+    if (targetBtn) {
+        // Forza l'attivazione della città corretta
+        const cityContainer = targetBtn.closest('.city-container');
+        if (cityContainer) {
+            const cityBtn = document.querySelector(`button[onclick*="${cityContainer.id}"]`);
+            if(cityBtn) cityBtn.click();
+        }
+        
+        // Forza l'attivazione del giorno
+        targetBtn.click();
+    }
+}
+
 
     window.addEventListener('DOMContentLoaded', () => { initApp(); });
 
