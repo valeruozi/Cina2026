@@ -989,5 +989,35 @@ function handleSwipe() {
 }
 </script>
 
+<script>
+// Funzione per ordinare le guide in ordine alfabetico
+function ordinaGuideAlfabetico(idContenitore) {
+    const contenitore = document.getElementById(idContenitore);
+    if (!contenitore) return;
+
+    // Prendi tutte le schede dentro questo contenitore
+    const schede = Array.from(contenitore.querySelectorAll('details.guide-card'));
+
+    // Riordinale in base al testo del titolo
+    schede.sort((a, b) => {
+        // Prende il titolo, toglie le emoji e gli spazi extra per non sballare l'ordine
+        const titoloA = a.querySelector('summary').textContent.replace(/[^a-zA-ZÀ-ÿ0-9\s]/g, '').trim().toLowerCase();
+        const titoloB = b.querySelector('summary').textContent.replace(/[^a-zA-ZÀ-ÿ0-9\s]/g, '').trim().toLowerCase();
+        
+        return titoloA.localeCompare(titoloB);
+    });
+
+    // Reinserisce le schede nel contenitore nell'ordine corretto (automaticamente)
+    schede.forEach(scheda => contenitore.appendChild(scheda));
+}
+
+// Quando la pagina si carica, riordina in automatico la guida di Pechino
+window.addEventListener('DOMContentLoaded', () => {
+    ordinaGuideAlfabetico('pechino-guide');
+    // Quando faremo Xi'an e Shanghai, basterà aggiungere qui le loro due righe!
+});
+</script>
+
+
 </body>
 </html>
