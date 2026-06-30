@@ -467,6 +467,27 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
         <!-- INIZIO TAB: PECHINO - UTILITY              -->
         <!-- ========================================== -->
         <div id="pechino-utility" class="tab-content">
+
+            <h3>Storico Caricamenti</h3>
+<ul id="log-list"></ul>
+
+<script>
+    fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+        const logList = document.getElementById('log-list');
+        // Pulisci la lista prima di aggiungere i dati
+        logList.innerHTML = '';
+        // Crea una riga per ogni evento nel log
+        data.log_caricamenti.forEach(item => {
+            let li = document.createElement('li');
+            li.innerText = `${item.data} - ${item.evento}: ${item.stato}`;
+            logList.appendChild(li);
+        });
+    });
+</script>
+
+            
             <div class="driver-card" style="text-align: center;">
                 <div class="info-title" style="color: var(--primary); margin-bottom: 10px;">🏨 HOTEL STEY WANGFUJING</div>
                 <a href="javascript:void(0)" onclick="showDriverMessage()" class="radar-btn" style="display: flex; align-items: center; justify-content: center; width: 90%; max-width: 400px; margin: 10px auto; padding: 15px; font-size: 16px; border: 2px solid var(--primary); text-align: center; box-sizing: border-box;">
@@ -938,22 +959,6 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
     In attesa dei dati...
 </div>
 
-<script>
-    fetch('data.json')
-    .then(response => {
-        if (!response.ok) throw new Error("File non trovato! Controlla il nome o il percorso.");
-        return response.json();
-    })
-    .then(data => {
-        const volo = data.viaggio_cina.zhangjiajie.volo;
-        document.getElementById('volo-info').innerText = 
-            "Volo: " + volo.tratta + " - Stato: " + volo.stato;
-    })
-    .catch(err => {
-        document.getElementById('volo-info').innerText = "Errore: " + err.message;
-        console.error(err);
-    });
-</script>
 
 
 </body>
