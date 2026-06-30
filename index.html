@@ -24,62 +24,91 @@
     <p><a href="utility.html">Visualizza Registro dei Caricamenti (Utility)</a></p>
 
     <script>
-        fetch('data.json')
-        .then(res => {
-            if (!res.ok) throw new Error("Impossibile leggere data.json. Verifica che il file esista e sia valido.");
-            return res.json();
-        })
-        .then(data => {
-            const container = document.getElementById('itinerario-container');
-            container.innerHTML = '';
-            
-            if (!data.itinerario || data.itinerario.length === 0) {
-                container.innerHTML = '<p>Nessun dato presente nell\'itinerario.</p>';
-                return;
-            }
-
-            data.itinerario.forEach(giorno => {
-                let card = document.createElement('div');
-                card.className = 'day-card';
-                
-                let progHtml = '';
-                if(Array.isArray(giorno.programma)) {
-                    progHtml = '<ul>' + giorno.programma.map(p => `<li>${p}</li>`).join('') + '</ul>';
-                } else {
-                    progHtml = `<p>${giorno.programma || ''}</p>`;
-                }
-
-                let coordHtml = '';
-                if(giorno.coordinate && Object.keys(giorno.coordinate).length > 0) {
-                    coordHtml = '<div class="coord-box"><strong>Punti di Interesse & Mappe:</strong><br>';
-                    for(let k in giorno.coordinate) {
-                        coordHtml += `${k}: ${giorno.coordinate[k]}<br>`;
-                    }
-                    coordHtml += '</div>';
-                }
-
-                let foodHtml = giorno.food_strategy ? `<div class="food-box"><strong>Food Strategy:</strong><br>${giorno.food_strategy.replace(/\n/g, '<br>')}</div>` : '';
-
-                card.innerHTML = `
-                    <div class="day-header">
-                        <span>${giorno.data} (${giorno.giorno}) - ${giorno.tappa}</span>
-                    </div>
-                    <div class="meta-info">
-                        <strong>Alloggio:</strong> ${giorno.hotel || 'Non specificato'} (Costo: ${giorno.costo_hotel || '-'} €) | 
-                        <strong>Note Logistiche:</strong> ${giorno.note || '-'} | 
-                        <strong>Costi Extra Giornalieri:</strong> ${giorno.altri_costi || '-'} €
-                    </div>
-                    <div>${progHtml}</div>
-                    ${foodHtml}
-                    ${coordHtml}
-                `;
-                container.appendChild(card);
+document.addEventListener('DOMContentLoaded', () => {
+    fetch('data.json')
+    .then(res => res.json())
+    .then(data => {
+        // --- 1. CARICAMENTO LOG UTILITY ---
+        const logList = document.getElementById('log-list');
+        if (logList && data.log_caricamenti) {
+            logList.innerHTML = '';
+            data.log_caricamenti.forEach(item => {
+                let li = document.createElement('li');
+                li.innerText = `${item.data} - ${item.evento}: ${item.stato}`;
+                logList.appendChild(li);
             });
-        })
-        .catch(err => {
-            document.getElementById('itinerario-container').innerHTML = 
-                '<div style="color:red; font-weight:bold;">Errore di configurazione: ' + err.message + '</div>';
-        });
-    </script>
+        }
+
+        // --- 2. AUTOMAZIONE PROGRAMMA UNIVERSALE (TUTTE LE CITTÀ) ---
+        if (data.viaggio_cina) {
+            // Cerca tutte le città presenti nel JSON (es. 'pechino', 'xian')
+            Object.keys(data.viaggio_cina).forEach(cittaKey => {
+                const cityData = data.viaggio_cina[cittaKey];
+                const progContainer = document.getElementById(cittaKey + '-programma');
+                
+                if (progContainer && cityData.giorni) {
+                    progContainer.innerHTML = '<div class="nav-giorni" style="margin-top: 10px;"></div>';
+                    const navBar = progContainer.querySelector('.nav-giorni');
+
+                    cityData.giorni.forEach((giorno, index) => {
+                        let btn = document.createElement('button');
+                        btn.className = 'nav-btn-context' + (index === 0 ? ' active' : '');
+                        btn.setAttribute('data-date', giorno.data_id);
+                        btn.setAttribute('onclick', `showDay('${cittaKey}-programma', '${giorno.id}', this)`);
+                        btn.innerText = giorno.nav_label;
+                        navBar.appendChild(btn);
+
+                        let dayHtml = `
+                        <div id="${giorno.id}" class="day-section ${index === 0 ? 'active' : ''}">
+                            <div class="day-card">
+                                <div class="day-header">
+                                    <h2 class="day-title">${giorno.titolo}</h2>
+                                    <span class="day-subtitle">${giorno.sottotitolo}</span>
+                                </div>
+                                <span class="weight-badge" style="${giorno.badge.stile}">${giorno.badge.testo}</span>`;
+
+                        if (giorno.verifiche && giorno.verifiche.length > 0) {
+                            dayHtml += `
+                            <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
+                                <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO</div>
+                                <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                                    ${giorno.verifiche.map(v => `<li>${v}</li>`).join('')}
+                                </ul>
+                            </div>`;
+                        }
+
+                        if (giorno.tasks && giorno.tasks.length > 0) {
+                            dayHtml += `
+                            <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+                                <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
+                                ${giorno.tasks.map(t => `
+                                <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                                    <input type="checkbox" id="${t.id}" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                                    <span>${t.testo}</span>
+                                </label>`).join('')}
+                            </div>`;
+                        }
+
+                        if (giorno.timeline && giorno.timeline.length > 0) {
+                            dayHtml += `
+                            <div class="info-block">
+                                <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                                <ul class="timeline">
+                                    ${giorno.timeline.map(t => `<li><span class="time-badge">${t.ora}</span> ${t.testo}</li>`).join('')}
+                                </ul>
+                            </div>`;
+                        }
+
+                        dayHtml += `</div></div>`;
+                        progContainer.insertAdjacentHTML('beforeend', dayHtml);
+                    });
+                }
+            });
+        }
+    })
+    .catch(err => console.error("Errore caricamento dati:", err));
+});
+</script>
+
 </body>
 </html>
