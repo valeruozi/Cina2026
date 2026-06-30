@@ -67,7 +67,6 @@
         .driver-card { background: var(--card-bg); padding: 30px 20px; text-align: center; border: 2px solid var(--primary); border-radius: 12px; margin-bottom: 20px; }
         .driver-chinese { font-size: 32px; font-weight: bold; margin: 15px 0; color: var(--text-main); }
         
-        /* CSS NOTE E NAVIGAZIONE INFERIORE */
         .day-footer { margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--border); }
         .note-area { width: 100%; min-height: 80px; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text-main); font-family: inherit; resize: vertical; box-sizing: border-box; }
         .day-nav-buttons { display: flex; justify-content: space-between; margin-top: 15px; }
@@ -118,45 +117,33 @@
     }
 
     function initApp() {
-    initTheme(); 
-    
-    // 1. Definiamo la data di oggi
-    const today = new Date();
-    const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
-    
-    // 2. Cerchiamo il bottone di oggi
-    let targetBtn = document.querySelector(`button[data-date="${dateStr}"]`);
-    
-    // 3. Se non esiste (siamo fuori date), prendiamo il primo bottone della lista in assoluto
-    if (!targetBtn) {
-        targetBtn = document.querySelector('.nav-giorni .nav-btn-context');
-    }
-    
-    // 4. Se abbiamo trovato un bottone, lo attiviamo
-    if (targetBtn) {
-        // Forza l'attivazione della città corretta
-        const cityContainer = targetBtn.closest('.city-container');
-        if (cityContainer) {
-            const cityBtn = document.querySelector(`button[onclick*="${cityContainer.id}"]`);
-            if(cityBtn) cityBtn.click();
+        initTheme(); 
+        const today = new Date();
+        const dateStr = today.getFullYear() + '-' + String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+        let targetBtn = document.querySelector(`button[data-date="${dateStr}"]`);
+        
+        if (!targetBtn) {
+            targetBtn = document.querySelector('.nav-giorni .nav-btn-context');
         }
         
-        // Forza l'attivazione del giorno
-        targetBtn.click();
+        if (targetBtn) {
+            const cityContainer = targetBtn.closest('.city-container');
+            if (cityContainer) {
+                const cityBtn = document.querySelector(`button[onclick*="${cityContainer.id}"]`);
+                if(cityBtn) cityBtn.click();
+            }
+            targetBtn.click();
+        }
     }
-}
-
 
     window.addEventListener('DOMContentLoaded', () => { initApp(); });
 
-    // SERVICE WORKER
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(err => console.log('Service Worker non ancora configurato'));
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('Service Worker non configurato'));
         });
     }
 
-    // POPUP TASSISTA
     function showDriverMessage() {
         const overlay = document.createElement('div');
         overlay.style.cssText = `
@@ -186,1104 +173,279 @@
         <button class="theme-btn" onclick="toggleTheme()">🌓 Tema</button>
     </div>
 
+    <!-- ========================================== -->
+    <!-- INIZIO NAVIGAZIONE CITTÀ                   -->
+    <!-- ========================================== -->
     <div class="nav-level-1">
         <button class="nav-btn active" onclick="showCity('pechino-container', this)">Pechino</button>
         <button class="nav-btn" onclick="showCity('xian-container', this)">Xi'an</button>
+        <button class="nav-btn" onclick="showCity('zhangjiajie-container', this)">Zhangjiajie</button>
+        <button class="nav-btn" onclick="showCity('shanghai-container', this)">Shanghai</button>
     </div>
+    <!-- ========================================== -->
+    <!-- FINE NAVIGAZIONE CITTÀ                     -->
+    <!-- ========================================== -->
 
+    <!-- ========================================== -->
+    <!-- INIZIO CONTENITORE: PECHINO                -->
+    <!-- ========================================== -->
     <div id="pechino-container" class="city-container active">
         
         <div class="nav-level-2">
-            <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Program</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-luoghi', this)">📍 Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Program</button>
+            <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-luoghi', this)">📍 Luoghi</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-guide', this)">📖 Guida</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-cibo', this)">🍽️ Cibo</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🚨 Utility</button>
         </div>
 
+        <div id="pechino-luoghi" class="tab-content active">
 
-<!-- ========================================== -->
-<!-- INIZIO TAB UNICO: LUOGHI E RISTORANTI PECHINO -->
-<!-- ========================================== -->
-<div id="pechino-luoghi" class="tab-content active">
+            <div style="position: sticky; top: 0; background: var(--bg); padding: 10px 0; z-index: 100; border-bottom: 2px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;">
+                <a href="#sez-hotel" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; background: var(--primary); color: white; border: none; font-weight: bold;">🏨 Hotel</a>
+                <a href="#sez-arrivi" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🚏 Arrivi</a>
+                <a href="#sez-visite" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">📍 Visite</a>
+                <a href="#sez-ristoranti" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--food); color: var(--food);">🍽️ Ristoranti</a>
+            </div>
 
-    <!-- BARRA DI NAVIGAZIONE RAPIDA (Sticky: rimane in alto) -->
-    <div style="position: sticky; top: 0; background: var(--bg); padding: 10px 0; z-index: 100; border-bottom: 2px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;">
-        <a href="#sez-hotel" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; background: var(--primary); color: white; border: none; font-weight: bold;">🏨 Hotel</a>
-        <a href="#sez-arrivi" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🚏 Arrivi</a>
-        <a href="#sez-visite" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">📍 Visite</a>
-        <a href="#sez-ristoranti" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--food); color: var(--food);">🍽️ Ristoranti</a>
-    </div>
+            <div id="sez-hotel" class="day-card" style="border-left-color: var(--accent-blue); scroll-margin-top: 70px;">
+                <h2>🏨 Hotel</h2>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/ht5jbKmlcBU');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Stey Wangfujing</a>
+            </div>
 
-    <!-- ========================================== -->
-    <!-- 1. SEZIONE HOTEL -->
-    <!-- ========================================== -->
-    <div id="sez-hotel" class="day-card" style="border-left-color: var(--accent-blue); scroll-margin-top: 70px;">
-        <h2>🏨 Hotel</h2>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/ht5jbKmlcBU');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Stey Wangfujing</a>
-    </div>
+            <div id="sez-arrivi" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
+                <h2>🚏 Luoghi dove arrivare</h2>
+                <div class="info-block">
+                    <div class="info-title">🗺️ LINK AMAP DIRETTI (MEETING POINT)</div>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/264b4914r7T6');" class="amap-btn">📍 Gui Jie (Ghost Street) - Arrivo a Huda</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn">📍 Hotel Kapok (Punto Ritrovo Città Proibita)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cW7S79wpbQh');" class="amap-btn">📍 The Lama Temple (South Gate)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g6BxMy145dn');" class="amap-btn">📍 Meeting Point Food Tour (Metro Dongsi - Uscita B)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/idGilchgWf');" class="amap-btn">📍 Temple of Heaven (East Gate)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cAW4j0u1k4Bi');" class="amap-btn">📍 Temple of Heaven (North Gate)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/6AEm4WG1h4fF');" class="amap-btn">📍 Summer Palace - East Gate (Donggongmen)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/2rCCcAI91qa7V');" class="amap-btn">📍 Houhai Lakes - Yinding Bridge</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/6Kb72Fs6gLq');" class="amap-btn">📍 Beihai Park (South Gate)</a>
+                </div>
+            </div>
 
-    <!-- ========================================== -->
-    <!-- 2. SEZIONE LUOGHI DOVE ARRIVARE -->
-    <!-- ========================================== -->
-    <div id="sez-arrivi" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
-        <h2>🚏 Luoghi dove arrivare</h2>
-        <div class="info-block">
-            <div class="info-title">🗺️ LINK AMAP DIRETTI (MEETING POINT)</div>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/264b4914r7T6');" class="amap-btn">📍 Gui Jie (Ghost Street) - Arrivo a Huda</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" class="amap-btn">📍 Hotel Kapok (Punto Ritrovo Città Proibita)</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cW7S79wpbQh');" class="amap-btn">📍 The Lama Temple (South Gate)</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g6BxMy145dn');" class="amap-btn">📍 Meeting Point Food Tour (Metro Dongsi - Uscita B)</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/idGilchgWf');" class="amap-btn">📍 Temple of Heaven (East Gate)</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cAW4j0u1k4Bi');" class="amap-btn">📍 Temple of Heaven (North Gate)</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/6AEm4WG1h4fF');" class="amap-btn">📍 Summer Palace - East Gate (Donggongmen)</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/2rCCcAI91qa7V');" class="amap-btn">📍 Houhai Lakes - Yinding Bridge</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/6Kb72Fs6gLq');" class="amap-btn">📍 Beihai Park (South Gate)</a>
-        </div>
-    </div>
+            <div id="sez-visite" class="day-card" style="border-left-color: var(--warning); scroll-margin-top: 70px;">
+                <h2>📍 Luoghi da Visitare</h2>
+                <div class="info-block">
+                    <div class="info-title">🗺️ CON LINK AMAP ATTIVI</div>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" class="amap-btn">📍 Wangfujing Pedestrian Street</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/i4wKeieidT3');" class="amap-btn">📍 Jingshan Park</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/199wULUf0Od');" class="amap-btn">📍 Palazzo d'Estate (Donggongmen)</a>
+                </div>
+                <div class="info-block">
+                    <div class="info-title">📌 IN PIANO (DA ESPLORARE)</div>
+                    <ul class="timeline">
+                        <li><b>Wudaoying Hutong:</b> Shopping hip, caffè e Tè.</li>
+                        <li><b>Nanluoguxiang:</b> Vicolo turistico e commerciale.</li>
+                        <li><b>Yandai Xiejie:</b> Vicolo antico della Pipa.</li>
+                        <li><b>Torre Tamburo/Campana:</b> Piazza storica e tetti grigi.</li>
+                        <li><b>Laghi Shichahai:</b> Luci, musica live, barche.</li>
+                    </ul>
+                </div>
+                <div class="info-block">
+                    <div class="info-title">💡 JOLLY E PIANI B</div>
+                    <ul class="timeline">
+                        <li><b>Qiwei Guofeng Fushi:</b> Boutique abiti tradizionali.</li>
+                        <li><b>NAMOC (Arte):</b> Arte moderna, relax (10 min a piedi).</li>
+                        <li><b>National/Capital Museum:</b> Storia (Al coperto).</li>
+                        <li><b>798 Art District:</b> Arte industriale e cyberpunk.</li>
+                    </ul>
+                </div>
+            </div>
 
-    <!-- ========================================== -->
-    <!-- 3. SEZIONE LUOGHI DA VISITARE -->
-    <!-- ========================================== -->
-    <div id="sez-visite" class="day-card" style="border-left-color: var(--warning); scroll-margin-top: 70px;">
-        <h2>📍 Luoghi da Visitare</h2>
-        
-        <div class="info-block">
-            <div class="info-title">🗺️ CON LINK AMAP ATTIVI</div>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" class="amap-btn">📍 Wangfujing Pedestrian Street</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/i4wKeieidT3');" class="amap-btn">📍 Jingshan Park</a>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/199wULUf0Od');" class="amap-btn">📍 Palazzo d'Estate (Donggongmen)</a>
-        </div>
+            <div id="sez-ristoranti" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
+                <h2>🍽️ Ristoranti</h2>
 
-        <div class="info-block">
-            <div class="info-title">📌 IN PIANO (DA ESPLORARE)</div>
-            <ul class="timeline">
-                <li><b>Wudaoying Hutong:</b> Shopping hip, caffè e Tè.</li>
-                <li><b>Nanluoguxiang:</b> Vicolo turistico e commerciale.</li>
-                <li><b>Yandai Xiejie:</b> Vicolo antico della Pipa.</li>
-                <li><b>Torre Tamburo/Campana:</b> Piazza storica e tetti grigi.</li>
-                <li><b>Laghi Shichahai:</b> Luci, musica live, barche.</li>
-            </ul>
-        </div>
+                <div class="info-title" style="margin-top:15px;">📅 9 AGOSTO (Cena)</div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn">🦆 Siji Minfu (Wangfujing) - Anatra Laccata</a>
 
-        <div class="info-block">
-            <div class="info-title">💡 JOLLY E PIANI B</div>
-            <ul class="timeline">
-                <li><b>Qiwei Guofeng Fushi:</b> Boutique abiti tradizionali.</li>
-                <li><b>NAMOC (Arte):</b> Arte moderna, relax (10 min a piedi).</li>
-                <li><b>National/Capital Museum:</b> Storia (Al coperto).</li>
-                <li><b>798 Art District:</b> Arte industriale e cyberpunk.</li>
-            </ul>
-        </div>
-    </div>
+                <div class="info-title" style="margin-top:15px;">📅 10 AGOSTO (Cena)</div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/gHqxY6yZfxZ');" class="amap-btn">🦞 Huda Restaurant (Ghost Street)</a>
+                <div style="font-size: 12px; font-style: italic; margin-top:2px;">Backup: Dong Lai Shun (Wangfujing)</div>
 
-    <!-- ========================================== -->
-    <!-- 4. SEZIONE RISTORANTI -->
-    <!-- ========================================== -->
-    <div id="sez-ristoranti" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
-        <h2>🍽️ Ristoranti</h2>
+                <div class="info-title" style="margin-top:15px;">📅 11 AGOSTO (Pranzo)</div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/tOvRzsl10m');" class="amap-btn">🥟 Liu Ma Ma (Ravioli)</a>
+                <div style="font-size: 13px; margin-top:5px; margin-bottom: 5px;">Cena: Food Tour Hutong (Guidato)</div>
 
-        <!-- 9 AGOSTO -->
-        <div class="info-title" style="margin-top:15px;">📅 9 AGOSTO (Cena)</div>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" class="amap-btn">🦆 Siji Minfu (Wangfujing) - Anatra Laccata</a>
-
-        <!-- 10 AGOSTO -->
-        <div class="info-title" style="margin-top:15px;">📅 10 AGOSTO (Cena)</div>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/gHqxY6yZfxZ');" class="amap-btn">🦞 Huda Restaurant (Ghost Street)</a>
-        <div style="font-size: 12px; font-style: italic; margin-top:2px;">Backup: Dong Lai Shun (Wangfujing)</div>
-
-        <!-- 11 AGOSTO -->
-        <div class="info-title" style="margin-top:15px;">📅 11 AGOSTO (Pranzo)</div>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/tOvRzsl10m');" class="amap-btn">🥟 Liu Ma Ma (Ravioli)</a>
-        <div style="font-size: 13px; margin-top:5px; margin-bottom: 5px;">Cena: Food Tour Hutong (Guidato)</div>
-
-        <!-- 12 AGOSTO (AGGIORNATO CON 3 OPZIONI E QING YUN LOU) -->
-        <div class="info-title" style="margin-top:15px;">📅 12 AGOSTO (Pranzo Comodo ZONA APM)</div>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/rOIJ5Ed95x');" class="amap-btn">🏠 Grandma's Home (APM) - Jiangsu/Zhejiang</a>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/tTzisayd5s');" class="amap-btn">🥟 Beijing Pie (Dongsi) - Beef Pie (¥56)</a>
-        
-        <div class="info-title" style="margin-top:15px;">📅 12 AGOSTO (Cena Curata ai Laghi)</div>
-        <a href="javascript:void(0)" class="amap-btn" style="border-color:#d4af37; color:#d4af37;">🏮 DA TROVARE</a>
-        
-        <!-- JOLLY E BACKUP -->
-        <div class="info-title" style="margin-top:20px; border-top: 1px dashed var(--border); padding-top: 15px;">📋 JOLLY & BACKUP (DISPONIBILI)</div>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g2OHOOJbx9');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🦆 Beijing Roast Duck (Nanchizi) - Backup Anatra</a>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/18GzUrU1geMw');" class="amap-btn" style="border-color:var(--food); color:var(--food);">🍜 No.69 Fang Zhuan Chang - Zhajiangmian</a>
-        <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/bPYmiRgF0k6');" class="amap-btn">🍲 Donglaishun Restaurant Wangfujing (Hot Pot Imperiale)</a>
-        
-        <div class="info-title" style="margin-top:20px;">📝 ALTRI JOLLY (DA LINKARE SU AMAP)</div>
-        <div class="data-grid">
-            <div class="data-item"><span class="data-label">Lei Garden | 利苑酒家</span><span class="data-value">Cantonese 1* Michelin</span></div>
-            <div class="data-item"><span class="data-label">Hua Sheng Feng | 花生丰</span><span class="data-value">Dongpo Rou</span></div>
-            <div class="data-item"><span class="data-label">Bao Bao Hao | 煲煲好</span><span class="data-value">Oasi Cantonese</span></div>
-            <div class="data-item"><span class="data-label">23 Seats | 23坐</span><span class="data-value">Noodle Bar</span></div>
-            <div class="data-item"><span class="data-label">Fei Da Chu | 费大厨</span><span class="data-value">Giovane/Trendy</span></div>
-            <div class="data-item"><span class="data-label">Mr. Wildman | 野人先生</span><span class="data-value">Gelato Riso</span></div>
-            <div class="data-item"><span class="data-label">Nanmen Shuanrou | 宏源南门涮肉</span><span class="data-value">Agnello</span></div>
-            <div class="data-item"><span class="data-label">Baikui Laohao | 白魁老号饭庄</span><span class="data-value">Spartano</span></div>
-            <div class="data-item"><span class="data-label">Jubaoyuan | 聚宝源</span><span class="data-value">Storico</span></div>
-            <div class="data-item"><span class="data-label">Quan Ju De | 全聚德</span><span class="data-value">Turistico</span></div>
-            <div class="data-item"><span class="data-label">Hu Guo Si Xiaochi | 护国寺小吃</span><span class="data-value">Dolci</span></div>
-        </div>
-    </div>
-
-</div>
-<!-- ========================================== -->
-<!-- FINE TAB UNICO: LUOGHI E RISTORANTI PECHINO -->
-<!-- ========================================== -->
-
-
-
-<!-- TAB GUIDA -->
-<div id="pechino-guide" class="tab-content">
-    
-    <h3 style="margin-top: 10px; color: var(--accent-blue); border-bottom: 2px solid #eee; padding-bottom: 10px;">📚 Guida ai Luoghi</h3>
-
-
-<!-- ========================================== -->
-<!-- INIZIO SCHEDA GUIDA: PALAZZO D'ESTATE -->
-<!-- ========================================== -->
-<details class="guide-card" data-id="palazzo-estate" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-    <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-        <span>🏯 Palazzo d'Estate (Yiheyuan)</span>
-        <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
-    </summary>
-    
-    <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">⏳ Timeline Rapida</h4>
-        <div style="background: #fdfdfd; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 13px;">
-            • <b>1750:</b> L'Imperatore Qianlong (Dinastia Qing) crea il "Giardino delle Onde Limpide" come regalo per la madre.<br>
-            • <b>1860:</b> Completamente distrutto dalle truppe anglo-francesi (Seconda Guerra dell'Oppio).<br>
-            • <b>1886-1895:</b> La temibile Imperatrice Vedova Cixi lo fa ricostruire ribattezzandolo "Palazzo d'Estate" (Yiheyuan).<br>
-            • <b>1924:</b> Dopo la caduta dell'impero, viene aperto al pubblico.
+                <div class="info-title" style="margin-top:15px;">📅 12 AGOSTO (Pranzo Comodo ZONA APM)</div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/rOIJ5Ed95x');" class="amap-btn">🏢 APM Mall (Opzioni Multiple)</a>
+                
+                <div class="info-title" style="margin-top:15px;">📅 12 AGOSTO (Cena)</div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/X1nhHImdn8');" class="amap-btn">🏮 Ristorante Qingyunlou (No Pepe)</a>
+            </div>
         </div>
 
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🗺️ Itinerario Logistico (Dalla Porta Est)</h4>
-        <p style="white-space: pre-wrap; margin-bottom: 15px;">Entrando dalla <b>Porta Est (Donggongmen)</b> alle 15:00, questo è l'ordine perfetto per non perdere nulla:
-1. <b>L'Ingresso:</b> Si passa dalla Sala della Benevolenza e della Longevità (dove Cixi teneva udienza).
-2. <b>Il Lungo Corridoio (Changlang):</b> Si costeggia il lago camminando sotto la celebre passerella coperta e decorata.
-3. <b>La Salita (Foxiang Ge):</b> A metà corridoio, si sale sulla Collina della Longevità per visitare l'imponente Torre dell'Incenso Buddista (<i>chiude alle 17:00</i>).
-4. <b>Suzhou Street (Il Mercato Interno):</b> Scendendo a nord della collina si trova questo finto villaggio sull'acqua (<i>biglietto extra di 10 RMB sul posto</i>).
-5. <b>La Nave di Marmo:</b> Tornati sul lato del lago, alla fine del Lungo Corridoio, ammirate questa barca di pietra che non galleggia.
-6. <b>Il Traghetto e il Tramonto:</b> Dalla Nave di Marmo prendete il battello pubblico verso l'Isola del Lago Sud. Aspettate il tramonto al <b>Ponte dei 17 Archi</b>.
-7. <b>Uscita:</b> Uscite dalla Porta Nuova (Xin Gong Men), perfetta per il DiDi verso Houhai.</p>
-
-        <!-- IMMAGINE MAPPA -->
-        <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px; border: 1px solid #eee;">
-            <img src="https://lh3.googleusercontent.com/d/1PbcriTcE4WPdlMCUFjtnkdb3zpQm_Aqc" alt="Mappa Palazzo d'Estate" style="width: 100%; height: auto; display: block;">
+        <div id="pechino-programma" class="tab-content">
+            <!-- INSERISCI QUI IL PROGRAMMA GIORNALIERO DI PECHINO -->
         </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🕵️ Curiosità Alternative (I "Fun Facts")</h4>
-        <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-            <li><b>Lo Shopping Finto (Suzhou Street):</b> Questo mercato fu costruito per uno sfizio dei reali, che non potevano mai uscire dalla Città Proibita. Quando passeggiavano qui, eunuchi e cameriere <b>si travestivano da negozianti e clienti</b>, fingendo di vendere merci per far provare all'Imperatore l'ebbrezza di una "normale giornata di shopping".</li>
-            <li><b>Lo Scandalo della Marina:</b> L'Imperatrice Cixi spese una fortuna per ricostruire il parco, e per farlo <b>sottrasse segretamente i fondi destinati alla modernizzazione della Marina Militare Cinese</b>. La "Nave di Marmo" è la sua beffarda ironia: un'imbarcazione bellissima ma che non avrebbe mai potuto salpare.</li>
-            <li><b>Record Mondiale:</b> Il Lungo Corridoio misura 728 metri ed è decorato con oltre <b>14.000 dipinti</b> fatti a mano sulle travi di legno, che raccontano storie della letteratura cinese. È nel Guinness dei Primati come il corridoio dipinto più lungo al mondo.</li>
-            <li><b>L'inganno visivo del Lago:</b> Il Lago Kunming è interamente scavato a mano. La terra estratta fu usata per formare la Collina della Longevità. Visto dall'alto, il lago ha la forma di una pesca, e la collina quella di un pipistrello: simboli classici cinesi di fortuna e lunga vita.</li>
-        </ul>
-    </div>
-</details>
-<!-- ========================================== -->
-<!-- FINE SCHEDA GUIDA: PALAZZO D'ESTATE -->
-<!-- ========================================== -->
-
-
-    
-<!-- ========================================== -->
-<!-- INIZIO SCHEDA GUIDA: GRANDE MURAGLIA (MUTIANYU) -->
-<!-- ========================================== -->
-<details class="guide-card" data-id="muraglia-mutianyu" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-    <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-        <span>🧱 Grande Muraglia (Mutianyu)</span>
-        <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
-    </summary>
-    
-    <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-        
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🗺️ L'Itinerario (Torre 14 ➔ 20/23)</h4>
-        <p style="white-space: pre-wrap; margin-bottom: 15px;">Questo è il percorso <b>Ovest (Panoramico e Fotografico)</b>.
-1. <b>Salita:</b> Funivia chiusa (Cable Car) fino alla <b>Torre 14</b>.
-2. <b>Trekking:</b> Dalla 14, si sale verso ovest fino alla Torre 20 (Salita dell'Eroe).
-3. <b>Avventura:</b> Dalla 20 esplorate il tratto fino alla 23 (Wild Wall).
-4. <b>Discesa:</b> Ritorno alla 14 e discesa in funivia.</p>
-        
-        <!-- IMMAGINE CORRETTA CON FORMATO Lh3 -->
-        <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
-            <img src="https://lh3.googleusercontent.com/d/1MT3PU4AV3URB52nV0QHelEWVbpCdO5Dg" alt="Mappa Percorso Mutianyu" style="width: 100%; height: auto; display: block;">
+        <div id="pechino-guide" class="tab-content">
+            <!-- INSERISCI QUI LE GUIDE STORICHE DI PECHINO (Cronistoria, Timeline, etc.) -->
         </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🗣️ Istruzioni per il Driver</h4>
-        <p style="white-space: pre-wrap; margin-bottom: 15px; background-color: #fff9e6; padding: 10px; border-radius: 6px; border-left: 4px solid #f1c40f;">
-<b>ENG:</b> "We want to take the fully enclosed Cable Car up to Watchtower 14, hike to Tower 20, and come back down with the same Cable Car from Tower 14. We do NOT want the open chairlift or the toboggan slide."
-<b>中文:</b> "我们想坐封闭式缆车（Cable Car）上到第14号敌楼，走到第20号，然后再从第14号坐缆车下来。我们不坐敞篷索道（Chairlift）和滑道（Toboggan）。"</p>
-        
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">📜 Curiosità</h4>
-        <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-            <li><b>Granito puro:</b> Costruita in epoca Ming (1368) su basi del VI secolo.</li>
-            <li><b>Doppia difesa:</b> Merli su entrambi i lati, rarissimo per la muraglia.</li>
-            <li><b>Record torri:</b> 22 torri in soli 2,2 km.</li>
-        </ul>
-    </div>
-</details>
-<!-- ========================================== -->
-<!-- FINE SCHEDA GUIDA: GRANDE MURAGLIA (MUTIANYU) -->
-<!-- ========================================== -->
-
-<!-- ========================================== -->
-<!-- INIZIO SCHEDA GUIDA: CITTÀ PROIBITA -->
-<!-- ========================================== -->
-<details class="guide-card" data-id="citta-proibita" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-    <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-        <span>🏛️ Città Proibita (Gugong)</span>
-        <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
-    </summary>
-    
-    <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">⏳ Timeline Rapida</h4>
-        <div style="background: #fdfdfd; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 13px;">
-            • <b>1406-1420:</b> Costruzione (Dinastia Ming)<br>
-            • <b>1644:</b> Caduta Ming / Inizio Dinastia Qing (Manciù)<br>
-            • <b>1911:</b> Caduta dell'ultima dinastia (Qing)<br>
-            • <b>1925:</b> Diventa museo pubblico
-        </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🕵️ Da chiedere alla tua Guida</h4>
-        <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-            <li><b>Drenaggi:</b> Perché il cortile non si allaga mai? (Scolate a forma di draghi).</li>
-            <li><b>Vita da donne:</b> Gerarchie politiche tra le concubine.</li>
-            <li><b>Solitudine:</b> Dove scappava l'Imperatore per stare solo?</li>
-            <li><b>Simboli:</b> Architettura anti-fuoco nascosta.</li>
-        </ul>
-
-        <!-- IMMAGINE CORRETTA CON FORMATO Lh3 -->
-        <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
-            <img src="https://lh3.googleusercontent.com/d/1yZyKPaAhuDVzZiAsfDnLQyl-MikXrK67" alt="Mappa Città Proibita" style="width: 100%; height: auto; display: block;">
-        </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🌸 La Donna nella Città Proibita</h4>
-        <p style="white-space: pre-wrap; margin: 0;">Le concubine vivevano in un sistema di "promozioni" basate sul rango: più in alto eri, più padiglioni avevi. L'Imperatrice Vedova era l'unica capace di manovrare l'Impero dietro le quinte.</p>
-    </div>
-</details>
-<!-- ========================================== -->
-<!-- FINE SCHEDA GUIDA: CITTÀ PROIBITA -->
-<!-- ========================================== -->
-
-<!-- ========================================== -->
-<!-- INIZIO SCHEDA GUIDA: TEMPIO DEL CIELO -->
-<!-- ========================================== -->
-<details class="guide-card" data-id="tempio-del-cielo" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-    <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-        <span>🌌 Tempio del Cielo (Tiantan)</span>
-        <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
-    </summary>
-    
-    <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">⏳ Timeline Rapida</h4>
-        <div style="background: #fdfdfd; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 13px;">
-            • <b>1420:</b> Costruito dall'Imperatore Yongle (dinastia Ming), lo stesso che edificò la Città Proibita.<br>
-            • <b>1530:</b> L'Imperatore Jiajing lo espande e gli dà il nome attuale di "Tempio del Cielo".<br>
-            • <b>1889:</b> Un fulmine incenerisce il Tempio della Preghiera. Viene ricostruito l'anno successivo identico all'originale.<br>
-            • <b>1918:</b> Fine dell'Impero. Il luogo sacro viene aperto al pubblico come parco.
-        </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🗺️ L'Itinerario Ottimizzato (Ingresso Est)</h4>
-        <p style="white-space: pre-wrap; margin-bottom: 15px;">Arrivando con la Linea 5 alla stazione <b>Tiantan Dongmen</b>, entrerete dalla <b>Porta Est</b>. Ecco la sequenza per non fare avanti e indietro:
-1. <b>Lungo Corridoio (72 Stanze):</b> Appena entrati da Est, dirigetevi verso ovest camminando in questo corridoio coperto, solitamente affollato di anziani che giocano a carte o suonano.
-2. <b>Il Cuore:</b> Svoltate a destra (Nord) per visitare il <b>Tempio della Preghiera per i Buoni Raccolti</b>.
-3. <b>La Discesa:</b> Tornate sui vostri passi e incamminatevi verso Sud lungo il <b>Ponte dei Passi Vermigli</b> (Danbi Qiao), un viale rialzato di 360 metri che unisce i due altari principali.
-4. <b>I Segreti Acustici:</b> Visitate la <b>Volta Imperiale del Cielo</b> (circondata dal Muro dell'Eco).
-5. <b>L'Altare:</b> Concludete all'<b>Altare Circolare</b>, il punto esatto in cui l'Imperatore comunicava con gli dei.
-6. <b>Uscita:</b> Uscite dalla <b>Porta Sud (Zhaoheng Gate)</b>, perfetta per chiamare il DiDi verso la tappa successiva.</p>
-
-        <!-- IMMAGINE MAPPA -->
-        <div style="width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 20px;">
-            <img src="https://lh3.googleusercontent.com/d/1IaVj4tgDlVzhonEW47RJ69ZclPRetC1F" alt="Mappa Tempio del Cielo" style="width: 100%; height: auto; display: block;">
-        </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🕵️ Curiosità Alternative (I "Fun Facts")</h4>
-        <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-            <li><b>Zero Chiodi:</b> Il maestoso Tempio della Preghiera per i Buoni Raccolti (38 metri d'altezza e 30 di diametro) è interamente in legno. È stato costruito sfruttando un complesso sistema di incastri a tenone e mortasa: non c'è un singolo chiodo di ferro in tutta la struttura.</li>
-            <li><b>Il Colore del Cielo:</b> Avrai notato che nella Città Proibita le tegole sono gialle (colore dell'Imperatore). Qui le tegole sono tutte <b>blu scuro</b>, a simboleggiare il Cielo, un'entità considerata superiore perfino all'Imperatore stesso.</li>
-            <li><b>L'Ossessione per il numero 9:</b> Il 9 è il numero più potente nella numerologia cinese. Mettetevi al centro dell'Altare Circolare: noterete che è formato da 9 anelli concentrici di pietra. Il primo anello ha 9 lastre, il secondo 18 (9x2), il terzo 27 (9x3), fino al nono anello che ne conta 81 (9x9).</li>
-            <li><b>Geometria Sacra:</b> Gli edifici principali sono tutti rotondi (che rappresenta il Cielo), ma le loro basi o i muri di cinta esterni sono quadrati (che rappresenta la Terra).</li>
-            <li><b>Le Pietre delle 7 Stelle:</b> Vicino alla Porta Est ci sono dei massi chiamati "Sette Stelle". Contateli: in realtà sono 8. L'ottava pietra fu aggiunta successivamente dai Manciù (Dinastia Qing) per rappresentare la loro stirpe e integrarla con le 7 originali dei cinesi Han.</li>
-        </ul>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">💡 Info Pratiche</h4>
-        <p style="white-space: pre-wrap; margin: 0;">Il parco è il polmone verde di Pechino. Andandoci al mattino, vedrete decine di gruppi di residenti praticare Tai Chi, danzare con nastri, o scrivere calligrafie sul selciato usando enormi pennelli intinti nell'acqua. Ai chioschi d'ingresso è possibile affittare un'ottima audioguida (solitamente richiede 100 RMB di deposito in contanti).</p>
-    </div>
-</details>
-<!-- ========================================== -->
-<!-- FINE SCHEDA GUIDA: TEMPIO DEL CIELO -->
-<!-- ========================================== -->
-
-<!-- ========================================== -->
-<!-- INIZIO SCHEDA GUIDA: TEMPIO DEI LAMA -->
-<!-- ========================================== -->
-<details class="guide-card" data-id="tempio-lama" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-    <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-        <span>📿 Tempio dei Lama (Yonghegong)</span>
-        <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
-    </summary>
-    
-    <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">⏳ Crono-Storia (Da Palazzo a Tempio)</h4>
-        <div style="background: #fdfdfd; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 13px;">
-            • <b>1694:</b> Nasce come sfarzosa residenza per il Principe Yong (dinastia Qing).<br>
-            • <b>1723:</b> Il principe diventa Imperatore (Yongzheng) e si trasferisce nella Città Proibita. Metà del palazzo diventa un monastero e le tegole dei tetti vengono cambiate in <b>giallo imperiale</b> (colore riservato solo all'Imperatore).<br>
-            • <b>1744:</b> L'Imperatore successivo (Qianlong) converte l'intero complesso in un <b>Tempio Buddista Tibetano</b> per rafforzare i legami politici con Tibet e Mongolia.<br>
-            • <b>Oggi:</b> È il più grande e importante tempio buddista tibetano (Setta dei Berretti Gialli) fuori dal Tibet, ed è un monastero ancora attivissimo.
-        </div>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🗺️ Il Percorso (Da Sud a Nord)</h4>
-        <p style="white-space: pre-wrap; margin-bottom: 15px;">Il tempio è progettato su un asse centrale rettilineo. Entrerete dalla <b>Porta Sud (Ingresso Principale)</b> e attraverserete 5 cortili successivi, in un crescendo di grandezza e misticismo:
-1. <b>Il Viale Alberato e la Porta dell'Armonia:</b> Si entra camminando sotto un bellissimo viale di Ginkgo, superando i primi archi decorati.
-2. <b>Sala dei Re Celesti:</b> Ad accogliervi c'è la statua del Buddha Maitreya sorridente e i quattro feroci Re Celesti che calpestano i demoni.
-3. <b>Sala dell'Armonia e della Pace (Sala Principale):</b> Ospita i tre Buddha (del Passato, del Presente e del Futuro).
-4. <b>Sala della Ruota della Legge (Falun Dian):</b> Cuore del monastero, qui i monaci pregano ancora oggi. Notate l'architettura ibrida: tetto in stile cinese ma con elementi tibetani a forma di campana. 
-5. <b>Padiglione delle Diecimila Felicità (Wanfu Ge):</b> L'ultimo edificio, il più alto e maestoso. È il climax della visita (vedi curiosità sotto!).</p>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🕵️ Le "Tre Meraviglie" (Cosa non perdersi)</h4>
-        <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-            <li><b>Il Buddha Gigante da Record (Nel Padiglione Wanfu):</b> Alta 26 metri (di cui 8 interrati per sostenerla), è un'enorme statua del Buddha scolpita in <b>un unico, intero tronco di sandalo bianco</b> donato dal settimo Dalai Lama. È nel Guinness dei Primati!</li>
-            <li><b>La Collina dei 500 Arhat (Sala della Ruota della Legge):</b> Dietro la statua principale, cercate questa scultura mozzafiato intagliata in legno di sandalo rosso: raffigura una montagna sacra con 500 minuscole statue di discepoli di Buddha (oggi ne sopravvivono 449).</li>
-            <li><b>Il Santuario in legno di Nanmu:</b> Un legno resistentissimo e preziosissimo, lucidato a specchio tanto da sembrare percorso da fili d'oro.</li>
-        </ul>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">💡 Info Pratiche</h4>
-        <p style="white-space: pre-wrap; margin: 0; background-color: #fff9e6; padding: 10px; border-radius: 6px; border-left: 4px solid #f1c40f;"><b>Fumo d'Incenso:</b> Il tempio è un luogo di culto molto frequentato dai locali. All'ingresso o nei vari cortili vedrete i fedeli bruciare interi mazzi di incenso (che spesso vengono forniti gratuitamente col biglietto). Se avete occhi sensibili, mettetevi gli occhiali da sole!
-<b>Biglietti:</b> Avendoli già presi in anticipo, puntate direttamente ai tornelli del South Gate (la folla è per le biglietterie, l'ingresso è veloce).</p>
-    </div>
-</details>
-
-
-<!-- ========================================== -->
-<!-- FINE SCHEDA GUIDA: TEMPIO DEI LAMA -->
-<!-- ========================================== -->
-
-<!-- ========================================== -->
-<!-- INIZIO SCHEDA GUIDA: WUDAOYING HUTONG & GUOZIJIAN -->
-<!-- ========================================== -->
-<details class="guide-card" data-id="wudaoying-hutong" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-    <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-        <span>☕ Passeggiata: Wudaoying & Guozijian (Hutong)</span>
-        <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
-    </summary>
-    
-    <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🗺️ L'Itinerario ad Anello (Il Loop)</h4>
-        <p style="white-space: pre-wrap; margin-bottom: 15px;">Questo percorso unisce l'anima più solenne e quella più moderna di Pechino. È perfetto come post-tempio o come alternativa vera e propria.
-
-<b>Step 1: L'Antichità Imperiale (Guozijian Street)</b>
-Usciti dal Tempio dei Lama (Porta Sud), andate a sud per 100 metri e girate a destra in Guozijian Street. È una delle vie storiche meglio conservate di Pechino.
-👀 <i>Cosa guardare:</i> Camminerete sotto secolari alberi di Pagoda e antichi <i>Pailou</i> (archi cerimoniali decorati). Sulla vostra destra vedrete le lunghe mura rosse del <b>Tempio di Confucio</b> e dell'<b>Antica Accademia Imperiale</b>. Il silenzio e la spiritualità qui sono palpabili.
-
-<b>Step 2: Il Taglio (Jianchang Hutong)</b>
-Arrivati quasi alla fine della via, non sbucate sulla strada principale (Andingmen Inner St), ma girate a destra (Nord) infilandovi in <i>Jianchang Hutong</i>.
-👀 <i>Cosa guardare:</i> Questa è una via di raccordo puramente residenziale. Guardate le porte delle case, le biciclette appoggiate ai muri grigi e la vera vita di quartiere prima di tuffarvi nella modernità.
-
-<b>Step 3: La Pechino Hipster (Wudaoying Hutong)</b>
-Incrociata la via superiore, girate a destra (Est) e percorrete Wudaoying Hutong per intero. 
-👀 <i>Cosa guardare:</i> Dimenticate il silenzio imperiale. Qui troverete gattocaffè, birrerie artigianali e negozietti vintage integrati nelle vecchie corti (Siheyuan). È la versione raffinata e meno caotica della celebre Nanluoguxiang.</p>
-
-        <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">🕵️ I "Must" di Wudaoying</h4>
-        <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-            <li><b>Specialty Coffee:</b> Pechino ha una cultura del caffè pazzesca. Cercate "Metal Hands" o "Barista Coffee Roasters". Molti locali hanno terrazze (rooftop) da cui fotografare i tetti cinesi grigi dall'alto.</li>
-            <li><b>Shopping Indipendente:</b> Niente chincaglieria da turisti. Fermatevi nelle boutique per curiosare tra ceramiche fatte a mano, incensi pregiati, profumi solidi di design e abiti vintage.</li>
-            <li><b>La Vibe Serale:</b> Man mano che cala il sole, si accendono le lanterne e i piccoli locali nei cortili iniziano a servire birre artigianali locali, rendendo l'atmosfera molto "chill".</li>
-        </ul>
-
-    </div>
-</details>
-<!-- ========================================== -->
-<!-- FINE SCHEDA GUIDA: WUDAOYING HUTONG & GUOZIJIAN -->
-<!-- ========================================== -->
-
-
-</div>
-
-
-
-
-
         <div id="pechino-cibo" class="tab-content">
-            <div class="day-card" style="border-left-color: var(--food);">
-                <h2>🍽️ Cibo & Esperienze</h2>
-                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
-                    <img src="https://lh3.googleusercontent.com/d/1xIfcbGQPZpsY1cv28WgQZDsaxEYidN02" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                        <div style="font-weight: bold; color: var(--food);">Anatra Laccata (北京烤鸭)</div>
-                        <div style="font-size: 13px;">Rituale: intingi la pelle nello zucchero. Avvolgi la carne nella crêpe con cetriolo e porro.</div>
-                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Siji Minfu</div>
-                    </div>
-                </div>
-                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
-                    <img src="https://redhousespice.com/wp-content/uploads/2024/05/zha-jiang-mian-fried-sauce-noodles-3.jpg" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                        <div style="font-weight: bold; color: var(--food);">Zhajiangmian (炸酱面)</div>
-                        <div style="font-size: 13px;">Noodles con salsa di soia fermentata e carne macinata. Mescolare energicamente!</div>
-                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: No.69 Fang Zhuan Chang</div>
-                    </div>
-                </div>
-                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
-                    <img src="https://lh3.googleusercontent.com/d/1dgDyC0w5ijF3oQ_X2w0_nbzVNNk6geQJ" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                        <div style="font-weight: bold; color: var(--food);">Mending Roubing (门钉肉饼)</div>
-                        <div style="font-size: 13px;">Tortino di carne croccante fuori e succoso dentro. Attenzione al brodo interno che scotta!</div>
-                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Baodu Feng</div>
-                    </div>
-                </div>
-                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
-                    <img src="https://lh3.googleusercontent.com/d/1uWW4HknoBY0pi0EX1Zbd1zyD1wH53zCN" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                        <div style="font-weight: bold; color: var(--food);">Chuan'r (串儿)</div>
-                        <div style="font-size: 13px;">Spiedini di agnello tenerissimi, speziati con cumino e peperoncino.</div>
-                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Street Food / Hutong</div>
-                    </div>
-                </div>
-                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
-                    <img src="https://lh3.googleusercontent.com/d/1RBrLDKPsypCn1JXB8knM3FAkoGJu0kOe" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                        <div style="font-weight: bold; color: var(--food);">Dolci (Lü Da Gun / Zha Gao)</div>
-                        <div style="font-size: 13px;">Riso glutinoso, fagioli azuki. Zha Gao è lo gnocco fritto dolce (bomba calorica).</div>
-                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Hu Guo Si Xiaochi</div>
-                    </div>
-                </div>
-                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start;">
-                    <img src="https://lh3.googleusercontent.com/d/1Lwp-3tdrbHFfppvUIvstMd2s4s9Lm0KF" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
-                    <div>
-                        <div style="font-weight: bold; color: var(--food);">Shao Mai (烧麦)</div>
-                        <div style="font-size: 13px;">Ravioli aperti in cima a forma di melograno. Intingi nell'aceto scuro.</div>
-                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Liu Ma Ma Dumplings</div>
-                    </div>
-                </div>
-            </div>
+            <!-- INSERISCI QUI IL FOOD TOUR E I PIATTI TIPICI DI PECHINO -->
         </div>
-
         <div id="pechino-utility" class="tab-content">
-            <div class="driver-card" style="text-align: center;">
-                <div class="info-title" style="color: var(--primary); margin-bottom: 10px;">🏨 HOTEL STEY WANGFUJING</div>
-                <a href="javascript:void(0)" onclick="showDriverMessage()" class="radar-btn" style="display: flex; align-items: center; justify-content: center; width: 90%; max-width: 400px; margin: 10px auto; padding: 15px; font-size: 16px; border: 2px solid var(--primary); text-align: center; box-sizing: border-box;">
-                    🚖 MOSTRA INDIRIZZO AL TASSISTA
-                </a>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cwv4H2O1t8O1');" style="display: block; margin-top: 10px; font-size: 14px; color: var(--primary);">📍 Apri su Amap</a>
-            </div>
-        
-            <div class="day-card" style="border-left-color: #2ecc71;">
-                <div class="info-title" style="color: #27ae60;">📂 ARCHIVIO DOCUMENTI (DRIVE)</div>
-                <div class="data-grid">
-                    <a href="https://drive.google.com/file/d/1vynH9yzYnWk7_AruD_DWclH1JgYCJ4oT/view?usp=drivesdk" target="_blank" class="amap-btn">🛂 Passaporto Carlo</a>
-                    <a href="https://drive.google.com/file/d/10dr7rtdYP1_NU9-o29QJcmLfhOhBhnpI/view?usp=drivesdk" target="_blank" class="amap-btn">🛂 Passaporto Valentina</a>
-                    <a href="URL_DEL_TUO_DRIVE_QR_CODE" target="_blank" class="amap-btn">🎟️ QR Code Immigrazione Carlo</a>
-                    <a href="URL_DEL_TUO_DRIVE_QR_CODE" target="_blank" class="amap-btn">🎟️ QR Code Immigrazione Valentina</a>
-                </div>
-            </div>
-        
-            <div class="day-card" style="border-left-color: var(--danger);">
-                <div class="info-title" style="color: var(--danger);">🚨 EMERGENZE (CLICCA PER CHIAMARE)</div>
-                <div class="data-grid">
-                    <a href="tel:110" class="track-btn">🚔 Polizia (110)</a>
-                    <a href="tel:120" class="track-btn">🚑 Ambulanza (120)</a>
-                    <a href="tel:+861085327600" class="track-btn">🇮🇹 Ambasciata</a>
-                </div>
-            </div>
+            <!-- INSERISCI QUI LE INFO UTILI, EMERGENZE, TRADUTTORI, ETC. -->
         </div>
 
-        <div id="pechino-programma" class="tab-content active">
-            <div class="nav-giorni" style="margin-top: 10px;">
-                <button class="nav-btn-context" data-date="2026-08-08" onclick="showDay('pechino-programma', 'day-8-ago', this)">8 Ago</button>
-                <button class="nav-btn-context" data-date="2026-08-09" onclick="showDay('pechino-programma', 'day-9-ago', this)">9 Ago</button>
-                <button class="nav-btn-context" data-date="2026-08-10" onclick="showDay('pechino-programma', 'day-10-ago', this)">10 Ago</button>
-                <button class="nav-btn-context" data-date="2026-08-11" onclick="showDay('pechino-programma', 'day-11-ago', this)">11 Ago</button>
-                <button class="nav-btn-context" data-date="2026-08-12" onclick="showDay('pechino-programma', 'day-12-ago', this)">12 Ago</button>
-            </div>
-
-
-<!-- GIORNO 8 AGOSTO -->
-  <div id="day-8-ago" class="day-section">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Sabato, 8 Agosto</h2>
-                        <span class="day-subtitle">Torino ➔ Roma ➔ In Volo</span>
-                    </div>
-                    <span class="weight-badge">🟢 Viaggio / Soft</span>
-        
-                    
-                    <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
-                        <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                            <li>Treni Italo Torino - Roma Termini</li>
-                            <li>Volo Air China CA940 (Biglietti emessi)</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-                        <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
-                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                            <input type="checkbox" id="task-leo-8ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                            <span>Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO)</span>
-                        </label>
-                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                            <input type="checkbox" id="task-arrival-8ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                            <span>Digital Arrival Card <br><i style="font-size: 12px; color: var(--text-muted);">Aprire WeChat/Alipay, cercare "NIA 12367". Salvare screenshot del QR Code.</i></span>
-                        </label>
-                        
-                         <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                        <input type="checkbox" id="check-confirm-tower" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                        <span><b>h 18:00:</b> Prenotare <b>Shanghai Tower</b> per il 23 ago (slot 15:30). <br><i style="font-size: 12px; color: var(--text-muted);">Su Trip.com o mini-programma "Shanghai Tower" (上海中心).</i></span>
-    </label>
-    
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">🚆 TRENO ITALO</div>
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Codice PNR</span><span class="data-value">ALLSVR</span></div>
-                            <div class="data-item"><span class="data-label">Treno / Tariffa</span><span class="data-value">9923 / Smart Flex</span></div>
-                            <div class="data-item"><span class="data-label">Data</span><span class="data-value">08 Ago 2026</span></div>
-                            <div class="data-item"><span class="data-label">Orario</span><span class="data-value">08:40 - 13:24</span></div>
-                            <div class="data-item"><span class="data-label">Tratta</span><span class="data-value">Torino P. Susa ➔ Roma Termini</span></div>
-                        </div>
-                        <hr style="border: 0; border-top: 1px solid var(--border); margin: 10px 0;">
-                        <div class="data-grid">
-                            <div class="data-item"><span class="data-label">Valentina</span><span class="data-value">Carrozza 6, Posto 11</span></div>
-                            <div class="data-item"><span class="data-label">Carlo Alberto</span><span class="data-value">Carrozza 6, Posto 12</span></div>
-                        </div>
-                        <a href="https://italoinviaggio.italotreno.it/it/treno/9923" target="_blank" class="track-btn">🕒 STATO TRENO IN TEMPO REALE</a>
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">✈️ VOLO AIR CHINA CA940</div>
-                        <a href="https://drive.google.com/file/d/1Kj9s1akd5hg2pypMyKazCb8icYHT1Jns/view" target="_blank" class="file-btn">📄 APRI BIGLIETTO ELETTRONICO</a>
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">08:40</span> Partenza Italo Treno 9923 da Torino Porta Susa.</li>
-                            <li><span class="time-badge">13:24</span> Arrivo a Roma Termini.</li>
-                            <li><span class="time-badge">14:30</span> Treno Leonardo Express per Fiumicino Aeroporto (FCO).</li>
-                            <li><span class="time-badge">Pre-Volo</span> Compilazione Digital Arrival Card</li>
-                            <li><span class="time-badge">20:30</span> Decollo Volo Air China (CA940) per Pechino (PEK). Notte in aereo.</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="day-footer">
-                        <div class="info-title">📝 Note di fine giornata</div>
-                        <textarea class="note-area save-note" id="note-day-8-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-                        <div class="day-nav-buttons">
-                            <button class="day-nav-btn" onclick="navigateDay('prev')" style="visibility: hidden;">← Precedente</button>
-                            <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!-- FINE GIORNO 8 AGOSTO -->
-
-
-
-<!-- GIORNO 9 AGOSTO -->
-<div id="day-9-ago" class="day-section">
-                <div class="day-card">
-                    <div class="day-header">
-                        <h2 class="day-title">Domenica, 9 Agosto</h2>
-                        <span class="day-subtitle">Arrivo a Pechino & Anatra Laccata</span>
-                    </div>
-                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Jet-Lag / Moderato</span>
-
-                    <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
-                        <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                            <li>Stey Wangfujing Hotel (Confermato)</li>
-                        </ul>
-                    </div>
-
-
-
-
-                    <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-                        <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
-                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                            <input type="checkbox" id="task-shaanxi-9ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                            <span><b>h 17:00:</b> Prenotare <b>Shaanxi History Museum</b> (per il 15 ago) su WeChat. <br><i style="font-size: 12px; color: var(--text-muted);">Alle 17:00 bisogna essere già loggati e pronti a procedere. <br>Piano B in caso di fallimento: Archaeology Museum (da prenotare domani).</i></span>
-                        </label>		
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">🏨 HOTEL E LOGISTICA</div>
-                        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/506196385.jpg?k=4d82bc61d800bf68284474153ca0801133b7611478f4042a75d6b2ba0ea9c465&o=" alt="Stey Hotel Facade" class="feature-img" style="max-height: 150px; width: 100%; object-fit: cover;">
-                        <div class="data-grid" style="margin-bottom: 10px;">
-                            <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Stey Beijing Wangfujing Hotel</span></div>
-                        </div>
-                        <a href="https://secure.booking.com/app_link/myreservations.html?pbsource=booking_confirmation&bn=6353048093" target="_blank" class="file-btn" style="background: #3498db; border-color: #2980b9;">
-                            📄 APRI CONFERMA PRENOTAZIONE HOTEL
-                        </a>
-                    </div>
-
-                    <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-                        <ul class="timeline">
-                            <li><span class="time-badge">12:40</span> Atterraggio a Pechino (PEK) Terminal 3.</li>
-                            <li><span class="time-badge">Kiosk</span> Fermarsi ai kiosk automatici (blu/gialli) prima dell'immigrazione per impronte e scontrino.</li>
-                            <li><span class="time-badge">14:00</span> Dogana: Corsia "Foreigners".</li>
-                            <li><span class="time-badge">DiDi</span> Parcheggio P2, Livello B2. Cercare "Pillar Number" sull'app e avvisare il driver: "I am at Pillar [Numero]".</li>
-                            <li><span class="time-badge">15:00</span> Check-in Stey Wangfujing.</li>
-                            <li><span class="time-badge">15:15 - 18:45</span> Riposo obbligatorio in Hotel.</li>
-                            <li><span class="time-badge">17:15</span> TATTICA CODA: Aprire mini-programma WeChat e cercare: <span class="copy-badge">四季民福</span>. Cliccare "取号" (Prendi numero).</li>
-                            <li><span class="time-badge">19:15</span> Monitorare lo scorrimento e uscire quando mancano 15-20 tavoli.</li>
-                            <li><span class="time-badge">19:45 - 21:00</span> Cena: Anatra Laccata presso <b>Siji Minfu (Dengshikou)</b>. <br><a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/jSJsgNU139Pj');" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin-left: 5px;">📍 Naviga verso Siji Minfu</a></li>
-                            <li><span class="time-badge">21:15</span> Dopo Cena: Passeggiata sulla <b>Wangfujing Pedestrian Street</b> o rientro in hotel. <br><a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" style="color: var(--accent-blue); text-decoration: none; font-weight: bold; margin-left: 5px;">📍 Naviga verso Wangfujing</a>
-                                <br><i style="font-size: 13px; color: var(--text-muted); display: block; margin-top: 4px;">👀 <b>Cosa vedere:</b> Insegne al neon, mega schermi 3D (mall APM), flagship store e Chiesa di San Giuseppe.</i>
-                            </li>
-                            <li><span class="time-badge">22:30</span> Spesa tattica al 7-Eleven (aperto 24h) per la colazione.</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-block food-tips">
-                        <div class="info-title">💡 SUGGERIMENTI CENA (TARGET: SIJI MINFU)</div>
-                        <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🦆 Ordine Anatra Laccata</p>
-                        <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
-                            <li><b>L'Anatra:</b> <i>Bàn zhī</i> 半只 (Mezza) oppure <i>Yī zhī</i> 一只 (Intera).</li>
-                            <li><b>Il Kit Essenziale:</b> Condiment set (crespelline/pancakes, salsa scura dolce, cetriolo e porro per avvolgere).</li>
-                            <li><b>La Regola d'Oro:</b> La primissima pelle croccante del petto NON si arrotola. Si intinge nello zucchero bianco e si fa sciogliere in bocca.</li>
-                            <li><b>Contorni:</b> Cuori di cavolo in agrodolce o spinaci all'aglio (per pulire la bocca dal grasso).</li>
-                        </ul>
-                        <p style="font-size: 14px; font-weight: bold; margin-bottom: 5px; color: var(--primary);">🚨 Piani Alternativi (Cena & Dopo Cena)</p>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                            <li><b>Piano B Cena:</b> Se la coda per Siji Minfu supera i 50 numeri, abbandonare e puntare al <b>Beijing Roast Duck (Nanchizi)</b>.</li>
-                            <li><b>Piano A Serale (Energia Residua):</b> Passeggiata sulla Wangfujing.</li>
-                            <li><b>Piano B Serale (Sconfitti dal fuso):</b> Rientro immediato in Hotel a dormire.</li>
-                        </ul>
-                    </div>
-
-                    <div class="day-footer">
-                        <div class="info-title">📝 Note di fine giornata</div>
-                        <textarea class="note-area save-note" id="note-day-9-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-                        <div class="day-nav-buttons">
-                            <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                            <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!-- FINE GIORNO 9 AGOSTO -->
-
-
-
-<!-- GIORNO 10 AGOSTO -->
-<div id="day-10-ago" class="day-section">
-    <div class="day-card">
-        <div class="day-header">
-            <h2 class="day-title">Lunedì, 10 Agosto</h2>
-            <span class="day-subtitle">Muraglia & Relax</span>
-        </div>
-        <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Trekking / Intenso</span>
-
-        <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
-    <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
-    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-        <li style="display: flex; align-items: center; justify-content: space-between; padding: 5px 0;">
-            <span>Driver privato + Ticket Grande Muraglia (Mutianyu)</span>
-            <a href="https://www.viator.com/tours/Beijing/Mutianyu-Great-Wall-With-English-Speaking-Driver-Transfer/d321-26448P12" target="_blank" style="background-color: #3498db; color: white; padding: 4px 10px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-left: 10px;">📄 APRI</a>
-        </li>
-    </ul>
-</div>
-
-
-        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-            <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                <input type="checkbox" id="task-spa-10ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                <span><b>PRENOTARE SPA:</b> Chiedere all'hotel di suggerire una SPA vicina all'hotel e di prenotare alle 16:00.</span>
-            </label>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer;margin-bottom: 5px;">
-        <input type="checkbox" id="task-guide-pepe" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-        <span>Contattare guida Qing (WeChat) per allergia pepe.<br><i style="font-size: 12px; color: var(--text-muted);">Inviare messaggio: "Carlo cannot eat black/white pepper (Hújiāo). However, Sichuan pepper (Huājiāo) is fine and he likes it. In Chinese: 我不吃胡椒 (I don't eat black/white pepper), 但是我可以吃花椒 (but I can eat Sichuan pepper)."</i></span>
-    </label>
-        </div>
-        
-
-        <div class="info-block">
-            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-            <ul class="timeline">
-                <li><span class="time-badge">07:30</span> 🚪 Uscita Hotel. Partenza con Driver privato (portare cambio post trekking e post massaggio).</li>
-                <li><span class="time-badge">09:30</span> 🚠 Arrivo a Mutianyu. Salita in Funivia chiusa (Torre 14).</li>
-                <li><span class="time-badge">10:00 - 13:00</span> 🧱 Trekking sezione Alta: Salita torre 13, camminata verso la Torre 20 (in base alla stanchezza decidiamo se fare fino alla 23).</li>
-                <li><span class="time-badge">13:00</span> 🛷 Discesa in Funivia.</li>
-                <li><span class="time-badge">13:30</span> 🚗 Rientro immediato a Pechino.</li>
-                <li><span class="time-badge">15:00 / 16:00</span> 💆 <b>Bivio Pomeridiano:</b><br>
-                    A) 16:00 Massaggio SPA vicino ad hotel (90 min) + doccia + snack.<br>
-                    B) 15:00 Rientro in Hotel, dormita 2 ore.</li>
-                <li><span class="time-badge">18:30</span> 🍲 Snack al buffet della SPA o cena leggera.</li>
-                <li><span class="time-badge">20:30</span> 🌃 <b>Passeggiata (Scelta in loco):</b><br>
-                    A) Destinazione DiDi: Huda Restaurant (Gui Jie, Ghost Street). 1,5 km di lanterne rosse, tempio del cibo notturno (famose le code per i gamberi piccanti di Huda).<br><a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/gHqxY6yZfxZ');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Huda Restaurant (Gui Street Head Office)</b></a><br>
-                    B) Qianmen & Dashilan: Lanterne, negozi storici, shopping (20 min DiDi).<br><a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/gENkB421j1yi');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Qianmen (Subway Station)</b></a><br>
-                    C) Sanlitun: Cyberpunk (15 min DiDi).<br>
-                    D) Wangfujing: Zero sforzo, a piedi dall'hotel.
-                </li>
-            </ul>
-        </div>
-
-
-
-        <div class="day-footer">
-            <div class="info-title">📝 Note di fine giornata</div>
-            <textarea class="note-area save-note" id="note-day-10-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-            <div class="day-nav-buttons">
-                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-            </div>
-        </div>
     </div>
-</div>
-<!-- FINE GIORNO 10 AGOSTO -->
+    <!-- ========================================== -->
+    <!-- FINE CONTENITORE: PECHINO                  -->
+    <!-- ========================================== -->
 
-
-
-<!-- GIORNO 11 AGOSTO -->
-<div id="day-11-ago" class="day-section">
-    <div class="day-card">
-        <div class="day-header">
-            <h2 class="day-title">Martedì, 11 Agosto</h2>
-            <span class="day-subtitle">Città Proibita & Hutong</span>
-        </div>
-        <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Storico / Moderato</span>
-
-
-        <!-- SEZIONE PRENOTAZIONI FATTE (STATO: OK) -->
-       <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
-    <div class="info-title" style="color: #27ae60;">✅ VERIFICA: GIÀ PRENOTATO PER OGGI</div>
-    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-        <li style="display: flex; align-items: center; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed rgba(0,0,0,0.05);">
-            <span>Tour Città Proibita</span>
-            <a href="https://www.viator.com/tours/Beijing/5-Hour-Ultimate-Discovery-of-Forbidden-City-Tour-in-Beijing/d321-26448P3" target="_blank" style="background-color: #3498db; color: white; padding: 4px 10px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-left: 10px;">📄 APRI</a>
-        </li>
-        <li style="display: flex; align-items: center; justify-content: space-between; padding: 5px 0;">
-            <span>Food Tour Hutong</span>
-            <a href="https://www.getyourguide.com/beijing-l186/beijing-hutong-culinary-walking-tour-with-15-tastings-t567838/" target="_blank" style="background-color: #3498db; color: white; padding: 4px 10px; border-radius: 4px; text-decoration: none; font-size: 11px; font-weight: bold; flex-shrink: 0; margin-left: 10px;">📄 APRI</a>
-        </li>
-    </ul>
-</div>
-
-
-
-        <!-- SEZIONE TASK (STATO: DA FARE) -->
-        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-            <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                <input type="checkbox" id="task-lama-7gg-prima" class="save-state">
-                <span><b>Prenotazione Tempio dei Lama:</b> Fare entro il 4 Agosto (7gg prima).</span>
-            </label>
-        </div>
-
-
-
-        <div class="info-block">
-            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-            <ul class="timeline">
-                <li><span class="time-badge">08:00</span> 🚪 Uscita Hotel (Stey Wangfujing). <b>NO BAG:</b> non portiamo borse così evitiamo la fila ai controlli.</li>
-                <li><span class="time-badge">08:30</span> 🚩 Meeting point: Hotel Kapok. Inizio Tour Città Proibita.<br>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/17vlWP0n6NR');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Hotel Kapok</b></a></li>
-                <li><span class="time-badge">13:00 - 13:45</span> ⛰️ Jingshan Park (Vista panoramica).</li>
-                <li><span class="time-badge">13:45</span> 🚕 <b>Logistica di Rientro:</b> Uscire dalla PORTA EST di Jingshan Park. Camminare 200m verso sud su Beiheyan Avenue (北河沿大街). Chiamare DiDi da qui (zona fuori dal blocco traffico della Porta Nord).</li>
-                <li><span class="time-badge">14:00 - 14:45</span> 💤 RIPOSO IN HOTEL (Essenziale per ricaricare le batterie).</li>
-                <li><span class="time-badge">14:45</span> 🚇 Uscita hotel e ingresso immediato in Metro Dengshikou (Linea 5, dir. Yonghegong).</li>
-                <li><span class="time-badge">15:10 - 16:30</span> 🙏 Ingresso Tempio dei Lama (Tornelli chiudono tassativamente alle 16:30!). <i>Piano B: Passeggiata in Wudaoying Hutong e Tempio di Confucio esterno.</i><br>
-                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/cW7S79wpbQh'');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Tempio dei Lama (South Gate)</b></a></li>
-                <li><span class="time-badge">16:30 - 17:30</span> 🚶 Passeggiata Guozijian Street (antica e solenne) e Wudaoying Hutong (giovane, hipster e ricca di boutique).</li>
-                <li><span class="time-badge">17:35</span> 🚇 Metro Yonghegong (Linea 5 - Dir. Tiantandongmen) ➔ Dongsi (Uscita B).<br>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/g6BxMy145dn');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Dongsi (Subway Station) Exit B</b></a></li>
-                <li><span class="time-badge">18:00 - 21:00</span> 🥟 <b>Food Tour Guidato negli Hutong.</b></li>
-                <li><span class="time-badge">21:30</span> 🌃 <b>Dopo Cena (Opzioni):</b><br>
-                    A) Qianmen Street (20 min DiDi): Architettura anni '20, tram storici e lanterne.<br><a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/gENkB421j1yi');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Qianmen (Subway Station)</b></a><br>
-                    B) Sanlitun Taikoo Li (25 min DiDi): Cuore della moda, maxischermi 3D (Store chiudono alle 22:00).
-                </li>
-            </ul>
-        </div>
-
-        <div class="info-block food-tips">
-            <div class="info-title">💡 COSA MANGIARE & TIPS (HUTONG E OLTRE)</div>
-            <p style="font-size: 14px; margin-bottom: 5px;"><b>Must del Food Tour:</b> Usate la guida per farvi tradurre i cartelli e chiedete esplicitamente:</p>
-            <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
-                <li><b>Jianbing (煎饼):</b> Crepe cinese croccante e salata, re dello street food.</li>
-                <li><b>Baozi (包子):</b> Soffici panini al vapore ripieni (senza peperoni).</li>
-                <li><b>Chuan'r (串儿):</b> Spiedini di agnello al cumino arrostiti sulla brace.</li>
-                <li><b>Da bere:</b> Birra Yanjing ghiacciata o Bingfeng (soda all'arancia vintage).</li>
-            </ul>
-            </div>
-
-        <div class="day-footer">
-            <div class="info-title">📝 Note di fine giornata</div>
-            <textarea class="note-area save-note" id="note-day-11-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-            <div class="day-nav-buttons">
-                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- FINE GIORNO 11 AGOSTO -->
-
-
-
-<!-- GIORNO 12 AGOSTO -->
-<div id="day-12-ago" class="day-section">
-    <div class="day-card">
-        <div class="day-header">
-            <h2 class="day-title">Mercoledì, 12 Agosto</h2>
-            <span class="day-subtitle">Tempio del Cielo & Palazzo d'Estate</span>
-        </div>
-        <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Parchi / Intenso</span>
-
-
-
-        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-            <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                <input type="checkbox" id="task-combo-12ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                <span>Acquistare biglietti Tempio del Cielo e Palazzo d'Estate.<br><i style="font-size: 12px; color: var(--text-muted);"><b>Through Ticket / Combo Ticket (联票 - Lian Piao)</b>: Fare entro il 5 Agosto (7gg prima).</i></span>
-            </label>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer;margin-bottom: 5px;">
-        <input type="checkbox" id="task-reminder-cici" class="save-state"style="margin-top: 3px; transform: scale(1.2);">
-        <span>Reminder a Cici per prenotazione (14 ago).<br><i style="font-size: 12px; color: var(--text-muted);">Inviare messaggio di conferma su WeChat prima della chiusura orari uffici.</i></span>
-    </label>
-        </div>
-
-        <div class="info-block">
-            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-            <ul class="timeline">
-                <li><span class="time-badge">08:30</span> 🚪 Uscita Hotel. Prendere Metro L5.</li>
-                <li><span class="time-badge">09:00 - 11:30</span> 🌳 <b>Tempio del Cielo</b> (Ingresso Porta Est). Prendere audioguida ai chioschi (100 RMB deposito).<br>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/idGilchgWf');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Tempio del Cielo (East Gate)</b></a> </li>
-                <li><span class="time-badge">11:45</span> 🚕 DiDi verso la zona dell'Hotel.</li>
-                <li><span class="time-badge">12:15 - 13:15</span> 🥟 <b>Pranzo:</b> Heyan Roubing (Beef Pie) o Grandma’s Home (Pollo).</li>
-                <li><span class="time-badge">13:15 - 14:15</span> 💤 <b>Riposino in Hotel</b> (1 ora piena).</li>
-                <li><span class="time-badge">14:15</span> 🚕 Partenza tassativa con DiDi verso il <b>Palazzo d'Estate</b> (Porta Est - Donggongmen).<br>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/6AEm4WG1h4fF');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Palazzo d'Estate (Porta Est - Donggongmen)</b></a> </li>
-                <li><span class="time-badge">19:45</span> 🚕 Uscita dalla Porta Nuova (Xin Gong Men). Chiamare DiDi per Houhai.<br>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/2rCCcAI91qa7V');" style="color: var(--accent-blue);text-decoration: none; font-weight: bold; margin-left: 5px;"><b>📍 Naviga verso Yinding Bridge (Il cuore dei laghi)</b></a> </li>
-                <li><span class="time-badge">20:30</span> 🍲 <b>Cena Houhai:</b> Ya'er Liji (Hot Pot tradizionale con vista laghi).</li>
-                <li><span class="time-badge">21:30</span> 🌃 Passeggiata digestiva lungo Shichahai o Yandai Xiejie.</li>
-            
-
-            </ul>
-        </div>
-
-        <div class="day-footer">
-            <div class="info-title">📝 Note di fine giornata</div>
-            <textarea class="note-area save-note" id="note-day-12-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-            <div class="day-nav-buttons">
-                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- FINE GIORNO 12 AGOSTO -->
-
-          
-
-            
-
-          
-
-        </div> </div>
-
+    <!-- ========================================== -->
+    <!-- INIZIO CONTENITORE: XI'AN                  -->
+    <!-- ========================================== -->
     <div id="xian-container" class="city-container">
         
         <div class="nav-level-2">
-            <button class="nav-btn-context active" onclick="showTab('xian-container', 'xian-programma', this)">📅 Programma</button>
-            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-ristoranti', this)">🍽️ Database Luoghi</button>
-            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-utility', this)">🚨 Utility</button>
-        </div>
-
-        <div id="xian-ristoranti" class="tab-content">
-            <div class="day-card" style="border-left-color: var(--food);">
-                <h2>🍽️ Database Ristoranti Xi'an</h2>
-                <div class="alert-todo">🔴 Database Xi'an vuoto. Fornire lista.</div>
-            </div>
-        </div>
-
-        <div id="xian-utility" class="tab-content">
-            <div class="driver-card">
-                <div class="info-title" style="justify-content: center; color: var(--primary);">🚕 HOTEL XI'AN</div>
-                <div class="driver-chinese">美豪丽致酒店</div>
-                <p>Mehood Lestie, Bell & Drum Tower South Gate</p>
-                <a href="javascript:void(0)" onclick="openRadar(34.2536, 108.9463, '餐饮')" class="radar-btn">📡 Cerca Cibo a 1km dall'Hotel</a>
-            </div>
+            <button class="nav-btn-context active" onclick="showTab('xian-container', 'xian-programma', this)">📅 Program</button>
+            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-luoghi', this)">📍 Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-guide', this)">📖 Guida</button>
+            <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-cibo', this)">🍽️ Cibo</button>
         </div>
 
         <div id="xian-programma" class="tab-content active">
-            <div class="nav-giorni" style="margin-top: 10px;">
-                <button class="nav-btn-context active" data-date="2026-08-13" onclick="showDay('xian-programma', 'day-13-ago', this)">13 Ago</button>
-            </div>
-
-
-<!-- GIORNO 13 AGOSTO -->
-<div id="day-13-ago" class="day-section">
-    <div class="day-card">
-        <div class="day-header">
-            <h2 class="day-title">Giovedì, 13 Agosto</h2>
-            <span class="day-subtitle">Trasferimento Xi'an & Mura al Tramonto</span>
-        </div>
-        <span class="weight-badge" style="background: #e8f5e9; color: #2ecc71;">🟢 Viaggio & Bici / Moderato</span>
-
-        <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
-            <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
-            <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                <input type="checkbox" id="task-laundry-13ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                <span><b>Lavanderia Hotel:</b> Consegnare i vestiti per fare il bucato di metà viaggio.</span>
-            </label>
-            
-    <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer;">
-        <input type="checkbox" id="task-shanghai-museum-13ago" class="save-state">
-        <span>Prenotare Museo di Shanghai (per il 21 ago).<br><i style="font-size: 12px; color: var(--text-muted);">Apertura slot alle ore 00:00 (mezzanotte locale) a 7 giorni esatti dalla visita. Richiede tempestività.</i></span>
-    </label>
-
-        </div>
-
-        <!-- HOTEL HUB XI'AN STILE PECHINO -->
-        <div class="info-block">
-            <div class="info-title">🏨 HOTEL XI'AN</div>
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/337190013.jpg?k=f64c1ec663c0cd72b9a1ec4b126588267253fa4a34bba46c592ed68231e3b610&o=" alt="Mehood Lestie Hotel" class="feature-img" style="max-height: 150px; width: 100%; object-fit: cover;">
-            <div class="data-grid" style="margin-bottom: 10px;">
-                <div class="data-item"><span class="data-label">Struttura</span><span class="data-value">Mehood Lestie (Bell & Drum Tower South Gate)</span></div>
-                <div class="data-item"><span class="data-label">Indirizzo Cinese</span><span class="data-value">美豪丽致酒店(西安钟鼓楼南门苑店)</span></div>
-            </div>
-            <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/8QpZbqC2eX');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Apri su Amap</a>
-        </div>
-
-        <div class="info-block">
-            <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
-            <ul class="timeline">
-                <li><span class="time-badge">08:15</span> 🚗 DiDi per Beijing West Station.</li>
-                <li><span class="time-badge">09:55 - 14:23</span> 🚄 <b>Treno Alta Velocità</b> per Xi'an North (西安北站).</li>
-                <li><span class="time-badge">14:45</span> 🚇 <b>Arrivo a Xi'an:</b> Seguire frecce METRO (地铁). Prendere LINEA 2 (Rossa) direzione SUD.</li>
-                <li><span class="time-badge">15:20</span> 🚏 Scendere a <b>Yongningmen (永宁门)</b> - Uscita A o D. L'hotel è a 5 minuti a piedi.</li>
-                <li><span class="time-badge">15:45</span> 🏨 Check-in e Relax. <i>(Consegnare vestiti in lavanderia)</i>.</li>
-                <li><span class="time-badge">17:45</span> 🚕 Chiamata DiDi dall'hotel con destinazione <b>Porta Ovest (Andingmen)</b>. Tragitto di ~15 minuti.</li>
-                <li><span class="time-badge">18:15 - 19:30</span> 🌅 <b>Mura al Tramonto:</b> Noleggio bici. Partenza dalla porta Ovest e arrivo alla Sud (3,5 km). <i>Ingresso tassativo entro le 18:30 (orario limite noleggio bici). Non fate tutti i 14km!</i></li>
-                <li><span class="time-badge">19:45</span> 🚕 Dalla Porta Sud prendere un DiDi (~15 minuti) verso la stazione Metro <b>Sajinqiao</b> (ingresso Nord del quartiere, meno turistico).</li>
-                <li><span class="time-badge">20:00 - 21:30</span> 🏮 <b>Cena Quartiere Musulmano (Huimin Jie):</b> Seguire il percorso a piedi: Sajinqiao ➔ Dapiyuan ➔ Xiyangshi ➔ Drum Tower.</li>
-                <li><span class="time-badge">21:45</span> 🌃 Passeggiata digestiva attorno a Torre della Campana e del Tamburo illuminate.</li>
-            </ul>
-        </div>
-
-        <div class="info-block food-tips">
-            <div class="info-title">💡 SELF-GUIDED FOOD TOUR (QUARTIERE MUSULMANO)</div>
-            <p style="font-size: 14px; margin-bottom: 5px;">Un mix culturale pazzesco. Il segreto è non fermarsi sulla via principale, ma infilarsi nei vicoli laterali (Sajinqiao o Dapiyuan). Cosa cercare visivamente:</p>
-            <ul style="margin: 0 0 15px 0; padding-left: 20px; font-size: 14px;">
-                <li><b>Spiedini di Salice Rosso (Hongliu Kao Rou):</b> Cerca il vero ramo di legno spesso e rossastro con grossi pezzi di carne al cumino.</li>
-                <li><b>Hamburger di Xi'an (Roujiamo):</b> Carne tritata sul momento su un ceppo di legno con la mannaia, infilata in un pane piatto appena sfornato.</li>
-                <li><b>Riso ai Datteri (Zenggao):</b> Enormi pentoloni fumanti. Sotto riso appiccicoso, sopra poltiglia marrone scuro (datteri).</li>
-                <li><b>Succo di Melograno:</b> Spremuti davanti a te con presse manuali in metallo a leva.</li>
-                <li><b>Frittelle di Cachi (Shizi Bing):</b> Dischi arancioni fritti in padelle basse. Dolci, caldi e morbidi.</li>
-            </ul>
-        </div>
-
-        <div class="day-footer">
-            <div class="info-title">📝 Note di fine giornata</div>
-            <textarea class="note-area save-note" id="note-day-13-ago" placeholder="Scrivi qui appunti, spese o variazioni sul programma..."></textarea>
-            <div class="day-nav-buttons">
-                <button class="day-nav-btn" onclick="navigateDay('prev')">← Precedente</button>
-                <button class="day-nav-btn" onclick="navigateDay('next')">Successivo →</button>
+            <div class="day-card" style="border-left-color: var(--primary);">
+                <h2>🗓️ Programma Xi'an</h2>
+                <p><i>Il programma giornaliero con orari e spostamenti per te e Carlo verrà inserito qui.</i></p>
+                <!-- INSERISCI QUI IL PROGRAMMA DI XI'AN -->
             </div>
         </div>
+
+        <div id="xian-luoghi" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--warning);">
+                <h2>📍 Luoghi Xi'an</h2>
+                <p><i>Link AMAP e mappe per Xi'an verranno inseriti qui.</i></p>
+                <!-- INSERISCI QUI I LUOGHI DI XI'AN -->
+            </div>
+        </div>
+
+        <div id="xian-guide" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--accent-blue);">
+                <h2>📖 Guide Storiche</h2>
+                <p><i>Le guide generate precedentemente (Esercito di Terracotta, Mura, Camel Bell, Musei, Panda di Qinling) andranno incollate qui.</i></p>
+                <!-- INCOLLA QUI IL CODICE DELLA GUIDA DI XI'AN -->
+            </div>
+        </div>
+
+        <div id="xian-cibo" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--food);">
+                <h2>🍽️ Ristoranti Xi'an</h2>
+                <p><i>Opzioni alimentari senza pepe per Xi'an verranno inserite qui.</i></p>
+                <!-- INSERISCI QUI I RISTORANTI E IL CIBO DI XI'AN -->
+            </div>
+        </div>
+
     </div>
-</div>
-<!-- FINE GIORNO 13 AGOSTO -->
+    <!-- ========================================== -->
+    <!-- FINE CONTENITORE: XI'AN                    -->
+    <!-- ========================================== -->
 
 
-
-         
-
-        </div> </div>
-    
-    <script>
-// 1. Salvataggio Note e Checkbox in LocalStorage
-document.addEventListener('DOMContentLoaded', () => {
-    // Ripristina e salva stato checkbox
-    document.querySelectorAll('.save-state').forEach(cb => {
-        cb.checked = localStorage.getItem(cb.id) === 'true';
-        cb.addEventListener('change', (e) => localStorage.setItem(e.target.id, e.target.checked));
-    });
-    
-    // Ripristina e salva testo delle note
-    document.querySelectorAll('.save-note').forEach(ta => {
-        ta.value = localStorage.getItem(ta.id) || '';
-        ta.addEventListener('input', (e) => localStorage.setItem(e.target.id, e.target.value));
-    });
-});
-
-// 2. Navigazione tramite Bottoni
-function navigateDay(direction) {
-    const activeCity = document.querySelector('.city-container.active');
-    const days = Array.from(activeCity.querySelectorAll('.nav-giorni .nav-btn-context'));
-    const activeIndex = days.findIndex(btn => btn.classList.contains('active'));
-    
-    if (direction === 'prev' && activeIndex > 0) days[activeIndex - 1].click();
-    if (direction === 'next' && activeIndex < days.length - 1) days[activeIndex + 1].click();
-    window.scrollTo({ top: 0, behavior: 'smooth' }); // Torna in cima al cambio giorno
-}
-
-// 3. Navigazione tramite Swipe (Touch su Mobile)
-let touchStartX = 0;
-let touchEndX = 0;
-
-document.addEventListener('touchstart', e => {
-    // Registra solo se il tocco avviene dentro una day-section attiva
-    if(e.target.closest('.day-section.active')) {
-        touchStartX = e.changedTouches[0].screenX;
-    }
-}, {passive: true});
-
-document.addEventListener('touchend', e => {
-    if(e.target.closest('.day-section.active')) {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }
-}, {passive: true});
-
-function handleSwipe() {
-    const threshold = 80; // Distanza minima per considerare il gesto uno swipe
-    if (touchEndX + threshold < touchStartX) navigateDay('next'); // Swipe verso sinistra
-    if (touchEndX - threshold > touchStartX) navigateDay('prev'); // Swipe verso destra
-}
-</script>
-
-<script>
-// Funzione per ordinare le guide in ordine alfabetico
-function ordinaGuideAlfabetico(idContenitore) {
-    const contenitore = document.getElementById(idContenitore);
-    if (!contenitore) return;
-
-    // Prendi tutte le schede dentro questo contenitore
-    const schede = Array.from(contenitore.querySelectorAll('details.guide-card'));
-
-    // Riordinale in base al testo del titolo
-    schede.sort((a, b) => {
-        // Prende il titolo, toglie le emoji e gli spazi extra per non sballare l'ordine
-        const titoloA = a.querySelector('summary').textContent.replace(/[^a-zA-ZÀ-ÿ0-9\s]/g, '').trim().toLowerCase();
-        const titoloB = b.querySelector('summary').textContent.replace(/[^a-zA-ZÀ-ÿ0-9\s]/g, '').trim().toLowerCase();
+    <!-- ========================================== -->
+    <!-- INIZIO CONTENITORE: ZHANGJIAJIE            -->
+    <!-- ========================================== -->
+    <div id="zhangjiajie-container" class="city-container">
         
-        return titoloA.localeCompare(titoloB);
-    });
+        <div class="nav-level-2">
+            <button class="nav-btn-context active" onclick="showTab('zhangjiajie-container', 'zhangjiajie-programma', this)">📅 Program</button>
+            <button class="nav-btn-context" onclick="showTab('zhangjiajie-container', 'zhangjiajie-luoghi', this)">📍 Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('zhangjiajie-container', 'zhangjiajie-guide', this)">📖 Guida</button>
+            <button class="nav-btn-context" onclick="showTab('zhangjiajie-container', 'zhangjiajie-cibo', this)">🍽️ Cibo</button>
+        </div>
 
-    // Reinserisce le schede nel contenitore nell'ordine corretto (automaticamente)
-    schede.forEach(scheda => contenitore.appendChild(scheda));
-}
+        <div id="zhangjiajie-programma" class="tab-content active">
+            <div class="day-card" style="border-left-color: var(--primary);">
+                <h2>🗓️ Programma Zhangjiajie</h2>
+                <p><i>L'itinerario del parco e i percorsi verranno inseriti qui.</i></p>
+                <!-- INSERISCI QUI IL PROGRAMMA DI ZHANGJIAJIE -->
+            </div>
+        </div>
 
-// Quando la pagina si carica, riordina in automatico la guida di Pechino
-window.addEventListener('DOMContentLoaded', () => {
-    ordinaGuideAlfabetico('pechino-guide');
-    // Quando faremo Xi'an e Shanghai, basterà aggiungere qui le loro due righe!
-});
-</script>
+        <div id="zhangjiajie-luoghi" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--warning);">
+                <h2>📍 Luoghi Zhangjiajie</h2>
+                <p><i>Ingressi del parco e punti di interesse verranno inseriti qui.</i></p>
+                <!-- INSERISCI QUI I LUOGHI DI ZHANGJIAJIE -->
+            </div>
+        </div>
 
+        <div id="zhangjiajie-guide" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--accent-blue);">
+                <h2>📖 Guide e Percorsi</h2>
+                <p><i>Le guide sui monti Avatar e la montagna Tianmen andranno inserite qui.</i></p>
+                <!-- INCOLLA QUI IL CODICE DELLA GUIDA DI ZHANGJIAJIE -->
+            </div>
+        </div>
+
+        <div id="zhangjiajie-cibo" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--food);">
+                <h2>🍽️ Ristoranti Zhangjiajie</h2>
+                <p><i>Opzioni ristoranti per Zhangjiajie andranno inserite qui.</i></p>
+                <!-- INSERISCI QUI I RISTORANTI DI ZHANGJIAJIE -->
+            </div>
+        </div>
+
+    </div>
+    <!-- ========================================== -->
+    <!-- FINE CONTENITORE: ZHANGJIAJIE              -->
+    <!-- ========================================== -->
+
+
+    <!-- ========================================== -->
+    <!-- INIZIO CONTENITORE: SHANGHAI               -->
+    <!-- ========================================== -->
+    <div id="shanghai-container" class="city-container">
+        
+        <div class="nav-level-2">
+            <button class="nav-btn-context active" onclick="showTab('shanghai-container', 'shanghai-programma', this)">📅 Program</button>
+            <button class="nav-btn-context" onclick="showTab('shanghai-container', 'shanghai-luoghi', this)">📍 Luoghi</button>
+            <button class="nav-btn-context" onclick="showTab('shanghai-container', 'shanghai-guide', this)">📖 Guida</button>
+            <button class="nav-btn-context" onclick="showTab('shanghai-container', 'shanghai-cibo', this)">🍽️ Cibo</button>
+        </div>
+
+        <div id="shanghai-programma" class="tab-content active">
+            <div class="day-card" style="border-left-color: var(--primary);">
+                <h2>🗓️ Programma Shanghai</h2>
+                <p><i>L'itinerario finale fino al volo di rientro del 24 Agosto andrà inserito qui.</i></p>
+                <!-- INSERISCI QUI IL PROGRAMMA DI SHANGHAI -->
+            </div>
+        </div>
+
+        <div id="shanghai-luoghi" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--warning);">
+                <h2>📍 Luoghi Shanghai</h2>
+                <p><i>Link AMAP e mappe per Shanghai verranno inseriti qui.</i></p>
+                <!-- INSERISCI QUI I LUOGHI DI SHANGHAI -->
+            </div>
+        </div>
+
+        <div id="shanghai-guide" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--accent-blue);">
+                <h2>📖 Guide Storiche e Quartieri</h2>
+                <p><i>Storia di Pudong, Concessione Francese, Bund, Yu Garden, ecc., andranno inserite qui.</i></p>
+                <!-- INCOLLA QUI IL CODICE DELLA GUIDA DI SHANGHAI -->
+            </div>
+        </div>
+
+        <div id="shanghai-cibo" class="tab-content">
+            <div class="day-card" style="border-left-color: var(--food);">
+                <h2>🍽️ Ristoranti Shanghai</h2>
+                <p><i>Opzioni ristoranti per Shanghai andranno inserite qui.</i></p>
+                <!-- INSERISCI QUI I RISTORANTI E IL CIBO DI SHANGHAI -->
+            </div>
+        </div>
+
+    </div>
+    <!-- ========================================== -->
+    <!-- FINE CONTENITORE: SHANGHAI                 -->
+    <!-- ========================================== -->
 
 </body>
 </html>
