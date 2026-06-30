@@ -934,19 +934,27 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
     </script>
 
 
-    <script>
-    async function loadData() {
-        try {
-            const response = await fetch('data.json');
-            const data = await response.json();
-            console.log("Dati caricati dal DB:", data);
-            // Qui inseriremo poi la logica per popolare le card
-        } catch (err) {
-            console.error("Errore caricamento database:", err);
-        }
-    }
-    loadData();
+    <div id="volo-info" style="border: 1px solid red; padding: 10px;">
+    In attesa dei dati...
+</div>
+
+<script>
+    fetch('data.json')
+    .then(response => {
+        if (!response.ok) throw new Error("File non trovato! Controlla il nome o il percorso.");
+        return response.json();
+    })
+    .then(data => {
+        const volo = data.viaggio_cina.zhangjiajie.volo;
+        document.getElementById('volo-info').innerText = 
+            "Volo: " + volo.tratta + " - Stato: " + volo.stato;
+    })
+    .catch(err => {
+        document.getElementById('volo-info').innerText = "Errore: " + err.message;
+        console.error(err);
+    });
 </script>
+
 
 </body>
 </html>
