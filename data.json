@@ -1,4 +1,8 @@
 {
+  "log_caricamenti": [
+    { "data": "2026-06-30", "evento": "Caricamento volo Xi'an - Zhangjiajie", "stato": "riuscito" },
+    { "data": "2026-06-30", "evento": "Caricamento tappe Xi'an (13-15 ago)", "stato": "riuscito" }
+  ],
   "viaggio_cina": {
     "zhangjiajie": {
       "volo": {
@@ -8,7 +12,9 @@
         "booking_no": "1688897361125494",
         "stato": "nuova prova di caricamento"
       }
+    },
+    "xi_an": {
+      "dettagli": "13-15 Agosto: Mura, Terracotta, Panda"
     }
   }
 }
-
