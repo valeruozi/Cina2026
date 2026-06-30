@@ -1,15 +1,14 @@
 {
   "viaggio_cina": {
-    "pechino": {},
-    "xian": {},
     "zhangjiajie": {
       "volo": {
         "tratta": "Xi'an - Zhangjiajie",
         "data": "2026-08-15",
-        "orario_nuovo": "20:35 - 21:55",
+        "orario": "20:35 - 21:55",
         "booking_no": "1688897361125494",
-        "stato": "da_verificare"
+        "stato": "nuova prova di caricamento"
       }
     }
   }
 }
+
