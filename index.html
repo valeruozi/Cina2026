@@ -721,33 +721,72 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
 
         
         <!-- ========================================== -->
-        <!-- INIZIO TAB: XI'AN - GUIDE                -->
+        <!-- INIZIO TAB: XI'AN - GUIDA                  -->
         <!-- ========================================== -->
         <div id="xian-guide" class="tab-content">
-            <div class="day-card">
-                <h2>📖 Guida Xi'an: Approfondimenti</h2>
+            <h3 style="margin-top: 10px; color: var(--accent-blue); border-bottom: 2px solid #eee; padding-bottom: 10px;">📚 Guida ai Luoghi di Xi'an</h3>
 
-                <h3>🏺 Esercito di Terracotta</h3>
-                <p>246 a.C. inizio lavori; 210 a.C. sepoltura. Scoperta nel 1974. Volti unici e colori originali perduti in 15 secondi. <strong>Da chiedere:</strong> Logistica 700k operai e gestione Fosse 2/3.</p>
+            <!-- SCHEDA: ESERCITO DI TERRACOTTA -->
+            <details class="guide-card" data-id="terracotta" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🏺 Esercito di Terracotta (Bingmayong)</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">⏳ Storia e Curiosità</h4>
+                    <p style="margin-bottom: 10px;">Iniziato nel 246 a.C. per Qin Shi Huang. Scoperto casualmente nel 1974. Originariamente colorato, il pigmento svanisce in 15 secondi all'aria. <strong>Da chiedere alla guida:</strong> Come gestirono la logistica di 700.000 operai? Che sensori usano per Fosse 2 e 3?</p>
+                </div>
+            </details>
 
-                <h3>🧱 Mura di Xi'an</h3>
-                <p>13.7 km di perimetro. Fondamenta epoca Tang, rivestimento mattoni epoca Ming (1370). Struttura in terra, calce e riso glutinoso.</p>
+            <!-- SCHEDA: MURA DI XI'AN -->
+            <details class="guide-card" data-id="mura-xian" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🧱 Mura di Xi'an</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p>Perimetro di 13.7 km. Fondamenta epoca Tang, rivestimento in mattoni dell'epoca Ming (1370). Struttura ingegneristica in terra pressata, calce e riso glutinoso, resistente come il cemento.</p>
+                </div>
+            </details>
 
-                <h3>🐫 Camel Bell Show</h3>
-                <p>Spettacolo del 2018 (Huaxia Cheng). Trama: Via della Seta Tang fino a Roma. Auditorium rotante a 360°, cascate, lupi reali e effetti vulcanici.</p>
+            <!-- SCHEDA: CAMEL BELL SHOW -->
+            <details class="guide-card" data-id="camel-bell" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🐫 The Legend of Camel Bells</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p>Produzione teatrale moderna del 2018. Narra il viaggio epico lungo la Via della Seta. Auditorium rotante a 360°, effetti scenici rivoluzionari (cascate, neve, lupi reali).</p>
+                </div>
+            </details>
 
-                <h3>🐼 Panda dei Monti Qinling</h3>
-                <p>Sottospecie distinta dal 2005, cranio più rotondo, pelo color seppia. Arrivo tassativo h 09:00 al centro Louguantai.</p>
+            <!-- SCHEDA: PANDA QINLING -->
+            <details class="guide-card" data-id="panda-qinling" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🐼 Panda dei Monti Qinling</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p>Sottospecie distinta dal 2005. Cranio piccolo e rotondo, pelo color seppia/marrone invece che nero. Arrivo tassativo entro le 09:00.</p>
+                </div>
+            </details>
 
-                <h3>🏛️ Bivio Musei: Storia vs Archeologia</h3>
-                <p><strong>A) History Museum:</strong> Sala Tang, ori, affreschi. <br>
-                <strong>B) Archaeology Museum (2022):</strong> Focus su tecniche di restauro, carro Zhou intatto, tombe estratte intere.</p>
-            </div>
+            <!-- SCHEDA: BIVIO MUSEI -->
+            <details class="guide-card" data-id="musei-xian" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                    <span>🏛️ Bivio Musei: Storia vs Archeologia</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p><strong>A) History Museum:</strong> Il classico, focus su ori e affreschi Tang.<br>
+                    <strong>B) Archaeology Museum (2022):</strong> Tecniche di estrazione, restauri 3D e tombe intere esposte.</p>
+                </div>
+            </details>
         </div>
+        <!-- ========================================== -->
+        <!-- FINE TAB: XI'AN - GUIDE                    -->
+        <!-- ========================================== -->
 
-        <!-- ========================================== -->
-        <!-- FINE TAB: XI'AN - GUIDE                -->
-        <!-- ========================================== -->
         
         
         <!-- ========================================== -->
