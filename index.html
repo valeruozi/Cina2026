@@ -468,24 +468,6 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
         <!-- ========================================== -->
         <div id="pechino-utility" class="tab-content">
 
-            <h3>Storico Caricamenti</h3>
-<ul id="log-list"></ul>
-
-<script>
-    fetch('data.json')
-    .then(response => response.json())
-    .then(data => {
-        const logList = document.getElementById('log-list');
-        // Pulisci la lista prima di aggiungere i dati
-        logList.innerHTML = '';
-        // Crea una riga per ogni evento nel log
-        data.log_caricamenti.forEach(item => {
-            let li = document.createElement('li');
-            li.innerText = `${item.data} - ${item.evento}: ${item.stato}`;
-            logList.appendChild(li);
-        });
-    });
-</script>
 
             
             <div class="driver-card" style="text-align: center;">
@@ -692,32 +674,51 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
         </div>
 
 
-        <!-- ========================================== -->
+                <!-- ========================================== -->
         <!-- INIZIO TAB: XI'AN - LUOGHI E CIBO          -->
         <!-- ========================================== -->
         <div id="xian-luoghi" class="tab-content">
-            <div class="day-card" style="border-left-color: var(--food);">
-                <h2>🍽️ Ristoranti Xi'an</h2>
-                <div class="alert-todo">⚠️ ATTENZIONE: Link Amap DA VERIFICARE e aggiungere. Manda messaggio tradotto per PEPE BIANCO!</div>
+            <div style="position: sticky; top: 0; background: var(--bg); padding: 10px 0; z-index: 100; border-bottom: 2px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;">
+                <a href="#xian-sez-hotel" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; background: var(--primary); color: white; border: none; font-weight: bold;">🏨 Hotel</a>
+                <a href="#xian-sez-arrivi" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🚏 Luoghi</a>
+                <a href="#xian-sez-ristoranti" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--food); color: var(--food);">🍽️ Ristoranti</a>
+                <a href="#xian-sez-cibo" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🦞 Cibo</a>
+            </div>
 
-                <div class="info-title" style="margin-top:15px;">🏮 QUARTIERE MUSULMANO (HALAL)</div>
-                <a href="javascript:void(0)" class="amap-btn">🥣 Lao Sun Jia (老孙家) - Storico per il Yangrou Paomo</a>
-                <div style="font-size: 12px; margin-top:2px; margin-bottom: 10px; margin-left: 10px;"><i>Nota: Zuppa di pane e montone. Attenzione al pepe bianco nel brodo!</i></div>
-                <a href="javascript:void(0)" class="amap-btn">🥟 Zhi Liang Guan Tang Jiao (志亮灌汤蒸饺)</a>
-                <div style="font-size: 12px; margin-top:2px; margin-bottom: 10px; margin-left: 10px;"><i>Nota: Famosissimi ravioli al vapore ripieni di brodo.</i></div>
-                <a href="javascript:void(0)" class="amap-btn">🥩 Ding Jia Xiao Su Rou (定家小酥肉)</a>
-                <div style="font-size: 12px; margin-top:2px; margin-bottom: 10px; margin-left: 10px;"><i>Nota: Stufato di manzo morbidissimo servito in ciotole.</i></div>
-                <a href="javascript:void(0)" class="amap-btn">🥙 Qin Yu Roujiamo (秦豫肉夹馍)</a>
-                <div style="font-size: 12px; margin-top:2px; margin-bottom: 10px; margin-left: 10px;"><i>Nota: Considerato tra i migliori hamburger cinesi di Xi'an.</i></div>
+            <div id="xian-sez-hotel" class="day-card" style="border-left-color: var(--accent-blue); scroll-margin-top: 70px;">
+                <h2>🏨 Hotel</h2>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/j5j8H7AQ2Hy');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Mehood Lestie (Xi'an)</a>
+            </div>
 
-                <div class="info-title" style="margin-top:20px;">🥢 FUORI DAL QUARTIERE MUSULMANO</div>
-                <a href="javascript:void(0)" class="amap-btn">🍜 Chang'an Da Pai Dang (长安大排档)</a>
-                <div style="font-size: 12px; margin-top:2px; margin-left: 10px;"><i>Nota: Cucina tipica Shaanxi in ambiente curato e scenografico (lanterne, spettacoli). Da cercare la sede più vicina all'hotel.</i></div>
+            <div id="xian-sez-arrivi" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
+                <h2>🚏 Luoghi dove arrivare</h2>
+                <div class="info-block">
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/39.8946, 116.3213');" class="amap-btn">📍 Xi'an North Station</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.3842, 109.2783');" class="amap-btn">📍 Esercito di Terracotta</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.3644, 109.0494');" class="amap-btn">📍 Teatro Camel Bells Show</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.2238, 108.9610');" class="amap-btn">📍 Piazza Nord Fontane</a>
+                </div>
+            </div>
+
+            <div id="xian-sez-ristoranti" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
+                <h2>🍽️ Ristoranti</h2>
+                <a href="javascript:void(0)" class="amap-btn">🥣 Lao Sun Jia (Yangrou Paomo)</a>
+                <a href="javascript:void(0)" class="amap-btn">🍜 Chang'an Da Pai Dang (Mall SEG)</a>
+            </div>
+
+            <div id="xian-sez-cibo" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
+                <h2>🦞 Cibo & Street Food</h2>
+                <div class="info-block">
+                    <p>• <b>Spiedini di Salice Rosso:</b> Carne alla brace su rami di legno.</p>
+                    <p>• <b>Roujiamo:</b> Hamburger di Xi'an (carne trita al momento).</p>
+                    <p>• <b>Zenggao:</b> Riso ai datteri (servito caldo dai barili).</p>
+                </div>
             </div>
         </div>
         <!-- ========================================== -->
         <!-- FINE TAB: XI'AN - LUOGHI E CIBO            -->
         <!-- ========================================== -->
+
 
         
         <!-- ========================================== -->
@@ -789,20 +790,43 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
 
         
         
-        <!-- ========================================== -->
+                <!-- ========================================== -->
         <!-- INIZIO TAB: XI'AN - UTILITY                -->
         <!-- ========================================== -->
         <div id="xian-utility" class="tab-content">
-            <div class="driver-card">
-                <div class="info-title" style="justify-content: center; color: var(--primary);">🚕 HOTEL XI'AN</div>
-                <div class="driver-chinese">美豪丽致酒店</div>
-                <p>Mehood Lestie, Bell & Drum Tower South Gate</p>
-                <a href="javascript:void(0)" onclick="openRadar(34.2536, 108.9463, '餐饮')" class="radar-btn">📡 Cerca Cibo a 1km dall'Hotel</a>
+            <div class="driver-card" style="text-align: center;">
+                <div class="info-title" style="color: var(--primary); margin-bottom: 10px;">🏨 HOTEL MEHOOD LESTIE (XI'AN)</div>
+                <div class="driver-chinese" style="font-size: 28px;">美豪丽致酒店<br><span style="font-size: 16px;">(西安钟鼓楼南门苑店)</span></div>
+                <p>Bell Tower & Drum Tower South Gate Branch</p>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/j5j8H7AQ2Hy');" class="amap-btn" style="border-color:var(--primary); color:var(--primary);">📍 Apri su Amap</a>
+            </div>
+        
+            
+            
+            <div class="day-card" style="border-left-color: #2ecc71;">
+                <div class="info-title" style="color: #27ae60;">📂 ARCHIVIO DOCUMENTI (DRIVE)</div>
+                <div class="data-grid">
+                    <a href="https://drive.google.com/file/d/1vynH9yzYnWk7_AruD_DWclH1JgYCJ4oT/view?usp=drivesdk" target="_blank" class="amap-btn">🛂 Passaporto Carlo</a>
+                    <a href="https://drive.google.com/file/d/10dr7rtdYP1_NU9-o29QJcmLfhOhBhnpI/view?usp=drivesdk" target="_blank" class="amap-btn">🛂 Passaporto Valentina</a>
+                    <a href="URL_DEL_TUO_DRIVE_QR_CODE" target="_blank" class="amap-btn">🎟️ QR Code Immigrazione Carlo</a>
+                    <a href="URL_DEL_TUO_DRIVE_QR_CODE" target="_blank" class="amap-btn">🎟️ QR Code Immigrazione Valentina</a>
+                </div>
+            </div>
+            
+            
+            <div class="day-card" style="border-left-color: var(--danger);">
+                <div class="info-title" style="color: var(--danger);">🚨 EMERGENZE XI'AN</div>
+                <div class="data-grid">
+                    <a href="tel:110" class="track-btn">🚔 Polizia (110)</a>
+                    <a href="tel:120" class="track-btn">🚑 Ambulanza (120)</a>
+                    <a href="tel:+862985327600" class="track-btn">🇮🇹 Consolato</a>
+                </div>
             </div>
         </div>
         <!-- ========================================== -->
         <!-- FINE TAB: XI'AN - UTILITY                  -->
         <!-- ========================================== -->
+
 
         <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 <!-- INIZIO AREA XI'AN - PROGRAMMA                                          -->
