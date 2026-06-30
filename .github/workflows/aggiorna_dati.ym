@@ -1,0 +1,25 @@
+name: Aggiornamento Database
+on:
+  workflow_dispatch:
+    inputs:
+      file_path:
+        description: 'Percorso del file da aggiornare'
+        required: true
+        default: 'data.json'
+      content:
+        description: 'Contenuto del file'
+        required: true
+
+jobs:
+  update-file:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Scrittura File
+        run: |
+          echo "${{ github.event.inputs.content }}" > ${{ github.event.inputs.file_path }}
+          git config user.name "Gemini Automator"
+          git config user.email "bot@github.com"
+          git add ${{ github.event.inputs.file_path }}
+          git commit -m "Aggiornamento dati da Gemini"
+          git push
