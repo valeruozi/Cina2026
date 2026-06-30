@@ -1,99 +1,173 @@
 {
   "log_caricamenti": [
-    {
-      "data": "2026-06-30",
-      "evento": "Reset completo dell'architettura e inserimento tappe Xi'an",
-      "stato": "riuscito"
-    }
+    { "data": "2026-06-30", "evento": "Integrazione Pechino e Xi'an unificata", "stato": "riuscito" }
   ],
-  "itinerario": [
-    {
-      "data": "13 ago",
-      "giorno": "gio",
-      "tappa": "Pechino ➔ Xi'an",
-      "hotel": "Mehood Lestie, Xi'An Bell And Drum Tower South Gate",
-      "costo_hotel": "63,25",
-      "note": "Lavanderia hotel per vestiti a metà viaggio",
-      "altri_costi": "90",
-      "programma": [
-        "🚗 08:15: DiDi per Beijing West Station.",
-        "🚄 09:55 - 14:23: Treno Alta Velocità per Xi'an North.",
-        "🚇 14:45: ARRIVO XI'AN: Seguire frecce METRO (地铁). Prendere LINEA 2 (Rossa) direzione SUD.",
-        "🚏 15:20: Scendere a Yongningmen (永宁门) - Uscita A o D. L'hotel Mehood Lestie è a 5 minutes a piedi.",
-        "🏨 15:45: Check-in e Relax.",
-        "🚕 17:45: Chiamata DiDi dall'hotel con destinazione Porta Ovest (Andingmen). Tragitto di circa 15 minuti.",
-        "🌅 18:15 - 19:30: MURA AL TRAMONTO (Noleggio bici. Percorso parziale, non fate tutti i 14 km!). Partenza dalla porta Ovest e arrivo alla Sud (3,5 km). Ingresso tassativo da Porta Ovest entro le 18:30 (orario limite per noleggio bici).",
-        "🏮 19:45: CENA QUARTIERE MUSULMANO (Huimin Jie). Dalla Porta Sud prendete un DiDi (circa 15 minuti) verso la stazione Metro di Sajinqiao (ingresso Nord del quartiere, meno turistico e più autentico). Seguire il percorso a piedi: Sajinqiao ➔ Dapiyuan ➔ Xiyangshi ➔ Drum Tower.",
-        "🌃 21:45: Passeggiata digestiva attorno a Torre della Campana e del Tamburo illuminate."
-      ],
-      "coordinate": {
-        "Beijing West Station": "北京西站 (39.8946, 116.3213)",
-        "Xi'an North Station": "西安北站 (34.3768, 108.9395)",
-        "Mehood Lestie": "美豪丽致酒店(西安钟鼓楼南门苑店) (34.2536, 108.9463)",
-        "Mura (Andingmen)": "西安城墙安定门 (34.2605, 108.9242)",
-        "Sajinqiao Metro": "洒金桥地铁站 (34.2690, 108.9317)"
-      },
-      "food_strategy": "La sera vi tufferete in un mix culturale pazzesco: facce cinesi, ma copricapi islamici, fumo di brace e profumo di cumino. Il segreto è non fermarsi sulla via principale (troppo turistica), ma infilarsi nei vicoli laterali (come Sajinqiao o Dapiyuan).\nSelf-Guided Food Tour (Cosa cercare visivamente):\n• 🍢 Spiedini di Salice Rosso (Hongliu Kao Rou): Cerca grandi griglie fumanti. Il segreto è lo stecco: non è metallico o sottile, ma un vero ramo di legno spesso e rossastro con grossi pezzi di carne sfrigolante.\n• 🍔 Hamburger di Xi'an (Roujiamo): Cerca un cuoco che trita carne su un grosso ceppo di legno circolare con una mannaia. La carne finisce in un panino bianco e piatto (il Mo) appena sfornato.\n• 🍯 Riso ai Datteri (Zenggao): Cerca enormi pentoloni fumanti o barili di legno. Sopra vedrai una poltiglia marrone scuro (marmellata di datteri), sotto il riso bianco appiccicoso. Te lo servono in vaschette di plastica.\n• 🥤 Succo di Melograno: Cerca carretti pieni di frutti spaccati e grandi presse manuali in metallo a leva. Il succo deve essere spremuto davanti a te, rosso rubino intenso.\n• 🥞 Frittelle di Cachi (Shizi Bing): Cerca padelle basse e unte con decine di dischi arancioni (grandi come un palmo) che friggono. Sono dolci, morbidi e caldi all'interno."
+  "viaggio_cina": {
+    "pechino": {
+      "giorni": [
+        {
+          "id": "day-8-ago",
+          "data_id": "2026-08-08",
+          "nav_label": "8 Ago",
+          "titolo": "Sabato, 8 Agosto",
+          "sottotitolo": "Torino ➔ Roma ➔ In Volo",
+          "badge": { "testo": "🟢 Viaggio / Soft", "stile": "" },
+          "verifiche": [
+            "Treni Italo Torino - Roma Termini",
+            "Volo Air China CA940 (Biglietti emessi)"
+          ],
+          "tasks": [
+            { "id": "task-leo-8ago", "testo": "Biglietti Leonardo Express (Roma Termini ➔ Fiumicino FCO)" },
+            { "id": "task-arrival-8ago", "testo": "Digital Arrival Card (WeChat/Alipay \"NIA 12367\")" },
+            { "id": "check-confirm-tower", "testo": "<b>h 18:00:</b> Prenotare Shanghai Tower per 23 ago (slot 15:30)." }
+          ],
+          "timeline": [
+            { "ora": "08:40", "testo": "Partenza Italo Treno 9923 da Torino Porta Susa." },
+            { "ora": "13:24", "testo": "Arrivo a Roma Termini." },
+            { "ora": "14:30", "testo": "Treno Leonardo Express per Fiumicino (FCO)." },
+            { "ora": "20:30", "testo": "Decollo Volo Air China (CA940) per Pechino (PEK)." }
+          ]
+        },
+        {
+          "id": "day-9-ago",
+          "data_id": "2026-08-09",
+          "nav_label": "9 Ago",
+          "titolo": "Domenica, 9 Agosto",
+          "sottotitolo": "Arrivo a Pechino & Anatra Laccata",
+          "badge": { "testo": "🟡 Jet-Lag / Moderato", "stile": "background: #fff3cd; color: #856404;" },
+          "tasks": [
+            { "id": "task-shaanxi-9ago", "testo": "<b>h 17:00:</b> Prenotare Shaanxi History Museum (per il 15 ago). Piano B: Archaeology Museum." }
+          ],
+          "timeline": [
+            { "ora": "12:40", "testo": "Atterraggio a Pechino (PEK) Terminal 3. Kiosk blu/gialli prima dell'immigrazione." },
+            { "ora": "DiDi", "testo": "Parcheggio P2, Livello B2." },
+            { "ora": "15:00", "testo": "Check-in Stey Wangfujing e Riposo." },
+            { "ora": "17:15", "testo": "🦆 TATTICA CODA: Cercare 四季民福 su WeChat, cliccare \"取号\" (Prendi numero)." },
+            { "ora": "19:45", "testo": "Cena Anatra Laccata presso Siji Minfu (Dengshikou)." },
+            { "ora": "21:15", "testo": "Passeggiata serale sulla Wangfujing Pedestrian Street." }
+          ]
+        },
+        {
+          "id": "day-10-ago",
+          "data_id": "2026-08-10",
+          "nav_label": "10 Ago",
+          "titolo": "Lunedì, 10 Agosto",
+          "sottotitolo": "Muraglia & Relax",
+          "badge": { "testo": "🔴 Trekking / Intenso", "stile": "background: #fdeced; color: #c0392b;" },
+          "tasks": [
+            { "id": "task-spa-10ago", "testo": "Prenotare SPA (Tramite Hotel per le 16:00)" },
+            { "id": "task-guide-pepe", "testo": "Ricordare guida Qing per allergia pepe." }
+          ],
+          "timeline": [
+            { "ora": "07:30", "testo": "🚪 Partenza Driver per Mutianyu." },
+            { "ora": "10:00 - 13:00", "testo": "🧱 Trekking (Torre 14 -> 20 -> Ritorno)." },
+            { "ora": "16:00", "testo": "💆 Massaggio SPA o riposo Hotel." },
+            { "ora": "20:30", "testo": "🌃 Cena da Huda (Ghost Street) o shopping Qianmen/Sanlitun." }
+          ]
+        },
+        {
+          "id": "day-11-ago",
+          "data_id": "2026-08-11",
+          "nav_label": "11 Ago",
+          "titolo": "Martedì, 11 Agosto",
+          "sottotitolo": "Città Proibita & Hutong",
+          "badge": { "testo": "🟡 Storico / Moderato", "stile": "background: #fff3cd; color: #856404;" },
+          "timeline": [
+            { "ora": "08:00", "testo": "🚪 Uscita Hotel (NO BORSE per controlli)." },
+            { "ora": "08:30", "testo": "🚩 Tour Città Proibita." },
+            { "ora": "13:00", "testo": "⛰️ Jingshan Park (Uscita Est per evitare blocco traffico)." },
+            { "ora": "14:00 - 14:45", "testo": "💤 Riposo in Hotel." },
+            { "ora": "15:10 - 16:30", "testo": "🙏 <b>Bivio Pomeridiano:</b><br>A) <b>Tempio dei Lama:</b> Se freschi e in orario.<br>B) <b>Torri Tamburo/Campana (Esterno):</b> Se stanchi o in ritardo. Ottimo centro visivo per gli Hutong." },
+            { "ora": "16:30", "testo": "🚶 Passeggiata in Wudaoying o Shichahai (a seconda del bivio scelto)." },
+            { "ora": "18:00 - 21:00", "testo": "🥟 Food Tour Guidato Hutong (Dongsi)." }
+          ]
+        },
+        {
+          "id": "day-12-ago",
+          "data_id": "2026-08-12",
+          "nav_label": "12 Ago",
+          "titolo": "Mercoledì, 12 Agosto",
+          "sottotitolo": "Tempio del Cielo & Palazzo d'Estate",
+          "badge": { "testo": "🔴 Parchi / Intenso", "stile": "background: #fdeced; color: #c0392b;" },
+          "timeline": [
+            { "ora": "09:00", "testo": "🌳 Tempio del Cielo (Porta Est)." },
+            { "ora": "12:15", "testo": "🥟 Pranzo zona APM (Grandma's, Din Tai Fung o Beijing Pie)." },
+            { "ora": "13:15", "testo": "💤 Riposo in Hotel." },
+            { "ora": "14:15", "testo": "🚕 DiDi per Palazzo d'Estate (Porta Est)." },
+            { "ora": "19:45", "testo": "🚕 DiDi per Laghi Shichahai (Yinding Bridge)." },
+            { "ora": "20:30", "testo": "🍲 <b>Cena Elegante e Relax:</b> Qing Yun Lou (Vista lago, cucina Shandong delicata, senza pepe. Fare chiamare dall'Hotel)." }
+          ]
+        }
+      ]
     },
-    {
-      "data": "14 ago",
-      "giorno": "ven",
-      "tappa": "Xi'an",
-      "hotel": "Mehood Lestie, Xi'An Bell And Drum Tower South Gate [DA VERIFICARE]",
-      "costo_hotel": "63,25",
-      "note": "PRENOTATO Cici - PRENOTATO Camel Bells Show (Slot 15:00 su Civitatis).",
-      "altri_costi": "240",
-      "programma": [
-        "🚕 07:50: Uscita Hotel e chiamata DiDi verso Lintong.",
-        "🚶 08:45: Arrivo parcheggio principale Lintong. Camminata verso piazza.",
-        "🗿 09:00 - 11:30: Incontro con Cici ai cancelli. Inizio visita guidata privata all'Esercito di Terracotta (Fosse 3, 2, 1 in senso inverso per schivare i pullman). Tour Esercito di Terracotta (Tour di gruppo 100€, o Tour costoso 150€, o Cici 70€)",
-        "🍔 11:45 - 13:30: Pranzo in zona pedonale a Lintong (San Qin Set o consigli di Cici).",
-        "🚕 13:30: DiDi per Huaxia Cultural Tourism Resort (circa 30 min).",
-        "🐫 15:00 - 16:15: SPETTACOLO: The Legend of Camel Bells (Arrivo al teatro previsto per le 14:25 per controlli e ingresso).",
-        "🚕 16:30: DiDi verso l'hotel in centro.",
-        "💤 17:15 - 19:15: RIPOSO HOTEL / DOCCIA.",
-        "🚗 19:15: DiDi per Joy City Mall.",
-        "🏮 19:30 - 20:15: Passeggiata su Grand Tang Mall (Verso sud). Cena itinerante: Calamari alla piastra, dolci all'Osmanto, Tè alla frutta.",
-        "📸 20:15-20:40: Rientro verso Joy City e salita alla Terrazza (4° piano) per foto panoramica alla Pagoda illuminata.",
-        "⛲ 20:40 - 21:30: Spostamento rapido alla Piazza Nord per lo spettacolo delle Fontane Musicali (Inizio previsto ore 21:00).",
-        "🚕 21:45: DiDi di rientro per Hotel."
-      ],
-      "coordinate": {
-        "Terracotta": "秦始皇兵马俑博物馆 (34.3842, 109.2783)",
-        "Teatro Camel Bells": "华夏文旅大剧院 (34.3644, 109.0494)",
-        "Joy City Mall": "大悦城 (34.2173, 108.9592)",
-        "Piazza Nord Fontane": "大雁塔北广场 (34.2238, 108.9610)"
-      },
-      "food_strategy": "• Pranzo (Zona Guerrieri): Punta al \"San Qin Set\" [Roujiamo (Panino tondo bianco con carne tritata su tagliere di legno), Liangpi (Noodle bianchi traslucidi freddi con cetrioli), Bingfeng (Lattina/bottiglia arancione con logo montagna)]. Bevi un Succo di Melograno fresco (Spremitrici manuali di metallo con succo rosso rubino).\n• Cena (Grand Tang Mall): Itinerante. Calamari alla piastra (Spiedini piatti schiacciati con pesi su piastra rovente), Dolce all'Osmanto (Piccoli mattoncini gialli gelatinosi su stecco) e il Gelato della Pagoda (Gelato confezionato con la forma esatta in 3D della pagoda). Drink: HeyTea o Chagee (Negozi dal design moderno/lussuoso nel Joy City)."
-    },
-    {
-      "data": "15 ago",
-      "giorno": "sab",
-      "tappa": "Xi'an ➔ ZJJ Città",
-      "hotel": "Jinjiang Metropolo Hotel at the Cableway Station of Tianmen Mountain Scenic Area",
-      "costo_hotel": "55",
-      "note": "Pagato Driver (10h + 1h extra). Prenotati Biglietti Panda. Prenotare Museo History o Archaeology (9 ago) su WeChat.",
-      "altri_costi": "165",
-      "programma": [
-        "🧳 07:30: Check-out. Carico bagagli su Driver Privato.",
-        "🐼 09:00 - 11:30: Panda Qinling (Zhouzhi). Arrivo tassativo entro le 09:00.",
-        "🏛️ 11:30 - 14:30: OPZIONE MUSEO. Piano A: Shaanxi History Museum (Solo se si hanno i biglietti - 6gg prima). Piano B (Consigliato): Archaeology Museum (di strada dai panda, moderno e meno affollato).",
-        "🚗 14:30 - 15:00: Spostamento in auto dal museo scelto verso il Mall SEG.",
-        "🍲 15:00 - 17:15: PRANZO TARDIVO al ristorante Chang'an Da Pai Dang dentro il Mall SEG, relax con aria condizionata e acquisto di cibo da asporto per la cena (il cibo all'aeroporto di Xi'an è di scarsa qualità).",
-        "🚗 17:15: Partenza per Aeroporto XIY (T3).",
-        "🍔 18:15: Aeroporto (Terminal 3)",
-        "🛫 20:20: Volo diretto per Zhangjiajie.",
-        "🛬 21:45: Atterraggio a ZJJ.",
-        "🚕 23:00: Transfer in DiDi/Taxi verso l'hotel a ZJJ (arrivo previsto in hotel 22:30)"
-      ],
-      "coordinate": {
-        "Panda Qinling": "陕西省珍稀野生动物救护基地 (34.0700, 108.3183)",
-        "Archaeology Museum": "陕西考古博物馆 (34.1158, 108.9109)",
-        "Mall SEG": "赛格国际购物中心 (34.2223, 108.9468)",
-        "Aeroporto XIY T3": "西安咸阳 international airport T3 (34.4429, 108.7610)",
-        "Jinjiang Metropolo ZJJ": "锦江都城酒店(张家界天门山索道店) (29.1235, 110.4797)"
-      },
-      "food_strategy": "• Tè a Xi'an: Esperienza meno formale di Pechino, più legata alla vita quotidiana. Portatevi un thermos se volete \"copiare\" i locali.\n• Ravioli (Defa Chang): Chiedere esplicitamente il menu senza pepe (Bu La, no pepper).\n• Panda: Tassativo arrivare entro le 09:00, dopo dormono e non li vedete fuori.\n• Agenzie Contattate per Driver (15/08): Delight Car (via WeChat, 142€), Tang Dynasty Travel (269€), Trips to Shanghai (180€)."
+    "xian": {
+      "giorni": [
+        {
+          "id": "day-13-ago",
+          "data_id": "2026-08-13",
+          "nav_label": "13 Ago",
+          "titolo": "Giovedì, 13 Agosto",
+          "sottotitolo": "Trasferimento Xi'an & Mura al Tramonto",
+          "badge": { "testo": "🟢 Viaggio & Bici / Moderato", "stile": "background: #e8f5e9; color: #2ecc71;" },
+          "tasks": [
+            { "id": "task-laundry-13ago", "testo": "<b>Lavanderia Hotel:</b> Consegnare i vestiti per fare il bucato di metà viaggio." },
+            { "id": "task-shanghai-museum-13ago", "testo": "Prenotare Museo di Shanghai per il 21 ago a mezzanotte." }
+          ],
+          "timeline": [
+            { "ora": "08:15", "testo": "🚗 DiDi per Beijing West Station." },
+            { "ora": "09:55 - 14:23", "testo": "🚄 Treno Alta Velocità per Xi'an North." },
+            { "ora": "14:45", "testo": "🚇 Arrivo a Xi'an (Linea 2 verso Sud)." },
+            { "ora": "15:45", "testo": "🏨 Check-in Hotel e Relax (Bucato)." },
+            { "ora": "18:15 - 19:30", "testo": "🌅 Mura al Tramonto in Bici. (Ingresso entro 18:30 alla Porta Ovest)." },
+            { "ora": "20:00 - 21:30", "testo": "🏮 Cena Quartiere Musulmano (Huimin Jie) - Street Food/Ristoranti locali." }
+          ]
+        },
+        {
+          "id": "day-14-ago",
+          "data_id": "2026-08-14",
+          "nav_label": "14 Ago",
+          "titolo": "Venerdì, 14 Agosto",
+          "sottotitolo": "Terracotta & Camel Bells",
+          "badge": { "testo": "🔴 Intenso", "stile": "background: #fdeced; color: #c0392b;" },
+          "verifiche": [
+            "PRENOTATO Cici (Guida Privata)",
+            "PRENOTATO Camel Bells Show (Slot 15:00)"
+          ],
+          "timeline": [
+            { "ora": "07:50", "testo": "🚕 Uscita Hotel e chiamata DiDi verso Lintong." },
+            { "ora": "09:00 - 11:30", "testo": "🗿 Incontro con Cici ai cancelli. Inizio visita guidata privata all'Esercito di Terracotta." },
+            { "ora": "11:45 - 13:30", "testo": "🍔 Pranzo in zona pedonale a Lintong (San Qin Set o consigli di Cici)." },
+            { "ora": "13:30", "testo": "🚕 DiDi per Huaxia Cultural Tourism Resort (circa 30 min)." },
+            { "ora": "15:00 - 16:15", "testo": "🐫 SPETTACOLO: The Legend of Camel Bells." },
+            { "ora": "17:15 - 19:15", "testo": "💤 RIPOSO HOTEL / DOCCIA." },
+            { "ora": "19:15", "testo": "🚗 DiDi per Joy City Mall." },
+            { "ora": "19:30 - 20:15", "testo": "🏮 Passeggiata su Grand Tang Mall (Verso sud). Cena itinerante." },
+            { "ora": "20:40 - 21:30", "testo": "⛲ Spostamento rapido alla Piazza Nord per lo spettacolo delle Fontane Musicali (Inizio ore 21:00)." }
+          ]
+        },
+        {
+          "id": "day-15-ago",
+          "data_id": "2026-08-15",
+          "nav_label": "15 Ago",
+          "titolo": "Sabato, 15 Agosto",
+          "sottotitolo": "Panda & Volo Zhangjiajie",
+          "badge": { "testo": "🟡 Moderato", "stile": "background: #fff3cd; color: #856404;" },
+          "verifiche": [
+            "Pagato Driver (10h + 1h extra)",
+            "Biglietti Panda",
+            "Volo Xi'an - Zhangjiajie (Orario 20:35 - 21:55)"
+          ],
+          "timeline": [
+            { "ora": "07:30", "testo": "🧳 Check-out. Carico bagagli su Driver Privato." },
+            { "ora": "09:00 - 11:30", "testo": "🐼 Panda Qinling (Zhouzhi). Arrivo tassativo entro le 09:00." },
+            { "ora": "11:30 - 14:30", "testo": "🏛️ OPZIONE MUSEO: Shaanxi History Museum (se presi biglietti) oppure Archaeology Museum." },
+            { "ora": "15:00 - 17:15", "testo": "🍲 PRANZO TARDIVO al ristorante Chang'an Da Pai Dang dentro il Mall SEG." },
+            { "ora": "17:15", "testo": "🚗 Partenza per Aeroporto XIY (T3)." },
+            { "ora": "20:35 - 21:55", "testo": "🛫 Volo diretto per Zhangjiajie (Atterraggio a ZJJ)." },
+            { "ora": "23:00", "testo": "🚕 Transfer in DiDi/Taxi verso l'hotel a ZJJ (arrivo previsto 22:30)." }
+          ]
+        }
+      ]
     }
-  ]
+  }
 }
