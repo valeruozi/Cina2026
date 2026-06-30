@@ -182,7 +182,7 @@
         
         <div class="nav-level-2">
             <button class="nav-btn-context active" onclick="showTab('pechino-container', 'pechino-programma', this)">📅 Program</button>
-            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-luoghi', this)">📍 Luoghi & Cibo</button>
+            <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-luoghi', this)">📍 Luoghi</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-guide', this)">📖 Guida</button>
             <button class="nav-btn-context" onclick="showTab('pechino-container', 'pechino-utility', this)">🚨 Utility</button>
         </div>
@@ -193,9 +193,9 @@
         <div id="pechino-luoghi" class="tab-content">
             <div style="position: sticky; top: 0; background: var(--bg); padding: 10px 0; z-index: 100; border-bottom: 2px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;">
                 <a href="#sez-hotel" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; background: var(--primary); color: white; border: none; font-weight: bold;">🏨 Hotel</a>
-                <a href="#sez-arrivi" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🚏 Arrivi</a>
-                <a href="#sez-visite" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">📍 Visite</a>
+                <a href="#sez-arrivi" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🚏 Luoghi</a>
                 <a href="#sez-ristoranti" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--food); color: var(--food);">🍽️ Ristoranti</a>
+                <a href="#sez-cibo" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🦞 Cibo</a>
             </div>
 
             <div id="sez-hotel" class="day-card" style="border-left-color: var(--accent-blue); scroll-margin-top: 70px;">
@@ -219,34 +219,6 @@
                 </div>
             </div>
 
-            <div id="sez-visite" class="day-card" style="border-left-color: var(--warning); scroll-margin-top: 70px;">
-                <h2>📍 Luoghi da Visitare</h2>
-                <div class="info-block">
-                    <div class="info-title">🗺️ CON LINK AMAP ATTIVI</div>
-                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/dV2s9cjbVZ');" class="amap-btn">📍 Wangfujing Pedestrian Street</a>
-                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/i4wKeieidT3');" class="amap-btn">📍 Jingshan Park</a>
-                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/199wULUf0Od');" class="amap-btn">📍 Palazzo d'Estate (Donggongmen)</a>
-                </div>
-                <div class="info-block">
-                    <div class="info-title">📌 IN PIANO (DA ESPLORARE)</div>
-                    <ul class="timeline">
-                        <li><b>Wudaoying Hutong:</b> Shopping hip, caffè e Tè.</li>
-                        <li><b>Nanluoguxiang:</b> Vicolo turistico e commerciale.</li>
-                        <li><b>Yandai Xiejie:</b> Vicolo antico della Pipa.</li>
-                        <li><b>Torre Tamburo/Campana:</b> Piazza storica e tetti grigi.</li>
-                        <li><b>Laghi Shichahai:</b> Luci, musica live, barche.</li>
-                    </ul>
-                </div>
-                <div class="info-block">
-                    <div class="info-title">💡 JOLLY E PIANI B</div>
-                    <ul class="timeline">
-                        <li><b>Qiwei Guofeng Fushi:</b> Boutique abiti tradizionali.</li>
-                        <li><b>NAMOC (Arte):</b> Arte moderna, relax (10 min a piedi).</li>
-                        <li><b>National/Capital Museum:</b> Storia (Al coperto).</li>
-                        <li><b>798 Art District:</b> Arte industriale e cyberpunk.</li>
-                    </ul>
-                </div>
-            </div>
 
             <div id="sez-ristoranti" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
                 <h2>🍽️ Ristoranti</h2>
@@ -288,6 +260,72 @@
                     <div class="data-item"><span class="data-label">Hu Guo Si Xiaochi | 护国寺小吃</span><span class="data-value">Dolci</span></div>
                 </div>
             </div>
+            
+            <!-- ========================================== -->
+<!-- INIZIO 5. SEZIONE CIBO VISUALE (sez-cibo)  -->
+<!-- ========================================== -->
+<div id="sez-cibo" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
+    <h2>📸 Piatti</h2>
+    
+    <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+        <img src="https://lh3.googleusercontent.com/d/1xIfcbGQPZpsY1cv28WgQZDsaxEYidN02" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <div>
+            <div style="font-weight: bold; color: var(--food);">Anatra Laccata (北京烤鸭)</div>
+            <div style="font-size: 13px;">Rituale: intingi la pelle nello zucchero. Avvolgi la carne nella crêpe con cetriolo e porro.</div>
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Siji Minfu</div>
+        </div>
+    </div>
+
+    <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+        <img src="https://redhousespice.com/wp-content/uploads/2024/05/zha-jiang-mian-fried-sauce-noodles-3.jpg" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <div>
+            <div style="font-weight: bold; color: var(--food);">Zhajiangmian (炸酱面)</div>
+            <div style="font-size: 13px;">Noodles con salsa di soia fermentata e carne macinata. Mescolare energicamente!</div>
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: No.69 Fang Zhuan Chang</div>
+        </div>
+    </div>
+
+    <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+        <img src="https://lh3.googleusercontent.com/d/1dgDyC0w5ijF3oQ_X2w0_nbzVNNk6geQJ" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <div>
+            <div style="font-weight: bold; color: var(--food);">Mending Roubing (门钉肉饼)</div>
+            <div style="font-size: 13px;">Tortino di carne croccante fuori e succoso dentro. Attenzione al brodo interno che scotta!</div>
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Baodu Feng</div>
+        </div>
+    </div>
+
+    <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+        <img src="https://lh3.googleusercontent.com/d/1uWW4HknoBY0pi0EX1Zbd1zyD1wH53zCN" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <div>
+            <div style="font-weight: bold; color: var(--food);">Chuan'r (串儿)</div>
+            <div style="font-size: 13px;">Spiedini di agnello tenerissimi, speziati con cumino e peperoncino.</div>
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Street Food / Hutong</div>
+        </div>
+    </div>
+
+    <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+        <img src="https://lh3.googleusercontent.com/d/1RBrLDKPsypCn1JXB8knM3FAkoGJu0kOe" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <div>
+            <div style="font-weight: bold; color: var(--food);">Dolci (Lü Da Gun / Zha Gao)</div>
+            <div style="font-size: 13px;">Riso glutinoso, fagioli azuki. Zha Gao è lo gnocco fritto dolce (bomba calorica).</div>
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Hu Guo Si Xiaochi</div>
+        </div>
+    </div>
+
+    <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start;">
+        <img src="https://lh3.googleusercontent.com/d/1Lwp-3tdrbHFfppvUIvstMd2s4s9Lm0KF" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+        <div>
+            <div style="font-weight: bold; color: var(--food);">Shao Mai (烧麦)</div>
+            <div style="font-size: 13px;">Ravioli aperti in cima a forma di melograno. Intingi nell'aceto scuro.</div>
+            <div style="font-size: 12px; font-weight: bold; margin-top: 5px;">📍 Target: Liu Ma Ma Dumplings</div>
+        </div>
+    </div>
+</div>
+<!-- ========================================== -->
+<!-- FINE 5. SEZIONE CIBO VISUALE (sez-cibo)    -->
+<!-- ==========================
+            
+            
         </div>
         <!-- ========================================== -->
         <!-- FINE TAB: PECHINO - LUOGHI E CIBO          -->
