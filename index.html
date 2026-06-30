@@ -932,5 +932,21 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
     }
     window.addEventListener('DOMContentLoaded', () => { ordinaGuideAlfabetico('pechino-guide'); });
     </script>
+
+
+    <script>
+    async function loadData() {
+        try {
+            const response = await fetch('data.json');
+            const data = await response.json();
+            console.log("Dati caricati dal DB:", data);
+            // Qui inseriremo poi la logica per popolare le card
+        } catch (err) {
+            console.error("Errore caricamento database:", err);
+        }
+    }
+    loadData();
+</script>
+
 </body>
 </html>
