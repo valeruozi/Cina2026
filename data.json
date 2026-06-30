@@ -18,3 +18,16 @@
     }
   }
 }
+{
+  "log_caricamenti": [
+    { "data": "2026-06-30", "evento": "Caricamento completo Xi'an (13-15 ago)", "stato": "riuscito" }
+  ],
+  "viaggio_cina": {
+    "xi_an": {
+      "13_ago": "Treno per Xi'an, Mura, Quartiere Musulmano",
+      "14_ago": "Terracotta, Camel Bells, Grand Tang Mall",
+      "15_ago": "Panda Qinling, Museo Archeologico, Volo per ZJJ"
+    }
+  }
+}
+
