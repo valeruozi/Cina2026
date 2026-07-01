@@ -690,7 +690,12 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
     <!-- %%%%%%%%%%%%%%%%%%%%%%    INIZIO AREA XI'AN  %%%%%%%%%%%%%%%%%%%%%%%%% -->
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-        <div id="xian-container" class="city-container">
+       
+        <!-- ========================================== -->
+        <!-- INIZIO TAB: XI'AN - LUOGHI                 -->
+        <!-- ========================================== -->
+        
+            <div id="xian-container" class="city-container">
         
         <div class="nav-level-2">
             <button class="nav-btn-context active" onclick="showTab('xian-container', 'xian-programma', this)">📅 Program</button>
@@ -698,7 +703,6 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
             <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-guide', this)">📖 Guida</button>
             <button class="nav-btn-context" onclick="showTab('xian-container', 'xian-utility', this)">🚨 Utility</button>
         </div>
-
         <div id="xian-luoghi" class="tab-content">
             
             <div style="position: sticky; top: 0; background: var(--bg); padding: 10px 0; z-index: 100; border-bottom: 2px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;">
@@ -707,35 +711,33 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
                 <a href="#xian-sez-ristoranti" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--food); color: var(--food);">🍽️ Ristoranti</a>
                 <a href="#xian-sez-cibo" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🦞 Cibo</a>
             </div>
-
             <div id="xian-sez-hotel" class="day-card" style="border-left-color: var(--accent-blue); scroll-margin-top: 70px;">
                 <h2>🏨 Hotel</h2>
                 <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/j5j8H7AQ2Hy');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Mehood Lestie (Xi'an)</a>
                 <p style="font-size: 13px; color: var(--text-muted); margin-top: 5px;">Bell Tower & Drum Tower South Gate Branch</p>
             </div>
-
             <div id="xian-sez-arrivi" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
                 <h2>🚏 Luoghi da visitare</h2>
                 
-                <div class="info-title" style="margin-top:15px;">✅ PRIORITÀ (CONFERMATI)</div>
+                <div class="info-title" style="margin-top:15px;">✅ PRIORITÀ (CON LINK AMAP COMPLETI)</div>
                 <div class="data-grid">
                     <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.3842,109.2783');" class="amap-btn">🗿 Esercito di Terracotta</a>
                     <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.2605,108.9242');" class="amap-btn">🧱 Mura Antiche (Ovest)</a>
                     <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.2690,108.9317');" class="amap-btn">🍢 Quartiere Musulmano</a>
                     <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.3644,109.0494');" class="amap-btn">🎭 Camel Bells Show</a>
                     <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34.2173,108.9592');" class="amap-btn">🌃 Grand Tang Mall</a>
-                    <a href="javascript:void(0)" class="amap-btn">🥁 Bell & Drum Towers</a>
                 </div>
 
-                <div class="info-title" style="margin-top:15px;">🛡️ PIANO B (METEO/TEMPO)</div>
+                <div class="info-title" style="margin-top:15px; color: var(--warning);">⚠️ DA LINKARE SUCCESSIVAMENTE SU AMAP</div>
                 <div class="data-grid">
-                    <a href="javascript:void(0)" class="amap-btn">🏛️ Archaeology Museum</a>
-                    <a href="javascript:void(0)" class="amap-btn">🏛️ Shaanxi History Museum</a>
-                    <a href="javascript:void(0)" class="amap-btn">⛩️ Small Wild Goose Pagoda</a>
-                    <a href="javascript:void(0)" class="amap-btn">🕌 Grande Moschea</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🏛️ Archaeology Museum</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🏛️ Shaanxi History Museum</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">⛩️ Small Wild Goose Pagoda</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🕌 Grande Moschea</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🥁 Bell & Drum Towers</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🛍️ MixC Mall</a>
                 </div>
             </div>
-
             <div id="xian-sez-ristoranti" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
                 <h2>🍽️ Ristoranti Xi'an</h2>
                 
@@ -758,247 +760,279 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
                     <a href="javascript:void(0)" class="amap-btn">🍜 Chang'an Da Pai Dang</a>
                 </div>
             </div>
-
             <div id="xian-sez-cibo" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
-                <h2>🍢 Street Food Visual Guide</h2>
+                <h2>🦞 Street Food (Guida Visuale)</h2>
                 
-                <div class="alert-todo" style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); color: var(--danger); margin-bottom: 15px;">
-                    ⚠️ SALVAVITA: Mostra sempre al cameriere:<br>
-                    <span style="font-size: 20px; font-weight: bold; display:block; margin-top:5px;">不要香菜 (Bùyào xiāngcài)</span> - "Niente coriandolo"
+                <div class="alert-todo" style="background: rgba(231, 76, 60, 0.1); border-left: 4px solid var(--danger); color: var(--danger); margin-bottom: 20px;">
+                    ⚠️ SALVAVITA: Mostra sempre al cameriere: <span style="font-size: 18px; font-weight: bold;">不要香菜 (Bùyào xiāngcài)</span> - "Niente coriandolo"
                 </div>
 
-                <div class="info-title" style="color: var(--primary);">📍 PERCORSO: SAJINQIAO ➔ DAPIYUAN ➔ XIYANGSHI</div>
-
-                <div class="data-grid">
-                    <div class="info-block" style="border-left: 4px solid var(--food);">
-                        <div style="font-weight: bold;">Niurou Bing (Pancake Manzo)</div>
-                        <div style="font-size: 13px;"><b>Visivo:</b> Disco metallico, olio sfrigolante, palline di pasta che diventano dorate.</div>
-                        <div style="font-size: 11px; font-weight: bold; color: var(--primary);">📍 Sajinqiao (Inizio)</div>
-                    </div>
-                    <div class="info-block" style="border-left: 4px solid var(--food);">
-                        <div style="font-weight: bold;">Rou Jia Mo (Hamburger)</div>
-                        <div style="font-size: 13px;"><b>Visivo:</b> Tagliere tondo consumato, mannaia pesante, carne sfilacciata.</div>
-                        <div style="font-size: 11px; font-weight: bold; color: var(--primary);">📍 Sajinqiao</div>
-                    </div>
-                    <div class="info-block" style="border-left: 4px solid var(--primary);">
-                        <div style="font-weight: bold;">Hongliu Kao Rou (Spiedini)</div>
-                        <div style="font-size: 13px;"><b>Visivo:</b> Rami di legno spessi e rossicci come stecchi, fumo denso.</div>
-                        <div style="font-size: 11px; font-weight: bold; color: var(--primary);">📍 Dapiyuan</div>
-                    </div>
-                    <div class="info-block" style="border-left: 4px solid var(--primary);">
-                        <div style="font-weight: bold;">Biang Biang Mian</div>
-                        <div style="font-size: 13px;"><b>Visivo:</b> Cuoco che sbatte la pasta (suono "Biang!"). Noodles larghi come cinture.</div>
-                        <div style="font-size: 11px; font-weight: bold; color: var(--primary);">📍 Xiyangshi</div>
-                    </div>
-                    <div class="info-block" style="border-left: 4px solid var(--food);">
-                        <div style="font-weight: bold;">Shizi Bing (Frittelle Cachi)</div>
-                        <div style="font-size: 13px;"><b>Visivo:</b> Piramidi di frittelle color arancio vivo. Profumo dolce.</div>
-                        <div style="font-size: 11px; font-weight: bold; color: var(--primary);">📍 Torre Tamburo</div>
-                    </div>
-                    <div class="info-block">
-                        <div style="font-weight: bold;">Zeng Gao (Riso e Datteri)</div>
-                        <div style="font-size: 13px;"><b>Visivo:</b> Calderone enorme, massa scura (datteri) su base bianca (riso).</div>
-                        <div style="font-size: 11px; font-weight: bold; color: var(--primary);">📍 Beiyuanmen</div>
+                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">
+                    <img src="LINK_DRIVE_DA_INSERIRE_1" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #ccc;">
+                    <div>
+                        <div style="font-weight: bold; color: var(--food);">Niurou Bing (Pancake Manzo)</div>
+                        <div style="font-size: 13px;"><b>Visivo:</b> Disco metallico piatto con olio sfrigolante; il cuoco schiaccia palline di pasta che diventano dorate.</div>
+                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px; color: var(--accent-blue);">📍 Sajinqiao (Inizio) — ESSENZIALE</div>
                     </div>
                 </div>
+
+                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">
+                    <img src="LINK_DRIVE_DA_INSERIRE_2" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #ccc;">
+                    <div>
+                        <div style="font-weight: bold; color: var(--food);">Rou Jia Mo (Hamburger Cinese)</div>
+                        <div style="font-size: 13px;"><b>Visivo:</b> Grosso tagliere di legno tondo consumato al centro dove il cuoco trita la carne con una mannaia.</div>
+                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px; color: var(--accent-blue);">📍 Sajinqiao — ESSENZIALE</div>
+                    </div>
+                </div>
+
+                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">
+                    <img src="LINK_DRIVE_DA_INSERIRE_3" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #ccc;">
+                    <div>
+                        <div style="font-weight: bold; color: var(--food);">Hongliu Kao Rou (Spiedini)</div>
+                        <div style="font-size: 13px;"><b>Visivo:</b> Fumo denso e carne cruda infilzata in rami di legno veri (spessi e rossicci). Cerca la brace viva.</div>
+                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px; color: var(--accent-blue);">📍 Dapiyuan (Svolta) — IMPERDIBILE</div>
+                    </div>
+                </div>
+
+                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 10px;">
+                    <img src="LINK_DRIVE_DA_INSERIRE_4" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #ccc;">
+                    <div>
+                        <div style="font-weight: bold; color: var(--food);">Biang Biang Mian (Noodles)</div>
+                        <div style="font-size: 13px;"><b>Visivo:</b> Un cuoco che sbatte la pasta con forza sul tavolo (Biang!). Noodles larghi come cinture.</div>
+                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px; color: var(--accent-blue);">📍 Xiyangshi (Taglio) — IMPERDIBILE</div>
+                    </div>
+                </div>
+
+                <div class="info-block" style="display: flex; gap: 10px; align-items: flex-start;">
+                    <img src="LINK_DRIVE_DA_INSERIRE_5" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; background: #ccc;">
+                    <div>
+                        <div style="font-weight: bold; color: var(--food);">Shizi Bing (Frittelle Cachi)</div>
+                        <div style="font-size: 13px;"><b>Visivo:</b> Piccole frittelle arancioni fritte e impilate a piramide. Profumo di frutta e zucchero.</div>
+                        <div style="font-size: 12px; font-weight: bold; margin-top: 5px; color: var(--accent-blue);">📍 Torre Tamburo (Fine) — ESSENZIALE</div>
+                    </div>
+                </div>
+
             </div>
-        </div>
+            </div>
+        ```
+
+---
+
+### PARTE 2: Tab Guida Approfondita
+Copia questo sùbito sotto alla fine della Parte 1.
+
+```html
         <div id="xian-guide" class="tab-content">
-            <h3 style="margin-top: 10px; color: var(--accent-blue); border-bottom: 2px solid #eee; padding-bottom: 10px;">📚 Guida ai Luoghi di Xi'an</h3>
+            <h3 style="margin-top: 10px; color: var(--accent-blue); border-bottom: 2px solid var(--border); padding-bottom: 10px;">📚 Sezione Guide Dettagliate</h3>
 
-            <details class="guide-card" data-id="terracotta" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🏺 Esercito di Terracotta (Bingmayong)</span>
+            <details class="guide-card" data-id="terracotta" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.02);">
+                    <span>🏺 L'Esercito di Terracotta: Analisi Completa</span>
                     <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
                 </summary>
-                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-                    <h4 style="margin: 0 0 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">⏳ Storia e Curiosità</h4>
-                    <p style="margin-bottom: 10px;">• <b>246 a.C.:</b> Inizio lavori del mausoleo per Qin Shi Huang.<br>• <b>1974:</b> Scoperta casuale scavando un pozzo.</p>
-                    <p style="margin-bottom: 10px;"><b>Fun Facts:</b> Ogni volto è unico. In origine le statue erano dipinte con colori sgargianti, ma il pigmento si disintegra in 15 secondi a contatto con l'aria secca. Le armi in bronzo originali furono rubate durante antichi saccheggi.</p>
-                    <h4 style="margin: 10px 0; color: var(--accent-blue); border-bottom: 2px solid #f0f0f0; padding-bottom: 5px;">❓ Da chiedere alla Guida</h4>
-                    <ul style="margin: 0 0 15px 0; padding-left: 20px;">
-                        <li>Come gestirono la logistica per nutrire 700.000 operai?</li>
-                        <li>Quali sensori ambientali usano oggi nella Fossa 2 e 3 per salvare i colori?</li>
-                        <li>Perché la vera tomba dell'Imperatore non è mai stata aperta?</li>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6; color: var(--text-main);">
+                    <h4 style="color: var(--primary); margin-top: 0;">⏳ Cronistoria Politico-Militare</h4>
+                    <p>Nel 246 a.C., l'ascesa al trono del tredicenne Ying Zheng (futuro Qin Shi Huang) segna l'inizio di una catena di montaggio logistica che coinvolgerà 700.000 operai forzati per quasi quarant'anni. L'obiettivo: riprodurre la struttura gerarchica dello stato Qin nell'aldilà. Nel 206 a.C., il generale ribelle Xiang Yu saccheggiò le armi vere e incendiò le coperture di legno, facendo crollare la terra sulle statue.</p>
+                    
+                    <h4 style="color: var(--primary);">⚙️ Dettagli Tecnici delle Fosse</h4>
+                    <ul>
+                        <li><b>Fossa 1 (Avanguardia):</b> La più grande, con oltre 6.000 fanti in formazione d'attacco in corridoi profondi 5 metri.</li>
+                        <li><b>Fossa 2 (Truppe Speciali):</b> Cavalleria, carri pesanti e arcieri d'élite (in piedi e inginocchiati).</li>
+                        <li><b>Fossa 3 (Comando Centrale):</b> 68 ufficiali d'alto rango. Nessuna formazione da battaglia, indica il quartier generale.</li>
                     </ul>
+                    <p><b>Fun Facts:</b> Ogni volto è unico. I colori originali sbiadiscono in 15 secondi a contatto con l'aria. Ogni soldato reca incisa la "firma" dell'artigiano per il controllo qualità (pena la morte).</p>
                 </div>
             </details>
-
-            <details class="guide-card" data-id="mura-xian" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🧱 Mura di Xi'an</span>
+            <details class="guide-card" data-id="mura-xian" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.02);">
+                    <span>🧱 Le Mura della Città: Architettura</span>
                     <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
                 </summary>
-                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-                    <p>Perimetro totale di 13.7 km. Le fondamenta in terra battuta risalgono all'epoca Tang (618 d.C.), ma le mura attuali (con il rivestimento in mattoni grigi) furono ultimate dalla dinastia Ming nel 1370.<br><b>Ingegneria:</b> Il nucleo interno non è pietra, ma un mix di terra pressata, calce viva ed estratto di riso glutinoso (resistente quanto il cemento armato).</p>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6; color: var(--text-main);">
+                    <p>Costruite sui resti della precedente città imperiale Tang per ordine del fondatore della dinastia Ming, Zhu Yuanzhang (1370 d.C.), formano un rettangolo perfetto di 13,7 km.</p>
+                    <p><b>Composizione strutturale:</b> Il nucleo non è di pietra, ma in terra pressata miscelata con calce viva e colla di riso glutinoso, resistente ai terremoti e compatto come cemento. Nel 1568 furono rivestite di mattoni cotti.</p>
                 </div>
             </details>
-
-            <details class="guide-card" data-id="camel-bell" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🐫 The Legend of Camel Bells</span>
+            <details class="guide-card" data-id="camel-bell" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.02);">
+                    <span>🎭 The Legend of Camel Bells (Spettacolo)</span>
                     <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
                 </summary>
-                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-                    <p>Produzione teatrale hi-tech del 2018. Narra il viaggio epico di una carovana commerciale lungo la Via della Seta durante la dinastia Tang, fino a Roma.<br><b>Ingegneria:</b> L'intero auditorium con il pubblico ruota di 360° per seguire l'azione su palcoscenici multipli. Usa cascate d'acqua vere, cammelli e lupi addestrati sul palco.</p>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6; color: var(--text-main);">
+                    <p>Spettacolo teatrale hi-tech inaugurato nel 2018 all'interno della Città Culturale Huaxia Cheng. Racconta le sfide estreme di una carovana mercantile lungo la Via della Seta verso Roma.</p>
+                    <p><b>Meccanica del Palco:</b> La platea di 3.000 spettatori è su una gigantesca piattaforma rotante a 360° che si orienta verso palchi differenti. Il palco presenta simulazioni di tormente di neve, lupi addestrati e una cascata d'acqua di migliaia di tonnellate.</p>
                 </div>
             </details>
-
-            <details class="guide-card" data-id="panda-qinling" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🐼 Panda dei Monti Qinling</span>
+            <details class="guide-card" data-id="panda-qinling" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.02);">
+                    <span>🐼 Panda di Qinling: Sottospecie Rara</span>
                     <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
                 </summary>
-                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-                    <p>Isolati da 300.000 anni dai cugini del Sichuan, i panda dello Shaanxi sono stati riconosciuti come sottospecie ufficiale solo nel 2005.<br><b>Differenze:</b> Hanno un cranio più rotondo (simile a un gatto) e il loro pelo tende spesso al marrone scuro/seppia invece che al nero corvino.</p>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6; color: var(--text-main);">
+                    <p>La catena dei Monti Qinling funge da barriera climatica tra Cina nord e sud. I panda locali sono rimasti isolati per circa 300.000 anni dai cugini del Sichuan, venendo riconosciuti come sottospecie autonoma solo nel 2005.</p>
+                    <p><b>Differenze:</b> Possiedono un cranio rotondo e un muso più corto. La colorazione non è mai un nero marcato, ma sfuma dal seppia intenso fino, raramente, al biondo. Il centro Zhouzhi lavora sul delicato mantenimento di questi geni rari.</p>
                 </div>
             </details>
-
-            <details class="guide-card" data-id="musei-xian" style="margin-bottom: 10px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fff;">
-                <summary style="font-weight: bold; font-size: 16px; padding: 15px; background: #f8f9fa; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                    <span>🏛️ Bivio Musei: Storia vs Archeologia</span>
+            <details class="guide-card" data-id="musei-xian" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.02);">
+                    <span>🏛️ Bivio Museale: Storia o Archeologia?</span>
                     <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
                 </summary>
-                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
-                    <p><b>A) Shaanxi History Museum (1991):</b> L'istituzione classica. Concentrati sulla Sala 3 per i tesori d'oro/argento e (se possibile) acquistate l'ingresso extra per gli affreschi originali delle tombe Tang.</p>
-                    <p><b>B) Archaeology Museum (2022):</b> Modernissimo. Non mostra solo gli oggetti, ma il metodo. Potrete vedere interi carri di bronzo estratti dal terreno in blocco o laboratori di restauro ricostruiti in 3D.</p>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6; color: var(--text-main);">
+                    <p><b>A) History Museum:</b> Per vedere i tesori "finiti". Famoso per i bronzi Zhou, la collezione d'oro/argento Tang e la sala ipogea (a pagamento) con gli affreschi originali sottratti alle tombe imperiali.</p>
+                    <p><b>B) Archaeology Museum (2022):</b> Per vedere il "metodo". Mostra la scienza moderna dello scavo. Potrete ammirare interi carri di bronzo con resti di cavalli prelevati intatti dal terreno in blocchi da tonnellate e consolidati chimicamente.</p>
                 </div>
             </details>
+            </div>
+        ```
 
-        </div>
+---
+
+### PARTE 3: Tab Utility (Pulita)
+Copia questo sotto la Parte 2. Come hai giustamente notato, le prenotazioni non vanno qui. Qui restano solo le info di servizio pure (Hotel per taxi ed Emergenze).
+
+```html
         <div id="xian-utility" class="tab-content">
             
-            <div class="driver-card" style="text-align: center;">
-                <div class="info-title" style="color: var(--primary); margin-bottom: 10px;">🏨 HOTEL MEHOOD LESTIE (XI'AN)</div>
-                <div class="driver-chinese" style="font-size: 28px;">美豪丽致酒店<br><span style="font-size: 16px;">(西安钟鼓楼南门苑店)</span></div>
-                <p style="font-size: 13px; color: var(--text-muted);">Bell Tower & Drum Tower South Gate Branch</p>
-                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/j5j8H7AQ2Hy');" class="amap-btn" style="border-color:var(--primary); color:var(--primary);">📍 Apri su Amap</a>
+            <div class="driver-card">
+                <div class="info-title" style="color: var(--primary);">🏨 INDIRIZZO MEHOOD LESTIE PER IL TAXI</div>
+                <div class="driver-chinese" style="font-size: 26px; line-height: 1.3;">美豪丽致酒店<br><span style="font-size: 18px;">(西安钟鼓楼南门苑店)</span></div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/j5j8H7AQ2Hy');" class="amap-btn" style="color: var(--primary); border-color: var(--primary);">📍 Apri su Amap</a>
             </div>
-        
-            <div class="day-card" style="border-left-color: var(--accent-blue);">
-                <div class="info-title" style="color: var(--accent-blue);">🎟️ LINK PRENOTAZIONI & VOUCHER</div>
-                <div class="data-grid">
-                    <a href="https://gyg.me/UFp4DY11" target="_blank" class="amap-btn">🐼 Biglietti Panda (GetYourGuide)</a>
-                    <a href="https://www.civitatis.com/en/xian/legend-camel-bell-show-tickets/" target="_blank" class="amap-btn">🐫 Camel Bells Show (Civitatis)</a>
-                    <a href="https://drive.google.com/file/d/1m0ZMeI_5-224lBZHM7ZRlJaO--UymvL5/view?usp=drivesdk" target="_blank" class="file-btn">🏛️ Shaanxi Museum (Drive Info)</a>
-                </div>
-                <div class="info-block" style="margin-top: 15px; border-left: 3px solid var(--accent-blue);">
-                    <b>🚗 Conferma Driver (Delight Car - 15 Ago):</b><br>
-                    VW Passat. Costo tot: 1100 RMB. Deposito 400 RMB pagato (Alipay). <b>Saldo: 700 RMB</b> (da pagare al driver in loco). Info driver arriveranno il 14 ago.
-                </div>
-            </div>
-            
             <div class="day-card" style="border-left-color: var(--danger);">
-                <div class="info-title" style="color: var(--danger);">🚨 EMERGENZE XI'AN (CLICCA PER CHIAMARE)</div>
+                <div class="info-title" style="color: var(--danger);">🚨 LINEE DI EMERGENZA LOCALI</div>
                 <div class="data-grid">
                     <a href="tel:110" class="track-btn">🚔 Polizia (110)</a>
-                    <a href="tel:120" class="track-btn">🚑 Ambulanza (120)</a>
-                    <a href="tel:+862985327600" class="track-btn">🇮🇹 Consolato</a>
+                    <a href="tel:120" class="track-btn">🚑 Soccorso Medico (120)</a>
+                    <a href="tel:+862985327600" class="track-btn">🇮🇹 Consolato Italiano</a>
                 </div>
             </div>
+            </div>
+        ```
 
-        </div>
+---
+
+### PARTE 4: Tab Programma (Giornate 13, 14, 15) e Chiusura
+Copia questo alla fine per completare. Qui ci sono i link di prenotazione con il bottoncino "Apri", le task e il placeholder per il volo.
+
+```html
         <div id="xian-programma" class="tab-content active">
+            
             <div class="nav-giorni" style="margin-top: 10px;">
                 <button class="nav-btn-context active" data-date="2026-08-13" onclick="showDay('xian-programma', 'day-13-ago-xian', this)">13 Ago</button>
                 <button class="nav-btn-context" data-date="2026-08-14" onclick="showDay('xian-programma', 'day-14-ago-xian', this)">14 Ago</button>
                 <button class="nav-btn-context" data-date="2026-08-15" onclick="showDay('xian-programma', 'day-15-ago-xian', this)">15 Ago</button>
             </div>
-
             <div id="day-13-ago-xian" class="day-section active">
                 <div class="day-card">
-                    <div class="day-header"><h2 class="day-title">Giovedì, 13 Agosto</h2><span class="day-subtitle">Pechino ➔ Xi'an</span></div>
-                    <span class="weight-badge">🟢 Viaggio & Bici / Moderato</span>
+                    <div class="day-header"><h2 class="day-title">Giovedì, 13 Agosto</h2><span class="day-subtitle">Pechino ➔ Xi'an (Logistica & Mura)</span></div>
+                    <span class="weight-badge">🟢 Spostamento / Bici</span>
                     
                     <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
                         <div class="info-title" style="color: var(--warning);">🔔 TASK DA ESEGUIRE</div>
                         <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                            <input type="checkbox" id="task-shanghai-mus" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
-                            <span><b>Mezzanotte (Locale):</b> Prenotare Museo Shanghai Est (WeChat Mini-Program) per il 21 Agosto.</span>
+                            <input type="checkbox" id="task-shanghai-mus-13ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                            <span><b>Mezzanotte Locale:</b> Prenotare Museo Shanghai Est (su WeChat Mini-Program) per il 21 Agosto.</span>
                         </label>
-                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
-                            <input type="checkbox" id="task-laundry-xian" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer;">
+                            <input type="checkbox" id="task-laundry-xian-13ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
                             <span>Organizzare lavanderia hotel per metà viaggio.</span>
                         </label>
                     </div>
 
                     <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                        <div class="info-title">📋 PROGRAMMA DETTAGLIATO</div>
                         <ul class="timeline">
-                            <li><span class="time-badge">08:15</span> 🚕 DiDi per Beijing West Station.</li>
-                            <li><span class="time-badge">09:55</span> 🚄 Treno Alta Velocità per Xi'an North (Arr. 14:23).</li>
-                            <li><span class="time-badge">14:45</span> 🚇 Metro Linea 2 (Rossa) direzione SUD ➔ Scendere a Yongningmen (Uscita A o D).</li>
-                            <li><span class="time-badge">15:45</span> 🏨 Check-in Hotel Mehood Lestie e Relax.</li>
-                            <li><span class="time-badge">17:45</span> 🚕 DiDi verso Porta Ovest delle Mura (Andingmen).</li>
-                            <li><span class="time-badge">18:15 - 19:30</span> 🧱 Mura al Tramonto. Noleggio bici alla Porta Ovest (Tassativo entro 18:30) e arrivo alla Porta Sud.</li>
-                            <li><span class="time-badge">19:45</span> 🍢 Cena Quartiere Musulmano. DiDi verso Metro Sajinqiao (Nord). Percorso a piedi: Sajinqiao ➔ Dapiyuan ➔ Xiyangshi.</li>
-                            <li><span class="time-badge">21:45</span> 🌃 Passeggiata digestiva: Torre Campana/Tamburo illuminate.</li>
+                            <li><span class="time-badge">08:15</span> Partenza in DiDi verso Beijing West Station.</li>
+                            <li><span class="time-badge">09:55</span> Treno Alta Velocità G-Class per Xi'an North (Arrivo 14:23).</li>
+                            <li><span class="time-badge">14:45</span> Metropolitana (Linea 2 - Rossa) dir. sud fino a Yongningmen.</li>
+                            <li><span class="time-badge">15:45</span> Check-in presso Mehood Lestie Hotel e riposo termico.</li>
+                            <li><span class="time-badge">17:45</span> DiDi verso la Porta Ovest delle Mura (Andingmen).</li>
+                            <li><span class="time-badge">18:15</span> Noleggio biciclette in quota (tassativo entro 18:30) per pedalata al tramonto fino alla Porta Sud.</li>
+                            <li><span class="time-badge">19:45</span> DiDi verso nord. Inizio Food Tour Musulmano da Sajinqiao.</li>
                         </ul>
                     </div>
                 </div>
             </div>
-
             <div id="day-14-ago-xian" class="day-section">
                 <div class="day-card">
-                    <div class="day-header"><h2 class="day-title">Venerdì, 14 Agosto</h2><span class="day-subtitle">Terracotta & Camel Bells</span></div>
-                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Intenso</span>
+                    <div class="day-header"><h2 class="day-title">Venerdì, 14 Agosto</h2><span class="day-subtitle">Esercito di Terracotta & Camel Bells</span></div>
+                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Impegnativo</span>
                     
-                    <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
-                        <div class="info-title" style="color: #27ae60;">✅ VERIFICA PRENOTAZIONI</div>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                            <li>Guida Privata Cici (Confermata)</li>
-                            <li>Camel Bells Show (Slot 15:00 su Civitatis)</li>
-                        </ul>
+                    <div class="info-block" style="background: rgba(46, 204, 113, 0.08); border-left: 4px solid #2ecc71;">
+                        <div class="info-title" style="color: #27ae60;">✅ VERIFICA PRENOTAZIONI E LINK</div>
+                        <div style="font-size: 13px; margin-bottom: 6px;">
+                            • Guida per l'Esercito di Terracotta (Cici confermata via WeChat)
+                        </div>
+                        <div style="font-size: 13px; display: flex; align-items: center;">
+                            • Biglietti Spettacolo "Legend of Camel Bells" (Ore 15:00) 
+                            <a href="https://www.civitatis.com/en/xian/legend-camel-bell-show-tickets/" target="_blank" style="display: inline-block; padding: 2px 6px; background: var(--primary); color: white; border-radius: 4px; text-decoration: none; font-size: 11px; margin-left: 8px; font-weight: bold;">Apri</a>
+                        </div>
                     </div>
 
                     <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                        <div class="info-title">📋 PROGRAMMA DETTAGLIATO</div>
                         <ul class="timeline">
-                            <li><span class="time-badge">07:50</span> 🚕 DiDi verso Lintong (circa 1h).</li>
-                            <li><span class="time-badge">09:00 - 11:30</span> 🗿 Visita Esercito di Terracotta con Cici (Fosse 3, 2, 1 in senso inverso per schivare gruppi).</li>
-                            <li><span class="time-badge">11:45 - 13:30</span> 🍔 Pranzo Lintong (San Qin Set: Roujiamo + Liangpi + Bingfeng).</li>
-                            <li><span class="time-badge">13:30</span> 🚕 DiDi per Teatro Huaxia (30 min).</li>
-                            <li><span class="time-badge">15:00 - 16:15</span> 🎭 Spettacolo "The Legend of Camel Bells" (Arrivo 14:25).</li>
-                            <li><span class="time-badge">16:30</span> 🚕 DiDi rientro in Hotel. Riposo fino alle 19:15.</li>
-                            <li><span class="time-badge">19:30 - 20:15</span> 🌃 Grand Tang Mall. Cena itinerante (Calamari, Dolci Osmanto).</li>
-                            <li><span class="time-badge">20:15</span> 📸 Salita Terrazza Joy City Mall (4° piano) per foto Pagoda.</li>
-                            <li><span class="time-badge">21:00 - 21:30</span> ⛲ Piazza Nord: Spettacolo Fontane Musicali.</li>
+                            <li><span class="time-badge">07:50</span> Partenza in DiDi per l'area archeologica di Lintong.</li>
+                            <li><span class="time-badge">09:00</span> Ritrovo con Cici. Esplorazione strategica (Fossa 3 ➔ 2 ➔ 1).</li>
+                            <li><span class="time-badge">11:45</span> Pranzo in zona a base di Roujiamo e Liangpi.</li>
+                            <li><span class="time-badge">13:30</span> Trasferimento in DiDi verso il teatro Huaxia Cheng.</li>
+                            <li><span class="time-badge">14:25</span> Controlli di accesso e ingresso in platea.</li>
+                            <li><span class="time-badge">15:00</span> Spettacolo "The Legend of Camel Bells" (75 min).</li>
+                            <li><span class="time-badge">16:45</span> Rientro in DiDi verso la città e riposo in camera.</li>
+                            <li><span class="time-badge">19:30</span> Camminata serale al Grand Tang Mall illuminato. Cena libera (calamari, street food).</li>
+                            <li><span class="time-badge">21:00</span> Fontana Musicale in Piazza Nord (opzionale).</li>
                         </ul>
                     </div>
                 </div>
             </div>
-
             <div id="day-15-ago-xian" class="day-section">
                 <div class="day-card">
-                    <div class="day-header"><h2 class="day-title">Sabato, 15 Agosto</h2><span class="day-subtitle">Panda Qinling & Volo ZJJ</span></div>
-                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Auto Privata / Moderato</span>
+                    <div class="day-header"><h2 class="day-title">Sabato, 15 Agosto</h2><span class="day-subtitle">Panda Qinling & Volo per ZJJ</span></div>
+                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Gestione Logistica</span>
                     
-                    <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
-                        <div class="info-title" style="color: #27ae60;">✅ VERIFICA PRENOTAZIONI</div>
-                        <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
-                            <li>Driver Privato Delight Car (10h)</li>
-                            <li>Biglietti Panda Qinling</li>
-                            <li>Volo Diretto Xi'an ➔ Zhangjiajie (20:20)</li>
-                        </ul>
+                    <div class="info-block" style="background: rgba(46, 204, 113, 0.08); border-left: 4px solid #2ecc71;">
+                        <div class="info-title" style="color: #27ae60;">✅ VERIFICA PRENOTAZIONI E LINK</div>
+                        <div style="font-size: 13px; margin-bottom: 6px; display: flex; align-items: center;">
+                            • Biglietti d'ingresso Panda Qinling 
+                            <a href="https://gyg.me/UFp4DY11" target="_blank" style="display: inline-block; padding: 2px 6px; background: var(--primary); color: white; border-radius: 4px; text-decoration: none; font-size: 11px; margin-left: 8px; font-weight: bold;">Apri</a>
+                        </div>
+                        <div style="font-size: 13px; line-height: 1.4; border-top: 1px dashed rgba(0,0,0,0.1); padding-top: 6px; margin-top: 6px;">
+                            • 🚗 <b>Driver Privato Delight Car (11 Ore Totali):</b> <br>
+                            Riceverai il nome e il contatto WeChat dell'autista il giorno 14 agosto. Il saldo è di 700 RMB a cui aggiungere <b>1 ora extra (60 RMB)</b> da pagare direttamente all'autista.
+                        </div>
+                    </div>
+
+                    <div class="alert-todo" style="background: rgba(230, 126, 34, 0.08); border-left: 4px solid var(--warning); color: var(--warning);">
+                        ⚠️ <b>AGGIORNARE DATI:</b> Inserire il numero volo, compagnia aerea e confermare orari della tratta Xi'an ➔ Zhangjiajie modificata.
                     </div>
 
                     <div class="info-block">
-                        <div class="info-title">📋 PROGRAMMA DELLA GIORNATA</div>
+                        <div class="info-title">📋 PROGRAMMA DETTAGLIATO</div>
                         <ul class="timeline">
-                            <li><span class="time-badge">07:30</span> 🧳 Check-out. Carico bagagli su Auto Privata.</li>
-                            <li><span class="time-badge">09:00 - 11:30</span> 🐼 Panda Qinling (Zhouzhi). Arrivo tassativo 09:00 prima che dormano.</li>
-                            <li><span class="time-badge">11:30 - 14:30</span> 🏛️ <b>Opzione Museo:</b> Archaeology Museum (Consigliato, moderno) O Shaanxi History Museum (Se biglietti ottenuti).</li>
-                            <li><span class="time-badge">15:00 - 17:15</span> 🍲 Pranzo tardivo da Chang'an Da Pai Dang (Mall SEG). Acquistare cibo da asporto per cena.</li>
-                            <li><span class="time-badge">17:15</span> 🚗 Partenza per Aeroporto XIY.</li>
-                            <li><span class="time-badge">18:15</span> 🍔 Arrivo Aeroporto (Terminal 3). Cena con asporto.</li>
-                            <li><span class="time-badge">20:20</span> 🛫 Volo diretto per Zhangjiajie (Atterraggio 21:45).</li>
-                            <li><span class="time-badge">23:00</span> 🚕 Transfer DiDi/Taxi per Hotel a ZJJ.</li>
+                            <li><span class="time-badge">07:30</span> Check-out. Carico valigie su auto privata Delight Car.</li>
+                            <li><span class="time-badge">09:00</span> Arrivo ai Panda Qinling (Zhouzhi) prima che si addormentino per il caldo.</li>
+                            <li><span class="time-badge">11:30</span> Partenza dalla riserva.</li>
+                            <li><span class="time-badge">12:30</span> <b>Museo:</b> Visita autonoma all'Archaeology Museum o, se prenotati in precedenza, allo Shaanxi History Museum.</li>
+                            <li><span class="time-badge">15:00</span> Pranzo al Mall SEG (Chang'an Da Pai Dang). Comprare cibo d'asporto per cena.</li>
+                            <li><span class="time-badge">17:15</span> Spostamento verso Aeroporto XIY (Terminal 3).</li>
+                            <li><span class="time-badge">18:15</span> Drop-off bagagli. Cena d'asporto consumata in aeroporto.</li>
+                            <li><span class="time-badge">??:??</span> Volo per Zhangjiajie (Orari da aggiornare).</li>
+                            <li><span class="time-badge">23:00</span> Arrivo previsto e transfer in DiDi/Taxi per l'hotel a ZJJ.</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-        </div>
+    ```
+
+
+        <!-- ========================================== -->
+        <!-- FINE TAB: XI'AN - LUOGHI                 -->
+        <!-- ========================================== -->
+        
+        
 
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
     <!-- %%%%%%%%%%%%%%%%%%%%%%    FINE AREA XI'AN    %%%%%%%%%%%%%%%%%%%%%%%%% -->
