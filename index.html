@@ -814,14 +814,12 @@ A 15 min da Wudaoying. Il centro geometrico e temporale. Ammirarle dalla piazza 
 
             </div>
             </div>
-        ```
+        
 
----
 
-### PARTE 2: Tab Guida Approfondita
-Copia questo sùbito sotto alla fine della Parte 1.
+<!--PARTE 2: Tab Guida Approfondita
+Copia questo sùbito sotto alla fine della Parte 1.-->
 
-```html
         <div id="xian-guide" class="tab-content">
             <h3 style="margin-top: 10px; color: var(--accent-blue); border-bottom: 2px solid var(--border); padding-bottom: 10px;">📚 Sezione Guide Dettagliate</h3>
 
@@ -886,12 +884,9 @@ Copia questo sùbito sotto alla fine della Parte 1.
             </div>
         ```
 
----
-
-### PARTE 3: Tab Utility (Pulita)
+<!--PARTE 3: Tab Utility (Pulita)
 Copia questo sotto la Parte 2. Come hai giustamente notato, le prenotazioni non vanno qui. Qui restano solo le info di servizio pure (Hotel per taxi ed Emergenze).
-
-```html
+-->
         <div id="xian-utility" class="tab-content">
             
             <div class="driver-card">
@@ -910,12 +905,9 @@ Copia questo sotto la Parte 2. Come hai giustamente notato, le prenotazioni non 
             </div>
         ```
 
----
-
-### PARTE 4: Tab Programma (Giornate 13, 14, 15) e Chiusura
+<!--PARTE 4: Tab Programma (Giornate 13, 14, 15) e Chiusura
 Copia questo alla fine per completare. Qui ci sono i link di prenotazione con il bottoncino "Apri", le task e il placeholder per il volo.
-
-```html
+-->
         <div id="xian-programma" class="tab-content active">
             
             <div class="nav-giorni" style="margin-top: 10px;">
@@ -1042,6 +1034,14 @@ Copia questo alla fine per completare. Qui ci sono i link di prenotazione con il
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
     <!-- %%%%%%%%%%%%%%%%%%%%%  INIZIO AREA ZHANGJIAJIE %%%%%%%%%%%%%%%%%%%%%%% -->
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+ 
+
+
+
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+    <!-- %%%%%%%%%%%%%%%%%%%%%  FINE AREA ZHANGJIAJIE %%%%%%%%%%%%%%%%%%%%%%%%% -->
+    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+
     <div id="zhangjiajie-container" class="city-container">
         
         <div class="nav-level-2">
@@ -1050,56 +1050,294 @@ Copia questo alla fine per completare. Qui ci sono i link di prenotazione con il
             <button class="nav-btn-context" onclick="showTab('zhangjiajie-container', 'zhangjiajie-guide', this)">📖 Guida</button>
             <button class="nav-btn-context" onclick="showTab('zhangjiajie-container', 'zhangjiajie-utility', this)">🚨 Utility</button>
         </div>
-
-        <!-- ========================================== -->
-        <!-- INIZIO TAB: ZHANGJIAJIE - LUOGHI E CIBO    -->
-        <!-- ========================================== -->
         <div id="zhangjiajie-luoghi" class="tab-content">
-            <div class="day-card"><h2>📍 Luoghi & Cibo Zhangjiajie</h2><p>Dati da inserire in futuro...</p></div>
-        </div>
-        <!-- ========================================== -->
-        <!-- FINE TAB: ZHANGJIAJIE - LUOGHI E CIBO      -->
-        <!-- ========================================== -->
-
-        <!-- ========================================== -->
-        <!-- INIZIO TAB: ZHANGJIAJIE - GUIDA            -->
-        <!-- ========================================== -->
-        <div id="zhangjiajie-guide" class="tab-content">
-            <div class="day-card"><h2>📚 Guida Zhangjiajie</h2><p>Dati da inserire in futuro...</p></div>
-        </div>
-        <!-- ========================================== -->
-        <!-- FINE TAB: ZHANGJIAJIE - GUIDA              -->
-        <!-- ========================================== -->
-
-        <!-- ========================================== -->
-        <!-- INIZIO TAB: ZHANGJIAJIE - UTILITY          -->
-        <!-- ========================================== -->
-        <div id="zhangjiajie-utility" class="tab-content">
-            <div class="day-card"><h2>🚨 Utility Zhangjiajie</h2><p>Hotel e contatti da inserire...</p></div>
-        </div>
-        <!-- ========================================== -->
-        <!-- FINE TAB: ZHANGJIAJIE - UTILITY            -->
-        <!-- ========================================== -->
-
-        <!-- ========================================== -->
-        <!-- INIZIO TAB: ZHANGJIAJIE - PROGRAMMA        -->
-        <!-- ========================================== -->
-        <div id="zhangjiajie-programma" class="tab-content active">
-            <div class="nav-giorni" style="margin-top: 10px;">
-                <!-- INSERIRE QUI I BOTTONI PER I GIORNI DI ZHANGJIAJIE -->
+            
+            <div style="position: sticky; top: 0; background: var(--bg); padding: 10px 0; z-index: 100; border-bottom: 2px solid var(--border); margin-bottom: 20px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none;">
+                <a href="#zjj-sez-hotel" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; background: var(--primary); color: white; border: none; font-weight: bold;">🏨 Hotel</a>
+                <a href="#zjj-sez-arrivi" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--border); color: var(--text-main);">🚏 Luoghi</a>
+                <a href="#zjj-sez-ristoranti" class="nav-btn" style="text-decoration: none; padding: 8px 12px; font-size: 13px; flex-shrink: 0; border: 1px solid var(--food); color: var(--food);">🍽️ Ristoranti</a>
             </div>
-            <!-- INSERIRE QUI LE DAY-SECTION (ES: DAY-15-AGO) -->
-            <div class="day-card"><h2>Programma in arrivo...</h2></div>
+            <div id="zjj-sez-hotel" class="day-card" style="border-left-color: var(--accent-blue); scroll-margin-top: 70px;">
+                <h2>🏨 Hotel & Alloggi</h2>
+                <div class="data-grid">
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/4PZh4tc1AfsT');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Jinjiang Metropolo (ZJJ Città)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/3b7Vqi1u9wN');" class="amap-btn" style="border-color:#3498db; color:#3498db;">📍 Dayin Qianfu Homestay (Fenghuang)</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-color:#3498db; color:#3498db; border-style: dashed;">📍 YOLO Resort (Parco ZJJ - In Quota)</a>
+                </div>
+            </div>
+            <div id="zjj-sez-arrivi" class="day-card" style="border-left-color: var(--primary); scroll-margin-top: 70px;">
+                <h2>🚏 Luoghi e Accessi</h2>
+                
+                <div class="info-title" style="margin-top:15px;">✅ LUOGHI (CON LINK AMAP COMPLETI)</div>
+                <div class="data-grid">
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34hqu6MgrW');" class="amap-btn">🚠 Tianmen Cableway (Stazione Sud-Est)</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/2VWNLWa17Zt');" class="amap-btn">🚄 ZJJ Railway Station</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/PZ7Pp8HcdO');" class="amap-btn">🚄 Fenghuang Station</a>
+                    <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/Y82EmCBgxo');" class="amap-btn">⛩️ Wulingyuan (Ingresso Est)</a>
+                </div>
+
+                <div class="info-title" style="margin-top:15px; color: var(--warning);">⚠️ DA LINKARE SUCCESSIVAMENTE SU AMAP</div>
+                <div class="data-grid">
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🛗 Ascensore Bailong</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">⛰️ Yuanjiajie / Avatar Mountain</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">⛰️ Tianzi Mountain</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🌅 Laowuchang (Risaie)</a>
+                    <a href="javascript:void(0)" class="amap-btn" style="border-style: dashed; opacity: 0.7;">🦇 Yellow Dragon Cave</a>
+                </div>
+            </div>
+            <div id="zjj-sez-ristoranti" class="day-card" style="border-left-color: var(--food); scroll-margin-top: 70px;">
+                <h2>🍽️ Ristoranti & Cibo</h2>
+                <div class="alert-todo" style="background: rgba(243, 156, 18, 0.1); border-left: 4px solid var(--food); color: var(--food);">
+                    ⚠️ DATI MANCANTI: Da inserire ristoranti a Fenghuang e piatti tipici dell'Hunan.
+                </div>
+                <p>• <b>Regola Scimmie:</b> A Yuanjiajie sono aggressive, non mangiare sui sentieri all'aperto. Pranzare al coperto a Tianqiashen.</p>
+                <p>• <b>Cena in Quota:</b> Presso il ristorante interno dello YOLO Resort.</p>
+            </div>
+            </div>
+        ```
+
+<!--PARTE 2: Tab Guida Approfondita
+Copia questo blocco subito sotto la Parte 1.
+--> 
+
+        <div id="zhangjiajie-guide" class="tab-content">
+            <h3 style="margin-top: 10px; color: var(--accent-blue); border-bottom: 2px solid var(--border); padding-bottom: 10px;">📚 Guide ai Parchi</h3>
+
+            <details class="guide-card" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; background: rgba(0,0,0,0.02);">
+                    <span>⛰️ Tianmen Mountain (Porta del Cielo)</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p><b>Il Percorso B:</b> Salita con la Funivia Veloce (Express Cableway) direttamente alla Porta del Cielo. Scalata dei 999 gradini. Salita in vetta tramite le lunghissime scale mobili interne alla montagna (Tunnel).</p>
+                    <p><b>Vetta:</b> Percorso ad anello ovest (Guigu Path). In base alle energie e alla coda, si decide se fare la passerella di vetro (Coiled Dragon Cliff - Est).</p>
+                    <p style="color: var(--danger);"><b>Meteo Check:</b> Se nebbia fitta o pioggia, invertire i giorni con Fenghuang.</p>
+                </div>
+            </details>
+            <details class="guide-card" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; background: rgba(0,0,0,0.02);">
+                    <span>🌲 ZJJ National Park (Avatar Mountains)</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p><b>La Tattica:</b> Dormire in quota (YOLO Resort) permette di godere dell'alba e del tramonto senza turisti e di evitare le enormi code per l'Ascensore Bailong al mattino e alla sera.</p>
+                    <p><b>Aree Principali:</b></p>
+                    <ul>
+                        <li><b>Yuanjiajie:</b> Le rocce classiche di Avatar. Molto affollato dalle 10 in poi.</li>
+                        <li><b>Yangjiajie:</b> La Muraglia Naturale. Meno affollato, richiede più sforzo fisico.</li>
+                        <li><b>Tianzi Mountain:</b> Viste panoramiche dall'alto, Imperial Brush.</li>
+                        <li><b>Laowuchang:</b> Risaie sospese, accessibili solo con van privato (ottimo per il tramonto).</li>
+                    </ul>
+                </div>
+            </details>
+            <details class="guide-card" style="margin-bottom: 10px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--card-bg);">
+                <summary style="font-weight: bold; font-size: 16px; padding: 15px; cursor: pointer; display: flex; justify-content: space-between; background: rgba(0,0,0,0.02);">
+                    <span>🌧️ Piani B (In caso di pioggia/nebbia fitta)</span>
+                    <span style="font-size: 12px; color: var(--accent-blue);">Espandi ▼</span>
+                </summary>
+                <div style="padding: 15px; font-size: 14px; line-height: 1.6;">
+                    <p>Se le vette sono coperte dalle nuvole (visibilità zero), NON restare in quota. Scendere a valle tramite Ascensore Bailong o navetta.</p>
+                    <ul>
+                        <li><b>Golden Whip Stream:</b> Trekking di fondovalle. Sicuro e suggestivo anche con la pioggia.</li>
+                        <li><b>Yellow Dragon Cave:</b> Grotta calcarea gigantesca. 100% al coperto, temperatura costante.</li>
+                        <li><b>Wulingyuan Town:</b> Città a valle. Ottima per massaggi, caffè e relax in attesa che spiova.</li>
+                    </ul>
+                </div>
+            </details>
+            </div>
+    
+
+<!--PARTE 3: Tab Utility
+Copia questo blocco sotto la Parte 2.
+--> 
+
+        <div id="zhangjiajie-utility" class="tab-content">
+            
+            <div class="day-card" style="border-left-color: var(--accent-blue);">
+                <div class="info-title" style="color: var(--accent-blue);">🧳 GESTIONE SPEDIZIONE BAGAGLI (FONDAMENTALE)</div>
+                <div class="info-block" style="background: rgba(52, 152, 219, 0.1);">
+                    <p><b>16 Agosto (ZJJ -> Fenghuang):</b><br>Lasciare i bagagli grandi al Jinjiang Metropolo o usare il servizio spedizione ufficiale per farli recapitare allo YOLO Resort. Avvisare lo YOLO su WeChat. Viaggiare a Fenghuang SOLO con zaino leggero.</p>
+                    <p><b>17 Agosto (Arrivo ZJJ West):</b><br>Se non spediti prima, consegnare i bagagli grandi al desk logistica (托运) della stazione ZJJ per spedirli allo YOLO Resort (arrivo la sera stessa).</p>
+                    <p><b>20 Agosto (Partenza per Shanghai):</b><br>Concordare il 19 sera con la reception dello YOLO la spedizione dei bagagli grandi direttamente all'Aeroporto DYG. Costo: ~30 RMB a collo.</p>
+                </div>
+            </div>
+            <div class="driver-card">
+                <div class="info-title" style="color: var(--primary);">🏨 JINJIANG METROPOLO (ZJJ CITY)</div>
+                <div class="driver-chinese" style="font-size: 24px; line-height: 1.3;">锦江都城酒店<br><span style="font-size: 16px;">(张家界天门山索道店)</span></div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/4PZh4tc1AfsT');" class="amap-btn" style="color: var(--primary); border-color: var(--primary);">📍 Apri su Amap</a>
+            </div>
+
+            <div class="driver-card">
+                <div class="info-title" style="color: var(--primary);">🏨 PHOENIX DAYIN QIANFU HOMESTAY</div>
+                <div class="driver-chinese" style="font-size: 24px; line-height: 1.3;">凤凰大隐乾福民宿<br><span style="font-size: 16px;">(古城店)</span></div>
+                <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/3b7Vqi1u9wN');" class="amap-btn" style="color: var(--primary); border-color: var(--primary);">📍 Apri su Amap</a>
+            </div>
+
+            <div class="driver-card">
+                <div class="info-title" style="color: var(--primary);">🏨 YOLO RESORT (WULINGYUAN)</div>
+                <div class="driver-chinese" style="font-size: 26px; line-height: 1.3;">张家界优乐客栈</div>
+            </div>
+            <div class="day-card" style="border-left-color: var(--danger);">
+                <div class="info-title" style="color: var(--danger);">🚨 EMERGENZE LOCALI</div>
+                <div class="data-grid">
+                    <a href="tel:110" class="track-btn">🚔 Polizia (110)</a>
+                    <a href="tel:120" class="track-btn">🚑 Soccorso (120)</a>
+                </div>
+            </div>
+            </div>
+        ```
+
+<!--PARTE 4: Tab Programma e Chiusura
+Copia questo alla fine per completare la sezione ZJJ. Include i "Naviga a" dentro la timeline.
+-->
+        <div id="zhangjiajie-programma" class="tab-content active">
+            
+            <div class="nav-giorni" style="margin-top: 10px;">
+                <button class="nav-btn-context active" data-date="2026-08-16" onclick="showDay('zhangjiajie-programma', 'day-16-ago-zjj', this)">16 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-17" onclick="showDay('zhangjiajie-programma', 'day-17-ago-zjj', this)">17 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-18" onclick="showDay('zhangjiajie-programma', 'day-18-ago-zjj', this)">18 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-19" onclick="showDay('zhangjiajie-programma', 'day-19-ago-zjj', this)">19 Ago</button>
+                <button class="nav-btn-context" data-date="2026-08-20" onclick="showDay('zhangjiajie-programma', 'day-20-ago-zjj', this)">20 Ago</button>
+            </div>
+            <div id="day-16-ago-zjj" class="day-section active">
+                <div class="day-card">
+                    <div class="day-header"><h2 class="day-title">Domenica, 16 Agosto</h2><span class="day-subtitle">Tianmen Mountain & Fenghuang</span></div>
+                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Trekking & Viaggio Intenso</span>
+                    
+                    <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+                        <div class="info-title" style="color: var(--warning);">🔔 TASK E PRENOTAZIONI</div>
+                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer; margin-bottom: 5px;">
+                            <input type="checkbox" id="task-bagagli-16ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                            <span>Organizzare spedizione bagagli allo YOLO Resort. Viaggiare a Fenghuang solo con zainetto notte.</span>
+                        </label>
+                        <p style="margin-top: 10px; font-size: 13px; color: var(--danger);">⚠️ <b>LINK PRENOTAZIONI KLOOK TIANMEN (LINEA B):</b> DA INSERIRE</p>
+                    </div>
+
+                    <div class="info-block">
+                        <div class="info-title">📋 PROGRAMMA DETTAGLIATO</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:15</span> Check-out. Deposito zaino in hotel, spedizione valigie.</li>
+                            <li><span class="time-badge">08:25</span> <b>Naviga a:</b> <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/34hqu6MgrW');" style="color: var(--accent-blue); font-weight: bold;">Tianmen Cableway</a>. Ingresso Funivia Veloce (Slot 08:00-09:00 - Linea B).</li>
+                            <li><span class="time-badge">09:15</span> Arrivo Porta del Cielo e scalata 999 gradini.</li>
+                            <li><span class="time-badge">10:15</span> Scale mobili interne verso la vetta.</li>
+                            <li><span class="time-badge">10:45</span> Trekking panoramico (Guigu Path).</li>
+                            <li><span class="time-badge">12:15</span> <b>Bivio Passerella:</b> Verificare code alla Coiled Dragon Cliff.</li>
+                            <li><span class="time-badge">14:50</span> Orario LIMITE per prendere la funivia lunga a scendere.</li>
+                            <li><span class="time-badge">15:40</span> <b>Naviga a:</b> <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/2VWNLWa17Zt');" style="color: var(--accent-blue); font-weight: bold;">ZJJ Railway Station</a> in DiDi.</li>
+                            <li><span class="time-badge">17:00</span> Partenza Treno per Fenghuang.</li>
+                            <li><span class="time-badge">18:30</span> Arrivo, doccia in hotel (Dayin Qianfu).</li>
+                            <li><span class="time-badge">19:15</span> Esplorazione serale Fenghuang.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="day-17-ago-zjj" class="day-section">
+                <div class="day-card">
+                    <div class="day-header"><h2 class="day-title">Lunedì, 17 Agosto</h2><span class="day-subtitle">Fenghuang ➔ Ingresso Parco ZJJ</span></div>
+                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Viaggio / Moderato</span>
+
+                    <div class="info-block">
+                        <div class="info-title">📋 PROGRAMMA DETTAGLIATO</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">09:00</span> Colazione ed esplorazione mattutina Fenghuang.</li>
+                            <li><span class="time-badge">11:45</span> <b>Naviga a:</b> <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/PZ7Pp8HcdO');" style="color: var(--accent-blue); font-weight: bold;">Fenghuang Station</a> in DiDi da Ponte Nanhua.</li>
+                            <li><span class="time-badge">12:43</span> Treno di ritorno per ZJJ.</li>
+                            <li><span class="time-badge">14:15</span> (Se necessario) Consegna bagagli al desk spedizioni della stazione ZJJ per lo YOLO.</li>
+                            <li><span class="time-badge">14:30</span> <b>Naviga a:</b> <a href="javascript:void(0)" onclick="openSurl('https://surl.amap.com/Y82EmCBgxo');" style="color: var(--accent-blue); font-weight: bold;">Wulingyuan East Gate</a> in DiDi.</li>
+                            <li><span class="time-badge">15:20</span> Ascensore Bailong (VIP) per salire in quota.</li>
+                            <li><span class="time-badge">16:15</span> Check-in YOLO Resort (solo con zainetto).</li>
+                            <li><span class="time-badge">17:30</span> Eco-bus per Avatar Mountain alla luce del tramonto.</li>
+                            <li><span class="time-badge">18:45</span> Ultima navetta di rientro.</li>
+                            <li><span class="time-badge">19:30</span> Cena allo YOLO.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="day-18-ago-zjj" class="day-section">
+                <div class="day-card">
+                    <div class="day-header"><h2 class="day-title">Martedì, 18 Agosto</h2><span class="day-subtitle">Avatar Day (Yuanjiajie & Yangjiajie)</span></div>
+                    <span class="weight-badge" style="background: #fdeced; color: #c0392b;">🔴 Parchi / Intenso</span>
+
+                    <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
+                        <div class="info-title" style="color: #27ae60;">☀️ PIANO A: METEO SERENO (VETTE)</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:30</span> Eco-bus da Wangqiao verso Yuanjiajie.</li>
+                            <li><span class="time-badge">09:00</span> Trekking panoramico Yuanjiajie.</li>
+                            <li><span class="time-badge">12:30</span> Pranzo al coperto a Tianqiashen.</li>
+                            <li><span class="time-badge">14:00</span> Eco-bus per Yangjiajie.</li>
+                            <li><span class="time-badge">14:30</span> Trekking alla Muraglia Naturale.</li>
+                            <li><span class="time-badge">17:30</span> Rientro allo YOLO.</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-block" style="background: rgba(142, 24, 40, 0.1); border-left: 4px solid var(--danger);">
+                        <div class="info-title" style="color: var(--danger);">🌧️ PIANO B: PIOGGIA/NEBBIA FITTA (VALLE)</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:30</span> Discesa a valle con Ascensore Bailong.</li>
+                            <li><span class="time-badge">09:30</span> Trekking Golden Whip Stream.</li>
+                            <li><span class="time-badge">13:30</span> Uscita Ingresso Est e DiDi per Yellow Dragon Cave.</li>
+                            <li><span class="time-badge">14:00</span> Grotta calcarea illuminata.</li>
+                            <li><span class="time-badge">17:00</span> Rientro all'Ingresso Est, risalita in Ascensore Bailong.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="day-19-ago-zjj" class="day-section">
+                <div class="day-card">
+                    <div class="day-header"><h2 class="day-title">Mercoledì, 19 Agosto</h2><span class="day-subtitle">Tianzi Mountain & Risaie</span></div>
+                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Moderato / Fotografico</span>
+
+                    <div class="info-block" style="background: rgba(230, 126, 34, 0.1); border-left: 4px solid var(--warning);">
+                        <div class="info-title" style="color: var(--warning);">🔔 TASK LOGISTICI (LA SERA)</div>
+                        <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 14px; cursor: pointer;">
+                            <input type="checkbox" id="task-bagagli-19ago" class="save-state" style="margin-top: 3px; transform: scale(1.2);">
+                            <span>Concordare con lo YOLO la spedizione bagagli all'Aeroporto DYG per domani.</span>
+                        </label>
+                    </div>
+
+                    <div class="info-block" style="background: rgba(46, 204, 113, 0.1); border-left: 4px solid #2ecc71;">
+                        <div class="info-title" style="color: #27ae60;">☀️ PIANO A: METEO SERENO</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:30</span> Eco-bus per Tianzi Mountain.</li>
+                            <li><span class="time-badge">09:15</span> Esplorazione Tianzi Mt (Imperial Brush).</li>
+                            <li><span class="time-badge">12:00</span> Pagoda Tianzi, relax e pranzo.</li>
+                            <li><span class="time-badge">14:30</span> Rientro allo YOLO e riposo.</li>
+                            <li><span class="time-badge">16:30</span> Van privato verso Laowuchang (Risaie).</li>
+                            <li><span class="time-badge">17:00</span> Esplorazione rurale e tramonto.</li>
+                            <li><span class="time-badge">19:30</span> Ultima cena allo YOLO.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="day-20-ago-zjj" class="day-section">
+                <div class="day-card">
+                    <div class="day-header"><h2 class="day-title">Giovedì, 20 Agosto</h2><span class="day-subtitle">ZJJ ➔ Shanghai (Volo)</span></div>
+                    <span class="weight-badge" style="background: #fff3cd; color: #856404;">🟡 Trasferimento Lungo</span>
+
+                    <div class="info-block">
+                        <div class="info-title">📋 MATTINA (Piano da YOLO)</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">08:30</span> Check-out YOLO. Consegna bagagli al servizio di spedizione per aeroporto DYG.</li>
+                            <li><span class="time-badge">09:30</span> Partenza tassativa. Eco-bus verso Bailong Elevator.</li>
+                            <li><span class="time-badge">10:00</span> Discesa in Ascensore Bailong.</li>
+                            <li><span class="time-badge">11:15</span> Uscita tornelli Wulingyuan (Est) e DiDi per Aeroporto DYG (50 min).</li>
+                            <li><span class="time-badge">12:15</span> Arrivo Aeroporto, ritiro bagagli.</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-block" style="background: rgba(52, 152, 219, 0.1); border-left: 4px solid var(--accent-blue);">
+                        <div class="info-title" style="color: var(--accent-blue);">✈️ VOLO ZJJ ➔ SHANGHAI</div>
+                        <ul class="timeline">
+                            <li><span class="time-badge">12:45</span> Apertura drop-off bagagli. Orario limite controlli: 13:15.</li>
+                            <li><span class="time-badge">14:40</span> Decollo Volo Air China ➔ Shanghai PVG.</li>
+                            <li><span class="time-badge">16:45</span> Atterraggio a Pudong.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
-        <!-- ========================================== -->
-        <!-- FINE TAB: ZHANGJIAJIE - PROGRAMMA          -->
-        <!-- ========================================== -->
-
-    </div>
-    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-    <!-- %%%%%%%%%%%%%%%%%%%%%  FINE AREA ZHANGJIAJIE %%%%%%%%%%%%%%%%%%%%%%%%% -->
-    <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
-
+    
 
     <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
     <!-- %%%%%%%%%%%%%%%%%%%%%  INIZIO AREA SHANGHAI  %%%%%%%%%%%%%%%%%%%%%%%%% -->
